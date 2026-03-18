@@ -7,9 +7,9 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#232F3E;--card:#1a2535;--card2:#263040;--accent:#FF9900;--accent2:#e88a00;
-  --text:#e8eaf0;--text2:#a0aab8;--correct:#1db954;--wrong:#e74c3c;--border:#344055;
-  --btn:#2d3f55;--btn-hover:#384d65;
+	--bg:#232F3E;--card:#1a2535;--card2:#263040;--accent:#FF9900;--accent2:#e88a00;
+	--text:#e8eaf0;--text2:#a0aab8;--correct:#1db954;--wrong:#e74c3c;--border:#344055;
+	--btn:#2d3f55;--btn-hover:#384d65;
 }
 body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;min-height:100vh;display:flex;flex-direction:column}
 nav{background:#1a2535;border-bottom:2px solid var(--accent);display:flex;align-items:center;padding:0 20px;position:sticky;top:0;z-index:100;flex-wrap:wrap}
@@ -120,7 +120,7 @@ h2.section-title .hl{color:var(--accent)}
 <body>
 
 <nav>
-  <div class="nav-logo">&#x2601; AWS <span>DVA-C02</span></div>
+  <div class="nav-logo">&#x2601; AWS <span>Developer Associate</span></div>
   <div class="nav-tabs">
     <button class="nav-tab active" data-tab="home">&#x1F3E0; Home</button>
     <button class="nav-tab" data-tab="study">&#x1F4DA; Study</button>
@@ -386,7 +386,7 @@ function buildStudyCards() {
       '<div class="service-header"><span class="service-emoji">'+s.emoji+'</span><span class="service-name">'+escHtml(s.name)+'</span></div>' +
       '<div class="service-desc">'+escHtml(s.desc)+'</div>' +
       '<ul class="service-bullets">'+bulletsHtml+'</ul>' +
-      '<button class="btn btn-primary btn-sm" onclick="startTopicQuiz(s.name.replace(/'/g, '\\'\'))">Practice '+escHtml(s.name)+' Questions</button>' +
+      '<button class="btn btn-primary btn-sm" onclick="startTopicQuiz(\'' + s.name + '\')">'+'Practice '+escHtml(s.name)+' Questions</button>' +
       '</div>';
   }).join('');
 }
@@ -489,7 +489,7 @@ function renderQuestion() {
     '<div class="progress-bar" style="margin-bottom:16px"><div class="progress-fill" style="width:'+pct+'%"></div></div>' +
     '<div class="question-card">' +
     '<div class="question-num">Topic: <span class="badge-pill">'+escHtml(q.topic||'General')+'</span>'+multiHint+'</div>' +
-    '<div class="question-text">'+escHtml(q.q)+' <button class="info-btn" onclick="showInfo(''+escJs(q.topic||'General')+'')" title="Service info">ℹ</button></div>' +
+    '<div class="question-text">'+escHtml(q.q)+' <button class="info-btn" onclick="showInfo(\'' + escJs(q.topic||'General') + '\')" title="Service info">ℹ</button></div>' +
     '<div class="answers" id="answers-wrap">'+optHtml+'</div>' +
     '<div id="feedback-area"></div>' +
     '<div class="next-btn-wrap" id="next-wrap" style="display:none"><button class="btn btn-primary" onclick="nextQuestion()">'+(current<total-1?'Next Question →':'See Results')+'</button></div>' +
@@ -498,7 +498,7 @@ function renderQuestion() {
   if (timed) updateTimer();
 }
 
-function escJs(s) { return String(s).replace(/\/g,'\\').replace(/'/g,"\'"); }
+function escJs(s) { return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'"); }
 
 function handleAnswer(idx) {
   const {questions,current,mode} = quizState;
@@ -579,7 +579,7 @@ function showResult() {
     '<div class="result-sub">'+score+' of '+total+' correct &middot; Passing score: 65%</div>' +
     '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">' +
     '<button class="btn btn-primary" onclick="resetQuizSetup()">New Quiz</button>' +
-    '<button class="btn" onclick="goTab('home')">Home</button>' +
+    '<button class="btn" onclick="goTab(\'home\')">Home</button>' +
     '</div></div>';
   updateHomeStats();
 }
@@ -615,11 +615,7 @@ const AWS_DOCS = {
 function showInfo(topic) {
   const s = SERVICES.find(x => x.name === topic);
   document.getElementById('modal-title').textContent = (s ? s.emoji+' ' : '') + (topic||'AWS Service');
-  document.getElementById('modal-desc').textContent = s ? s.desc + '
-
-Key Points:
-' + s.bullets.map(b=>'• '+b).join('
-') : 'General AWS service.';
+  document.getElementById('modal-desc').textContent = s ? s.desc + '\n\nKey Points:\n' + s.bullets.map(b=>'• '+b).join('\n') : 'General AWS service.';
   const url = AWS_DOCS[topic] || 'https://docs.aws.amazon.com/index.html';
   const link = document.getElementById('modal-link');
   link.href = url;
