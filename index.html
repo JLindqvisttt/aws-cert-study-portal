@@ -24,6 +24,8 @@
 .cert-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;gap:8px}
 .cert-header .cert-badge{margin-bottom:4px}
 .cert-badge-img{width:64px;height:auto;object-fit:contain;flex-shrink:0;transition:transform 0.2s ease}
+[data-theme="dark"] .cert-badge-img{mix-blend-mode:screen}
+[data-theme="light"] .cert-badge-img{mix-blend-mode:multiply}
 .cert-card:hover .cert-badge-img{transform:scale(1.08)}
 .cert-card.coming-soon .cert-badge-img{opacity:0.4;filter:grayscale(0.3)}
 .cert-name{font-size:0.95rem;color:var(--text2);margin-bottom:10px}
