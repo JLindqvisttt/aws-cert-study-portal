@@ -16,8 +16,9 @@ nav{background:var(--card);border-bottom:1px solid var(--border);position:sticky
 .nav-top{display:flex;align-items:center;padding:0 16px;gap:10px;min-height:48px}
 .nav-back{background:none;border:none;color:var(--text2);padding:0;cursor:pointer;font-size:0.82rem;font-weight:500;display:inline-flex;align-items:center;gap:4px;transition:var(--transition);text-decoration:none;white-space:nowrap;flex-shrink:0}
 .nav-back:hover{color:var(--accent)}
-.nav-title-cert{font-size:1rem;font-weight:800;color:var(--accent);white-space:nowrap;letter-spacing:-0.3px;flex:1;text-align:center;overflow:hidden;text-overflow:ellipsis}
+.nav-title-cert{font-size:1rem;font-weight:800;color:var(--accent);white-space:nowrap;letter-spacing:-0.3px;flex:1;min-width:0;text-align:center;overflow:hidden;text-overflow:ellipsis}
 .nav-title-cert .sub{color:var(--text2);font-size:0.72rem;font-weight:500;margin-left:5px}
+@media(max-width:768px){.nav-title-cert .sub{display:none}}
 .nav-tabs{display:flex;gap:0;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;border-top:1px solid var(--border)}
 .nav-tabs::-webkit-scrollbar{display:none}
 .nav-tab{background:none;border:none;color:var(--text2);padding:12px 16px;cursor:pointer;font-size:0.82rem;font-weight:500;border-bottom:2px solid transparent;transition:var(--transition);white-space:nowrap;flex:1;text-align:center}
