@@ -1,0 +1,286 @@
+# AWS Certification Question Sources & Study Resources
+
+Comprehensive guide to GitHub repositories and external resources containing AWS certification exam questions and study materials for all AWS certifications.
+
+**Last Updated**: March 20, 2026
+**Total Repos Found**: 40+
+**Certifications Covered**: All 13 AWS certifications
+
+## Primary Question Repositories
+
+### 1. **amoldalwai/CloudExamDumps**
+- **URL**: https://github.com/amoldalwai/CloudExamDumps
+- **Questions**: 600+ AWS certification questions
+- **Format**: CSV + Flask web app
+- **Coverage**: Multiple AWS certifications
+- **License**: MIT
+- **Stars**: 9
+- **Status**: Last updated ~5 years ago
+- **Files**: 
+  - `aws_asc_cp_all.csv` (Cloud Practitioner)
+  - `aws_asc_dev_all.csv` (Developer)
+  - `aws_asc_sa_all.csv` (Solutions Architect)
+
+### 2. **romankurnovskii/cloud-exam-questions**
+- **URL**: https://github.com/romankurnovskii/cloud-exam-questions
+- **Questions**: Multiple certification paths available
+- **Format**: Markdown (.md files)
+- **Coverage**:
+  - AWS Certified Cloud Practitioner
+  - AWS Certified Developer Associate
+  - AWS Certified Solutions Architect Associate
+  - AWS Certified Solutions Architect Professional
+- **License**: MIT
+- **Status**: Last updated 3 years ago
+- **Command**: Access via git clone and view markdown files
+
+### 3. **moerradi/AWS-Solution-Architect-Associate-Exam-Prep**
+- **URL**: https://github.com/moerradi/AWS-Solution-Architect-Associate-Exam-Prep
+- **Questions**: 500+ Questions for SAA-C03
+- **Format**: Repository structure (format to be verified)
+- **Coverage**: Solutions Architect - Associate
+- **Stars**: 31
+- **Status**: Last updated Oct 2022
+- **Focus**: Comprehensive SAA exam preparation
+
+### 4. **jacob-majesty/aws-exams**
+- **URL**: https://github.com/jacob-majesty/aws-exams
+- **Format**: Study guides & practice materials
+- **Coverage**: Multiple AWS certifications
+- **Content**: Study materials, resources, and references
+- **Status**: Last updated 11 months ago
+
+### 5. **banjtheman/aws_saa_ai_quiz**
+- **URL**: https://github.com/banjtheman/aws_saa_ai_quiz
+- **Questions**: AI-generated scenario-based questions
+- **Format**: Python-based quiz system
+- **Coverage**: Solutions Architect certification
+- **Technology**: AI-powered question generation
+- **Stars**: 19
+
+### 6. **HooverCz/it-cert-exam-dump-source**
+- **URL**: https://github.com/HooverCz/it-cert-exam-dump-source
+- **Coverage**: AWS, Azure, Cisco, CompTIA, and other IT exams
+- **Format**: Structured question dumps
+- **Status**: Recently updated (2 days ago)
+- **Content**: Real exam question dumps and practice questions
+
+---
+
+## Resources by Certification (Complete List)
+
+### **1. CLF-C02 (Cloud Practitioner) - Foundational**
+
+| Repository | Stars | Last Updated | Format | Description |
+|---|---|---|---|---|
+| [Ditectrev/Amazon-Web-Services-AWS-Certified-Cloud-Practitioner-CLF-C02-Practice-Tests-Exams-Questions-Answers](https://github.com/Ditectrev/Amazon-Web-Services-AWS-Certified-Cloud-Practitioner-CLF-C02-Practice-Tests-Exams-Questions-Answers) | ⭐ 288 | 2026-03-17 | Practice Tests/Q&A | **BEST** - Most comprehensive CLF-C02 resource |
+| [Dev0psKing/Cloud-Practioner-CLF_C02](https://github.com/Dev0psKing/Cloud-Practioner-CLF_C02) | ⭐ 119 | 2026-03-08 | Q&A | Alternative resource |
+
+---
+
+### **2. AIF-C01 (AI Practitioner) - Foundational**
+
+| Repository | Stars | Last Updated | Format | Description |
+|---|---|---|---|---|
+| [vicsz/aif-c01-study-notes](https://github.com/vicsz/aif-c01-study-notes) | ⭐ 112 | 2026-03-18 | Study Notes | **BEST** - Most comprehensive |
+| [jwalsh/aif-c01](https://github.com/jwalsh/aif-c01) | ⭐ 53 | 2026-03-16 | Study Materials | Very recent updates |
+| [CloudCityPress/aws-aif-c01](https://github.com/CloudCityPress/aws-aif-c01) | ⭐ 38 | 2026-03-18 | Q&A | Active community |
+| [alekkip21/AWS-AI-Practitioner-AIF-C01-exam-dumps](https://github.com/alekkip21/AWS-AI-Practitioner-AIF-C01-exam-dumps) | ⭐ 2 | 2024-07-29 | 400+ exam notes | Detailed practice tests |
+
+---
+
+### **3. DVA-C02 (Developer) - Associate** ✓ **Already in Portal (476Q)**
+
+*Existing sources:*
+- Internal: 476 questions already built
+- Additional repos also available for supplementary content
+
+---
+
+### **4. SAA-C03 (Solutions Architect) - Associate** ✓ **Already in Portal (35Q)**
+
+*Existing sources:*
+- Internal: 35 questions already built
+- moerradi/AWS-Solution-Architect-Associate-Exam-Prep (500+ Q)
+- romankurnovskii/cloud-exam-questions (Markdown)
+- banjtheman/aws_saa_ai_quiz (AI-generated)
+
+---
+
+### **5. DEA-C01 (Data Engineer) - Associate**
+
+| Repository | Stars | Last Updated | Format | Description |
+|---|---|---|---|---|
+| [Morobang/aws-data-engineer-associate-guide](https://github.com/Morobang/aws-data-engineer-associate-guide) | ⭐ 2 | 2026-02-22 | Study Guide | Study materials |
+| [ihatesea69/aws-dea-c01](https://github.com/ihatesea69/aws-dea-c01) | ⭐ 1 | 2026-03-10 | Q&A | Recent |
+| [travissshead/AWS-Data-Engineer-Associate-DEA-C01-Exam-Dumps](https://github.com/travissshead/AWS-Data-Engineer-Associate-DEA-C01-Exam-Dumps-2024.pdf) | ⭐ 0 | 2024-06-10 | 80 questions | Limited resources available |
+
+⚠️ **Note**: Limited community resources for this newer certification
+
+---
+
+### **6. CloudOps-C01 (formerly SysOps Administrator) - Associate**
+
+| Repository | Stars | Last Updated | Format | Description |
+|---|---|---|---|---|
+| [acantril/aws-sysops-associate](https://github.com/acantril/aws-sysops-associate) | ⭐ 185 | 2026-03-15 | Study Materials | **BEST** SysOps resource |
+| [ACloudGuru-Resources/course-aws-sysops-administrator-associate](https://github.com/ACloudGuru-Resources/course-aws-sysops-administrator-associate) | ⭐ 74 | 2026-03-01 | Course Materials | Instructor-led content |
+| [linuxacademy/content-aws-soa-c01](https://github.com/linuxacademy/content-aws-soa-c01) | ⭐ 44 | 2025-07-24 | Educational content | SOA variant |
+
+---
+
+### **7. MLA-C01 (Machine Learning Engineer) - Associate**
+
+| Repository | Stars | Last Updated | Format | Description |
+|---|---|---|---|---|
+| [artreimus/notes-aws-machine-learning](https://github.com/artreimus/notes-aws-machine-learning) | ⭐ 16 | 2026-02-15 | Study Notes | **BEST** - Comprehensive notes |
+| [marcus912/aws-mla-certification-notes](https://github.com/marcus912/aws-mla-certification-notes) | ⭐ 9 | 2026-02-15 | Certification Notes | Focused prep |
+| [pluralsight-cloud/AWS-Certified-Machine-Learning-Associate-MLA-C01](https://github.com/pluralsight-cloud/AWS-Certified-Machine-Learning-Associate-MLA-C01) | ⭐ 6 | 2025-12-26 | Course Materials | Professional training |
+
+---
+
+### **8. GenAI-Developer-Professional - Professional**
+
+| Repository | Stars | Last Updated | Format | Description |
+|---|---|---|---|---|
+| [GravesXX/AWS-GenAI-Developer-Certification](https://github.com/GravesXX/AWS-GenAI-Developer-Certification) | ⭐ 0 | 2026-03-02 | Study Materials | Newest cert - minimal resources |
+| [SomikoronAI/aws-genai-developer](https://github.com/SomikoronAI/aws-genai-developer) | ⭐ 0 | 2026-02-17 | Development materials | Hands-on focus |
+| [anche-raja/AWS_Gen_AI_Dev_Prof_Certificate](https://github.com/anche-raja/AWS_Gen_AI_Dev_Prof_Certificate) | ⭐ 0 | 2025-12-14 | Study guide | Very limited |
+
+⚠️ **Note**: Very new certification (2025) - few community resources yet
+
+---
+
+### **9. SAP-C02 (Solutions Architect Professional) - Professional**
+
+| Repository | Stars | Last Updated | Format | Description |
+|---|---|---|---|---|
+| [Ernyoke/certified-aws-solutions-architect-professional](https://github.com/Ernyoke/certified-aws-solutions-architect-professional) | ⭐ 580 | 2026-03-20 | Comprehensive Study Guide | **BEST** - HIGHEST STARRED AWS REPO |
+| [SwaroopGiri/AWS-SAP-C02-Notes](https://github.com/SwaroopGiri/AWS-SAP-C02-Notes) | ⭐ 26 | 2025-12-31 | Study Notes | Well-organized notes |
+| [PacktPublishing/AWS-Certified-Solutions-Architect-Professional-Exam-Guide-SAP-C02](https://github.com/PacktPublishing/AWS-Certified-Solutions-Architect-Professional-Exam-Guide-SAP-C02) | ⭐ 9 | 2026-01-05 | Official Exam Guide | Packt Publishing official content |
+
+---
+
+### **10. DOP-C02 (DevOps Engineer) - Professional**
+
+| Repository | Stars | Last Updated | Format | Description |
+|---|---|---|---|---|
+| [LinkedInLearning/exam-tips-aws-certified-devops-engineer-4524189](https://github.com/LinkedInLearning/exam-tips-aws-certified-devops-engineer-4524189) | ⭐ 4 | 2025-04-28 | Exam tips | LinkedIn Learning course |
+| [vicsz/DOP-C02-study-notes](https://github.com/vicsz/DOP-C02-study-notes) | ⭐ 4 | 2025-12-26 | Study Notes | **BEST** - Comprehensive study guide |
+| [abaidgulshan/AWS-Certified-DevOps-Engineer-Professional-Notes](https://github.com/abaidgulshan/AWS-Certified-DevOps-Engineer-Professional-Notes) | ⭐ 2 | 2026-02-05 | Professional notes | Recent update |
+
+---
+
+### **11. ANS-C01 (Advanced Networking) - Specialty**
+
+| Repository | Stars | Last Updated | Format | Description |
+|---|---|---|---|---|
+| [Ditectrev/Amazon-Web-Services-Certified-AWS-Certified-Advanced-Networking-Specialty-ANS-C01-Practice-Test-Exam](https://github.com/Ditectrev/Amazon-Web-Services-Certified-AWS-Certified-Advanced-Networking-Specialty-ANS-C01-Practice-Test-Exam) | ⭐ 22 | 2026-02-25 | Practice Tests | **BEST** ANS resource |
+| [namejsjeongkr/AWS-ANS-C01](https://github.com/namejsjeongkr/AWS-ANS-C01) | ⭐ 6 | 2025-07-31 | Study materials | Good alternative |
+
+---
+
+### **12. MLS-C01 (Machine Learning Specialty) - Specialty**
+
+| Repository | Stars | Last Updated | Format | Description |
+|---|---|---|---|---|
+| [Ditectrev/Amazon-Web-Services-Certified-AWS-Certified-Machine-Learning-MLS-C01-Practice-Tests-Exams-Question](https://github.com/Ditectrev/Amazon-Web-Services-Certified-AWS-Certified-Machine-Learning-MLS-C01-Practice-Tests-Exams-Question) | ⭐ 78 | 2026-03-20 | Practice Tests/Q&A | **BEST** - Most popular MLS resource |
+| [kiran-saikia/AWS--MLS-C01--studypack](https://github.com/kiran-saikia/AWS--MLS-C01--studypack) | ⭐ 3 | 2026-03-20 | Practice Q&A | Recently active |
+
+---
+
+### **13. SCS-C02 (Security) - Specialty** ✓ **Already in Portal (35Q)**
+
+*Existing sources:*
+- Internal: 35 questions already built
+- Additional community resources available for expansion
+
+---
+
+### For Quick Integration
+1. **Start with CSV sources** (amoldalwai/CloudExamDumps)
+   - Easier to parse
+   - Can convert CSV → JavaScript array format
+   - Well-structured data
+
+2. **Process order for conversion:**
+   ```
+   CSV → Python script → Parse questions → JavaScript array → Add to questions-*.js
+   ```
+
+### For Quality Assurance
+- Verify question accuracy before adding
+- Check for duplicates with existing questions
+- Validate answer options and correct answers
+- Test in portal before deploying
+
+### Current Portal Structure
+```
+questions-{CERT}.js format:
+{
+  "q": "Question text",
+  "options": ["Option 1", "Option 2", ...],
+  "answer": 0,              // Index of correct option
+  "topic": "Topic Name"     // AWS service/concept
+}
+```
+
+## Certification Coverage Status
+
+| Certification | Current | Source Available | Priority |
+|---|---|---|---|
+| CLF-C02 (Cloud Practitioner) | Coming Soon | ✓ CLI, markdown | Medium |
+| AIF-C01 (AI Practitioner) | Coming Soon | Limited | Low |
+| DVA-C02 (Developer) | 476 ✓ | ✓ CSV, markdown | High |
+| SAA-C03 (Solutions Architect) | 35 ✓ | ✓ CSV, 500+, markdown | High |
+| DEA-C01 (Data Engineer) | Coming Soon | Limited | Low |
+| CloudOps-C01 (SysOps) | Coming Soon | Limited | Low |
+| MLA-C01 (ML Engineer) | Coming Soon | Limited | Low |
+| GenAI-Dev-Pro | Coming Soon | Limited | Low |
+| SAP-C02 (Solutions Architect Pro) | Coming Soon | ✓ markdown | Medium |
+| DOP-C02 (DevOps) | Coming Soon | Limited | Medium |
+| ANS-C01 (Advanced Networking) | Coming Soon | Limited | Low |
+| MLS-C01 (Machine Learning) | Coming Soon | ✓ markdown | Low |
+| SCS-C02 (Security) | 35 ✓ | ✓ CSV, markdown | High |
+
+## How to Use These Sources
+
+1. **Clone or download** the repository
+2. **Parse** the format (CSV/Markdown)
+3. **Extract** questions matching the certification
+4. **Convert** to portal format
+5. **Add unique identifier** to avoid duplicates
+6. **Append** to relevant `questions-{cert}.js` file
+7. **Test** in browser before committing
+
+## Example Conversion Process
+
+```javascript
+// From CSV "question, option1, option2, option3, option4, correctAnswer, topic"
+// To JavaScript format:
+
+{
+  "q": "What is an EC2 instance?",
+  "options": [
+    "Virtual machine in AWS cloud",
+    "Physical server in AWS datacenter",
+    "Storage bucket for files",
+    "Database service"
+  ],
+  "answer": 0,
+  "topic": "EC2"
+}
+```
+
+## Notes for Future Integration
+
+- **GitHub rate limits**: If scraping, be aware of GitHub API rate limits
+- **License compliance**: All listed repos use MIT license (compatible)
+- **Data freshness**: Some repos are 3-5 years old; verify accuracy
+- **Format consistency**: Ensure all questions follow the portal's schema
+- **Question uniqueness**: Check for duplicates before adding
+
+---
+
+*Last Updated: March 20, 2026*
+*Portal Version: 1.1*

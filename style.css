@@ -119,6 +119,8 @@ h2.section-title .hl{color:var(--accent)}
 .btn-primary{background:var(--accent);border-color:var(--accent);color:#111;font-weight:700}
 .btn-primary:hover{background:var(--accent2);border-color:var(--accent2)}
 .btn-sm{padding:5px 12px;font-size:0.75rem}
+.weak-topic-tag{background:rgba(229,62,62,0.1);color:var(--wrong);border:1px solid rgba(229,62,62,0.25);padding:2px 9px;border-radius:999px;font-size:0.72rem;font-weight:700;white-space:nowrap}
+.weak-topic-none{color:var(--text2);font-size:0.75rem}
 
 @media(max-width:640px){
   nav{padding:6px 12px;gap:6px}

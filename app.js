@@ -39,9 +39,30 @@ function updateHomeStats() {
   const mastered = QUESTIONS.filter((_,i) => isMastered(p[i])).length;
   const topicsSeen = new Set(QUESTIONS.filter((_,i) => p[i] && (p[i].correct > 0 || p[i].incorrect > 0)).map(q => q.topic || tagQuestion(q))).size;
   document.getElementById('stat-mastery').textContent = Math.round(mastered/QUESTIONS.length*100)+'%';
-  document.getElementById('stat-topics').textContent = topicsSeen || new Set(QUESTIONS.map(q => q.topic || tagQuestion(q))).size;
+  document.getElementById('stat-topics').textContent = topicsSeen;
   document.getElementById('stat-mastered-text').textContent = mastered+' of '+QUESTIONS.length+' mastered';
   document.getElementById('home-progress-fill').style.width = (mastered/QUESTIONS.length*100)+'%';
+
+  // Compute weak topics (incorrect answers with no mastery)
+  const weakMap = {};
+  QUESTIONS.forEach((q, i) => {
+    const e = p[i];
+    if (e && e.incorrect > 0 && !isMastered(e)) {
+      const t = q.topic || tagQuestion(q);
+      weakMap[t] = (weakMap[t] || 0) + 1;
+    }
+  });
+  const weakList = document.getElementById('weak-topics-list');
+  if (weakList) {
+    const sorted = Object.entries(weakMap).sort((a,b) => b[1]-a[1]);
+    if (sorted.length > 0) {
+      weakList.innerHTML = sorted.slice(0,5).map(([t,n]) =>
+        '<span class="weak-topic-tag">'+escHtml(t)+' ('+n+')</span>'
+      ).join('');
+    } else {
+      weakList.innerHTML = '<span class="weak-topic-none">No weak areas yet — keep answering questions!</span>';
+    }
+  }
 }
 
 // Nav
@@ -402,4 +423,3 @@ buildStudyCards();
 populateTopics();
 updateHomeStats();
 initFlashcards();
-document.getElementById('stat-topics').textContent = ALL_TOPICS.length;
