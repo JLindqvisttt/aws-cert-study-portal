@@ -130,4 +130,8 @@ h2.section-title .hl{color:var(--accent)}
   .nav-tabs{order:3;width:100%;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
   .nav-tabs::-webkit-scrollbar{display:none}
   .nav-tab{padding:12px 10px;font-size:0.78rem;flex:0 0 auto}
+  main{padding:18px 12px}
+  .question-card{padding:16px}
+  .result-card{padding:24px 16px}
+  .flash-face{padding:20px}
 }

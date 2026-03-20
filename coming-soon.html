@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <style>
+        .soon-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 12px;
+            gap: 10px
+        }
+
         .wrap {
             max-width: 760px;
             margin: 60px auto;
@@ -40,13 +48,28 @@
             gap: 10px;
             flex-wrap: wrap
         }
+
+        @media (max-width: 520px) {
+            .wrap {
+                margin: 24px auto;
+                padding: 0 12px
+            }
+
+            .panel {
+                padding: 18px
+            }
+
+            .code {
+                font-size: 1.45rem
+            }
+        }
     </style>
     <script>(function () { var t = localStorage.getItem('theme') || 'dark'; document.documentElement.setAttribute('data-theme', t); })();</script>
 </head>
 
 <body>
-    <nav style="display:flex;align-items:center;justify-content:space-between;padding:0 20px"><a class="btn"
-            href="index.html" style="text-decoration:none"><- Back to Portal</a><button class="theme-toggle"
+        <nav class="soon-nav"><a class="btn"
+            href="index.html" style="text-decoration:none">&#x2190; Back to Portal</a><button class="theme-toggle"
                     id="theme-toggle" onclick="toggleTheme()">🌙</button></nav>
     <div class="wrap">
         <div class="panel">
