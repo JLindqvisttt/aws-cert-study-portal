@@ -21,13 +21,6 @@
 .cert-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--cert-color)}
 .cert-badge{display:inline-block;font-size:0.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--cert-color);color:#fff;padding:2px 8px;border-radius:20px;margin-bottom:10px}
 .cert-code{font-size:1.4rem;font-weight:800;margin:4px 0}
-.cert-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;gap:8px}
-.cert-header .cert-badge{margin-bottom:4px}
-.cert-badge-img{width:64px;height:auto;object-fit:contain;flex-shrink:0;transition:transform 0.2s ease}
-[data-theme="dark"] .cert-badge-img{mix-blend-mode:screen}
-[data-theme="light"] .cert-badge-img{mix-blend-mode:multiply}
-.cert-card:hover .cert-badge-img{transform:scale(1.08)}
-.cert-card.coming-soon .cert-badge-img{opacity:0.4;filter:grayscale(0.3)}
 .cert-name{font-size:0.95rem;color:var(--text2);margin-bottom:10px}
 .cert-desc{font-size:0.85rem;color:var(--text2);line-height:1.5;margin-bottom:14px}
 .cert-topics{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:16px}
@@ -139,10 +132,8 @@ function buildCards(){
     var C=106.81;var progressHtml=cert.built?('<div class="cert-progress-wrap"><div class="prog-ring-row"><div class="prog-ring-wrap"><svg class="prog-ring" width="52" height="52" viewBox="0 0 52 52"><circle class="prog-ring-bg" cx="26" cy="26" r="17"/><circle class="prog-ring-fill" cx="26" cy="26" r="17" style="stroke:'+cert.color+';stroke-dasharray:'+C+';stroke-dashoffset:'+(C*(1-pct/100)).toFixed(2)+'"/></svg><div class="prog-ring-inner"><span class="prog-ring-pct">'+pct+'%</span></div></div><div class="prog-ring-labels"><span class="prog-ring-count">'+prog.mastered+' / '+cert.total+'</span><span class="prog-ring-sub">questions mastered</span></div></div></div>'):'';
     html+='<a class="cert-card'+(cert.built?'':' coming-soon')+'" href="'+cert.href+'" style="--cert-color:'+cert.color+'">'+
       (!cert.built?'<span class="coming-soon-badge">Coming Soon</span>':'')+
-      '<div class="cert-header">'+
-        '<div><div class="cert-badge">'+cert.level+'</div><div class="cert-code">'+cert.code+'</div></div>'+
-        (cert.badge?'<img class="cert-badge-img" src="'+cert.badge+'" alt="'+cert.code+' badge" loading="lazy">':'')+
-      '</div>'+
+      '<div class="cert-badge">'+cert.level+'</div>'+
+      '<div class="cert-code">'+cert.code+'</div>'+
       '<div class="cert-name">'+cert.name+'</div>'+
       '<div class="cert-desc">'+cert.desc+'</div>'+
       '<div class="cert-topics">'+topics+'</div>'+
