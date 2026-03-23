@@ -9,6 +9,8 @@
 <style>
 body{background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 10%,var(--bg)) 0%,var(--bg) 65%)}
 nav{background:transparent;border-bottom-color:transparent;box-shadow:none}
+.nav-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;min-height:52px;padding:0 16px}
+.portal-nav-actions{display:flex;align-items:center;gap:8px;justify-content:flex-end}
 .portal-hero{text-align:center;padding:44px 24px 16px;position:relative;overflow:hidden}
 .portal-hero::before{content:'';position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(240,150,42,0.08) 0%,transparent 65%);animation:heroFloat 14s ease-in-out infinite;top:-320px;left:-180px;pointer-events:none;z-index:0}
 .portal-hero::after{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(240,150,42,0.05) 0%,transparent 65%);animation:heroFloat 14s ease-in-out infinite 7s reverse;bottom:-220px;right:-80px;pointer-events:none;z-index:0}
@@ -51,7 +53,10 @@ nav{background:transparent;border-bottom-color:transparent;box-shadow:none}
 .level-pill:hover{border-color:var(--accent);color:var(--text)}
 .level-pill.active{background:var(--accent);border-color:var(--accent);color:#111}
 .level-count{font-size:0.72rem;opacity:0.75;font-weight:500;margin-left:3px}
-.portal-feedback-btn{font-size:0.78rem;padding:6px 13px;text-decoration:none;display:inline-flex;align-items:center;gap:5px;vertical-align:middle}
+.portal-feedback-btn{font-size:0.8rem;font-weight:600;padding:7px 16px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;border-radius:999px;border:1.5px solid var(--border);color:var(--text2);transition:var(--transition);background:transparent}
+.portal-feedback-btn:hover{border-color:var(--text2);color:var(--text)}
+.cert-card-badge-img{position:absolute;top:12px;right:12px;width:50px;height:50px;object-fit:contain;border-radius:10px;background:color-mix(in srgb,var(--cert-color) 18%,var(--card2));padding:6px;transition:transform 0.2s ease;z-index:1}
+.cert-card:hover .cert-card-badge-img{transform:scale(1.07)}
 @media(max-width:640px){
   .portal-hero{padding:28px 12px 10px}
   .portal-hero h1{font-size:1.6rem}
@@ -61,7 +66,7 @@ nav{background:transparent;border-bottom-color:transparent;box-shadow:none}
   .cert-grid{grid-template-columns:1fr;gap:12px;padding:0 12px 30px}
   .cert-card{padding:16px}
   .cert-code{font-size:1.2rem}
-  .cert-badge-img{width:52px}
+  .cert-card-badge-img{width:40px;height:40px}
   .prog-ring-wrap,.prog-ring{width:44px;height:44px}
   .cert-footer{flex-wrap:wrap}
 }
@@ -71,9 +76,12 @@ nav{background:transparent;border-bottom-color:transparent;box-shadow:none}
 <body>
 <nav>
   <div class="nav-top">
+    <div></div>
     <span class="nav-title-cert">&#x2601; AWS Cert Study Portal</span>
-    <a class="btn portal-feedback-btn" href="feedback.html">&#x1F4AC; Feedback</a>
-    <button class="theme-toggle" id="theme-toggle" onclick="togglePortalTheme()" title="Toggle light/dark mode">&#x1F319;</button>
+    <div class="portal-nav-actions">
+      <a class="portal-feedback-btn" href="feedback.html">&#x1F4AC; Feedback</a>
+      <button class="theme-toggle" id="theme-toggle" onclick="togglePortalTheme()" title="Toggle light/dark mode">&#x1F319;</button>
+    </div>
   </div>
 </nav>
 <div class="portal-hero">
@@ -87,8 +95,8 @@ const BD='https://d1.awsstatic.com/onedam/marketing-channels/website/aws/en_US/c
 const CERTS = [
   { id:'clf-c02', code:'CLF-C02', name:'Cloud Practitioner', level:'Foundational', color:'#64748b', total:0, href:'coming-soon.html?cert=clf-c02', built:false, topics:['Cloud Concepts','Billing','Security','Core Services'], desc:'Foundational understanding of AWS cloud concepts and value.', badge:BD+'450x520_lower.156c60f871fa39a09e89586c7520d404d18d13af.png' },
   { id:'aif-c01', code:'AIF-C01', name:'AI Practitioner', level:'Foundational', color:'#64748b', total:0, href:'coming-soon.html?cert=aif-c01', built:false, topics:['GenAI','ML Basics','AWS AI Services','Responsible AI'], desc:'Foundational AI and generative AI knowledge on AWS.', badge:BD+'1268_AWS_Cert_Template_badges_AI-Practitioner.aab7160e1a9809a5f39199b24ee014bc2598a4d1.png' },
-  { id:'dva-c02', code:'DVA-C02', name:'Developer', level:'Associate', color:'#06b6d4', total:476, href:'dva-c02.html', built:true, topics:['Lambda','DynamoDB','API Gateway','CI/CD'], desc:'Develop, deploy, and debug cloud-based applications.', badge:BD+'1268_AWS_Cert_Template_badges_Developer.48b58911afa0d71c5655bbaf91fa5442bcc32f5d.png' },
-  { id:'saa-c03', code:'SAA-C03', name:'Solutions Architect', level:'Associate', color:'#06b6d4', total:35, href:'saa-c03.html', built:true, topics:['VPC','EC2','S3','RDS'], desc:'Design resilient and cost-optimized AWS architectures.', badge:BD+'1268_AWS_Cert_Template_badges_Solutions-Architect-Associate.b9f37074b41d1f226d896be5ae25c2d53a3d018a.png' },
+  { id:'dva-c02', code:'DVA-C02', name:'Developer', level:'Associate', color:'#06b6d4', total:476, href:'dva-c02.html', built:true, topics:['Lambda','DynamoDB','API Gateway','SQS/SNS','CodePipeline'], desc:'Develop, deploy, and debug cloud-based applications.', badge:BD+'1268_AWS_Cert_Template_badges_Developer.48b58911afa0d71c5655bbaf91fa5442bcc32f5d.png' },
+  { id:'saa-c03', code:'SAA-C03', name:'Solutions Architect', level:'Associate', color:'#06b6d4', total:35, href:'saa-c03.html', built:true, topics:['VPC','EC2+Auto Scaling','S3+CloudFront','RDS+Aurora','Route 53'], desc:'Design resilient and cost-optimized AWS architectures.', badge:BD+'1268_AWS_Cert_Template_badges_Solutions-Architect-Associate.b9f37074b41d1f226d896be5ae25c2d53a3d018a.png' },
   { id:'dea-c01', code:'DEA-C01', name:'Data Engineer', level:'Associate', color:'#06b6d4', total:0, href:'coming-soon.html?cert=dea-c01', built:false, topics:['Data Lakes','ETL','Streaming','Governance'], desc:'Design and build data pipelines and analytics solutions.', badge:BD+'1268_AWS_Cert_Template_badges_Data-Engineer-Associate.9fbc85c55c859477142224b72b9c85e5f652bd32.png' },
   { id:'cloudops-c01', code:'CloudOps-C01', name:'CloudOps Engineer', level:'Associate', color:'#06b6d4', total:0, href:'coming-soon.html?cert=cloudops-c01', built:false, topics:['Monitoring','Operations','Resilience','Security'], desc:'Deploy, manage, and operate workloads on AWS.', badge:BD+'AWS_Cert_Template_badges_CloudOps-Associate.cf2d56533d61c33192dfa167dace6f7ade7ae81d.png' },
   { id:'mla-c01', code:'MLA-C01', name:'Machine Learning Engineer', level:'Associate', color:'#06b6d4', total:0, href:'coming-soon.html?cert=mla-c01', built:false, topics:['Feature Engineering','Training','MLOps','Inference'], desc:'Build, train, and deploy machine learning workloads.', badge:BD+'1268_AWS_Cert_Template_badges_Machine-Learning-Engineer-Associate.a1b26660e12e04d271aa95ca27d0466c05f47267.png' },
@@ -97,7 +105,7 @@ const CERTS = [
   { id:'dop-c02', code:'DOP-C02', name:'DevOps Engineer', level:'Professional', color:'#f97316', total:0, href:'coming-soon.html?cert=dop-c02', built:false, topics:['Release Automation','Observability','Security','Reliability'], desc:'Operate and evolve delivery pipelines and production systems.', badge:BD+'1268_AWS_Cert_Template_badges_DevOps-Engineer.dca519446f0ce62e25dd4e47fec830c73e7e7393.png' },
   { id:'ans-c01', code:'ANS-C01', name:'Advanced Networking', level:'Specialty', color:'#ec4899', total:0, href:'coming-soon.html?cert=ans-c01', built:false, topics:['Hybrid Networking','Routing','DNS','Connectivity'], desc:'Advanced design and operation of AWS and hybrid networking.', badge:BD+'1268_AWS_Cert_Template_badges_Adv-Networking.a8edc59ae823bcd1775a719791076b3de99cb8ee.png' },
   { id:'mls-c01', code:'MLS-C01', name:'Machine Learning', level:'Specialty', color:'#ec4899', total:0, href:'coming-soon.html?cert=mls-c01', built:false, topics:['ML Problem Framing','Modeling','Deployment','Optimization'], desc:'Advanced machine learning design and operations on AWS.', badge:BD+'AWS-CredlyBadges_Machine-Learning.b7b18deedcc86c5bc96939d3b62b1a3ed8b76c3b.png' },
-  { id:'scs-c02', code:'SCS-C02', name:'Security', level:'Specialty', color:'#ec4899', total:35, href:'scs-c02.html', built:true, topics:['IAM','KMS','CloudTrail','GuardDuty'], desc:'Secure AWS workloads with layered controls and governance.', badge:BD+'1268_AWS_Cert_Template_badges_Security.a496af5c816d7d0c62c830f89393ae9ce7b84601.png' }
+  { id:'scs-c02', code:'SCS-C02', name:'Security', level:'Specialty', color:'#ec4899', total:35, href:'scs-c02.html', built:true, topics:['IAM+Policies','KMS+CloudHSM','GuardDuty','CloudTrail','WAF+Shield'], desc:'Secure AWS workloads with layered controls and governance.', badge:BD+'1268_AWS_Cert_Template_badges_Security.a496af5c816d7d0c62c830f89393ae9ce7b84601.png' }
 ];
 
 var currentLevel = 'all';
@@ -132,8 +140,8 @@ function buildCards(){
     var pct=cert.total>0?Math.round((prog.mastered/cert.total)*100):0;
     var topics=cert.topics.map(function(t){return '<span class="cert-topic">'+t+'</span>';}).join('');
     var C=106.81;var progressHtml=cert.built?('<div class="cert-progress-wrap"><div class="prog-ring-row"><div class="prog-ring-wrap"><svg class="prog-ring" width="52" height="52" viewBox="0 0 52 52"><circle class="prog-ring-bg" cx="26" cy="26" r="17"/><circle class="prog-ring-fill" cx="26" cy="26" r="17" style="stroke:'+cert.color+';stroke-dasharray:'+C+';stroke-dashoffset:'+(C*(1-pct/100)).toFixed(2)+'"/></svg><div class="prog-ring-inner"><span class="prog-ring-pct">'+pct+'%</span></div></div><div class="prog-ring-labels"><span class="prog-ring-count">'+prog.mastered+' / '+cert.total+'</span><span class="prog-ring-sub">questions mastered</span></div></div></div>'):'';
-    html+='<a class="cert-card'+(cert.built?'':' coming-soon')+'" href="'+cert.href+'" style="--cert-color:'+cert.color+'">'+
-      (!cert.built?'<span class="coming-soon-badge">Coming Soon</span>':'')+
+  html+='<a class="cert-card'+(cert.built?'':' coming-soon')+'" href="'+cert.href+'" style="--cert-color:'+cert.color+'">'+ 
+      (!cert.built?'<span class="coming-soon-badge">Coming Soon</span>':'<img class="cert-card-badge-img" src="'+cert.badge+'" alt="'+cert.code+' badge" loading="lazy">')+ 
       '<div class="cert-badge">'+cert.level+'</div>'+
       '<div class="cert-code">'+cert.code+'</div>'+
       '<div class="cert-name">'+cert.name+'</div>'+
