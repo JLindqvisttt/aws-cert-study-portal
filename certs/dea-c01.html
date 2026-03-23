@@ -59,6 +59,7 @@
         <div class="action-title">Quick Quiz</div>
         <div class="action-desc">Random questions with immediate feedback</div>
         <div class="quick-quiz-actions">
+          <button class="btn btn-primary btn-sm" onclick="startQuickQuiz(5)">5 Qs</button>
           <button class="btn btn-primary btn-sm" onclick="startQuickQuiz(10)">10 Qs</button>
           <button class="btn btn-primary btn-sm" onclick="startQuickQuiz(20)">20 Qs</button>
           <button class="btn btn-primary btn-sm" onclick="startQuickQuiz(30)">30 Qs</button>
@@ -101,7 +102,8 @@
       <div class="option-group">
         <label>Question Count</label>
         <div class="option-pills">
-          <div class="pill selected" data-group="count" data-val="10">10</div>
+          <div class="pill selected" data-group="count" data-val="5">5</div>
+          <div class="pill" data-group="count" data-val="10">10</div>
           <div class="pill" data-group="count" data-val="20">20</div>
           <div class="pill" data-group="count" data-val="30">30</div>
           <div class="pill" data-group="count" data-val="65">65</div>
@@ -168,6 +170,6 @@
 
 <script src="../data/questions/questions-dea-c01.js"></script>
 <script src="../data/questions/question-explanations.js?v=20260323b"></script>
-<script src="../app.js?v=20260323a"></script>
+<script src="../app.js?v=20260323f"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@ const CERT_META = {
   "code": "AIF-C01",
   "name": "AI Practitioner",
   "fullName": "AWS Certified AI Practitioner",
-  "emoji": "\ud83e\udde0",
+  "emoji": "🧠",
   "minutes": 90,
   "passingScore": 70,
   "examQuestions": 65,
@@ -19,10 +19,10 @@ const CERT_META = {
 };
 
 const TOPIC_RULES = [
-  [/genai|prompt|foundation model|rag|embedding|token/i, 'GenAI Basics'],
-  [/model|latency|accuracy|throughput|fine-tun|inference/i, 'Model Selection'],
-  [/responsible|bias|fairness|privacy|safety|guardrail|toxicity/i, 'Responsible AI'],
-  [/bedrock|sagemaker|comprehend|rekognition|textract|transcribe|polly/i, 'AWS AI Services'],
+  [/genai|prompt|foundation model|rag|embedding|token/i, "GenAI Basics"],
+  [/model|latency|accuracy|throughput|fine-tun|inference/i, "Model Selection"],
+  [/responsible|bias|fairness|privacy|safety|guardrail|toxicity/i, "Responsible AI"],
+  [/bedrock|sagemaker|comprehend|rekognition|textract|transcribe|polly/i, "AWS AI Services"]
 ];
 
 const QUESTIONS = [
@@ -685,13 +685,453 @@ const QUESTIONS = [
     ],
     "answer": 1,
     "topic": "AWS AI Services"
+  },
+  {
+    "q": "For the AIF-C01 GenAI Basics domain, a team needs to improve core concepts for prompts, context grounding, and llm application patterns. while minimizing operational overhead. Which approach is BEST?",
+    "options": [
+      "Build custom tooling from scratch for every environment and team",
+      "Use managed AWS capabilities with automation, observability, and policy guardrails",
+      "Delay instrumentation until after production rollout",
+      "Standardize on manual console changes for faster iteration"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A production incident exposed weaknesses in core concepts for prompts, context grounding, and llm application patterns. for the GenAI Basics domain. What should the team do first?",
+    "options": [
+      "Make broad changes across all workloads without validating the root cause",
+      "Use telemetry to isolate the problem, then apply targeted remediation with rollback safety",
+      "Disable alerting until stakeholders stop escalating the issue",
+      "Move all workloads to one shared account immediately"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A regulated workload depends on strong core concepts for prompts, context grounding, and llm application patterns. controls in the GenAI Basics domain. Which design is most appropriate?",
+    "options": [
+      "Rely on tribal knowledge and periodic manual checks",
+      "Use least privilege, encryption, logging, and repeatable infrastructure changes",
+      "Share administrator access among all operators for faster support",
+      "Prioritize speed over auditability and defer governance until later"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A platform team needs scalable core concepts for prompts, context grounding, and llm application patterns. practices for the GenAI Basics domain across several workloads. What is the best approach?",
+    "options": [
+      "Create one-off process documents per team with no shared baseline",
+      "Adopt standardized templates, automated checks, and centralized visibility",
+      "Allow each workload to define conflicting controls independently",
+      "Disable shared monitoring to avoid noisy dashboards"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "Costs are rising in the GenAI Basics domain because core concepts for prompts, context grounding, and llm application patterns. is handled inefficiently. Which action is most effective first?",
+    "options": [
+      "Increase spend permanently to avoid future reviews",
+      "Right-size the design using workload telemetry, lifecycle controls, and managed-service trade-offs",
+      "Duplicate every environment for safety regardless of demand",
+      "Turn off metrics so cost anomalies are less visible"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A team wants safer change management around core concepts for prompts, context grounding, and llm application patterns. in the GenAI Basics domain. Which capability helps most?",
+    "options": [
+      "Direct production edits without peer review or rollback plans",
+      "Versioned automation with approvals, tests, and controlled rollback paths",
+      "Manual hotfixes from developer laptops only",
+      "A shared root account for all deployment activities"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "The AIF-C01 blueprint for GenAI Basics needs better resilience around core concepts for prompts, context grounding, and llm application patterns.. Which architecture decision is strongest?",
+    "options": [
+      "Keep a single failure domain and document recovery in a wiki",
+      "Design for redundancy, failure isolation, and tested recovery workflows",
+      "Disable automated health checks to avoid false alarms",
+      "Depend on manual intervention for every outage scenario"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A team cannot prove ownership or accountability for core concepts for prompts, context grounding, and llm application patterns. in the GenAI Basics domain. What should be introduced?",
+    "options": [
+      "Unstructured chat approvals and ad hoc spreadsheets",
+      "Clear ownership metadata, audit trails, and operational runbooks tied to services",
+      "More shared admin credentials across teams",
+      "A policy of resolving incidents without documentation"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A new workload must launch quickly with strong core concepts for prompts, context grounding, and llm application patterns. posture in the GenAI Basics domain. Which pattern fits best?",
+    "options": [
+      "Copy an old environment manually and hope standards are similar",
+      "Use approved baseline patterns with reusable automation and environment parameters",
+      "Skip governance for the first release to save time",
+      "Use long-lived credentials embedded in source code"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A review shows that core concepts for prompts, context grounding, and llm application patterns. decisions in the GenAI Basics domain are inconsistent between teams. What should happen next?",
+    "options": [
+      "Let each team continue independently to maximize flexibility",
+      "Define shared guardrails, reference architectures, and measurable operational standards",
+      "Remove central observability to reduce friction",
+      "Consolidate everything into one unmanaged environment"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A team needs better observability for core concepts for prompts, context grounding, and llm application patterns. in the GenAI Basics domain. Which improvement is most valuable?",
+    "options": [
+      "Only monitor infrastructure CPU metrics and ignore business signals",
+      "Track actionable service metrics, logs, and traces with clear alert ownership",
+      "Replace alerts with weekly manual reviews",
+      "Disable dashboards to avoid confusion during incidents"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A postmortem shows that weak core concepts for prompts, context grounding, and llm application patterns. practices in the GenAI Basics domain slowed recovery. Which long-term fix is best?",
+    "options": [
+      "Increase team size without changing the operating model",
+      "Codify repeatable runbooks, automate common actions, and test failure paths regularly",
+      "Accept longer recovery times as normal growth pain",
+      "Reduce incident visibility so fewer teams are involved"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "For the AIF-C01 GenAI Basics domain, a team needs to improve prompt structure and context design while minimizing operational overhead. Which approach is BEST?",
+    "options": [
+      "Build custom tooling from scratch for every environment and team",
+      "Use managed AWS capabilities with automation, observability, and policy guardrails",
+      "Delay instrumentation until after production rollout",
+      "Standardize on manual console changes for faster iteration"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A production incident exposed weaknesses in prompt structure and context design for the GenAI Basics domain. What should the team do first?",
+    "options": [
+      "Make broad changes across all workloads without validating the root cause",
+      "Use telemetry to isolate the problem, then apply targeted remediation with rollback safety",
+      "Disable alerting until stakeholders stop escalating the issue",
+      "Move all workloads to one shared account immediately"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A regulated workload depends on strong prompt structure and context design controls in the GenAI Basics domain. Which design is most appropriate?",
+    "options": [
+      "Rely on tribal knowledge and periodic manual checks",
+      "Use least privilege, encryption, logging, and repeatable infrastructure changes",
+      "Share administrator access among all operators for faster support",
+      "Prioritize speed over auditability and defer governance until later"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A platform team needs scalable prompt structure and context design practices for the GenAI Basics domain across several workloads. What is the best approach?",
+    "options": [
+      "Create one-off process documents per team with no shared baseline",
+      "Adopt standardized templates, automated checks, and centralized visibility",
+      "Allow each workload to define conflicting controls independently",
+      "Disable shared monitoring to avoid noisy dashboards"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "Costs are rising in the GenAI Basics domain because prompt structure and context design is handled inefficiently. Which action is most effective first?",
+    "options": [
+      "Increase spend permanently to avoid future reviews",
+      "Right-size the design using workload telemetry, lifecycle controls, and managed-service trade-offs",
+      "Duplicate every environment for safety regardless of demand",
+      "Turn off metrics so cost anomalies are less visible"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A team wants safer change management around prompt structure and context design in the GenAI Basics domain. Which capability helps most?",
+    "options": [
+      "Direct production edits without peer review or rollback plans",
+      "Versioned automation with approvals, tests, and controlled rollback paths",
+      "Manual hotfixes from developer laptops only",
+      "A shared root account for all deployment activities"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "The AIF-C01 blueprint for GenAI Basics needs better resilience around prompt structure and context design. Which architecture decision is strongest?",
+    "options": [
+      "Keep a single failure domain and document recovery in a wiki",
+      "Design for redundancy, failure isolation, and tested recovery workflows",
+      "Disable automated health checks to avoid false alarms",
+      "Depend on manual intervention for every outage scenario"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A team cannot prove ownership or accountability for prompt structure and context design in the GenAI Basics domain. What should be introduced?",
+    "options": [
+      "Unstructured chat approvals and ad hoc spreadsheets",
+      "Clear ownership metadata, audit trails, and operational runbooks tied to services",
+      "More shared admin credentials across teams",
+      "A policy of resolving incidents without documentation"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A new workload must launch quickly with strong prompt structure and context design posture in the GenAI Basics domain. Which pattern fits best?",
+    "options": [
+      "Copy an old environment manually and hope standards are similar",
+      "Use approved baseline patterns with reusable automation and environment parameters",
+      "Skip governance for the first release to save time",
+      "Use long-lived credentials embedded in source code"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A review shows that prompt structure and context design decisions in the GenAI Basics domain are inconsistent between teams. What should happen next?",
+    "options": [
+      "Let each team continue independently to maximize flexibility",
+      "Define shared guardrails, reference architectures, and measurable operational standards",
+      "Remove central observability to reduce friction",
+      "Consolidate everything into one unmanaged environment"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A team needs better observability for prompt structure and context design in the GenAI Basics domain. Which improvement is most valuable?",
+    "options": [
+      "Only monitor infrastructure CPU metrics and ignore business signals",
+      "Track actionable service metrics, logs, and traces with clear alert ownership",
+      "Replace alerts with weekly manual reviews",
+      "Disable dashboards to avoid confusion during incidents"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A postmortem shows that weak prompt structure and context design practices in the GenAI Basics domain slowed recovery. Which long-term fix is best?",
+    "options": [
+      "Increase team size without changing the operating model",
+      "Codify repeatable runbooks, automate common actions, and test failure paths regularly",
+      "Accept longer recovery times as normal growth pain",
+      "Reduce incident visibility so fewer teams are involved"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "For the AIF-C01 GenAI Basics domain, a team needs to improve rag architecture fundamentals while minimizing operational overhead. Which approach is BEST?",
+    "options": [
+      "Build custom tooling from scratch for every environment and team",
+      "Use managed AWS capabilities with automation, observability, and policy guardrails",
+      "Delay instrumentation until after production rollout",
+      "Standardize on manual console changes for faster iteration"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A production incident exposed weaknesses in rag architecture fundamentals for the GenAI Basics domain. What should the team do first?",
+    "options": [
+      "Make broad changes across all workloads without validating the root cause",
+      "Use telemetry to isolate the problem, then apply targeted remediation with rollback safety",
+      "Disable alerting until stakeholders stop escalating the issue",
+      "Move all workloads to one shared account immediately"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A regulated workload depends on strong rag architecture fundamentals controls in the GenAI Basics domain. Which design is most appropriate?",
+    "options": [
+      "Rely on tribal knowledge and periodic manual checks",
+      "Use least privilege, encryption, logging, and repeatable infrastructure changes",
+      "Share administrator access among all operators for faster support",
+      "Prioritize speed over auditability and defer governance until later"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A platform team needs scalable rag architecture fundamentals practices for the GenAI Basics domain across several workloads. What is the best approach?",
+    "options": [
+      "Create one-off process documents per team with no shared baseline",
+      "Adopt standardized templates, automated checks, and centralized visibility",
+      "Allow each workload to define conflicting controls independently",
+      "Disable shared monitoring to avoid noisy dashboards"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "Costs are rising in the GenAI Basics domain because rag architecture fundamentals is handled inefficiently. Which action is most effective first?",
+    "options": [
+      "Increase spend permanently to avoid future reviews",
+      "Right-size the design using workload telemetry, lifecycle controls, and managed-service trade-offs",
+      "Duplicate every environment for safety regardless of demand",
+      "Turn off metrics so cost anomalies are less visible"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A team wants safer change management around rag architecture fundamentals in the GenAI Basics domain. Which capability helps most?",
+    "options": [
+      "Direct production edits without peer review or rollback plans",
+      "Versioned automation with approvals, tests, and controlled rollback paths",
+      "Manual hotfixes from developer laptops only",
+      "A shared root account for all deployment activities"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "The AIF-C01 blueprint for GenAI Basics needs better resilience around rag architecture fundamentals. Which architecture decision is strongest?",
+    "options": [
+      "Keep a single failure domain and document recovery in a wiki",
+      "Design for redundancy, failure isolation, and tested recovery workflows",
+      "Disable automated health checks to avoid false alarms",
+      "Depend on manual intervention for every outage scenario"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A team cannot prove ownership or accountability for rag architecture fundamentals in the GenAI Basics domain. What should be introduced?",
+    "options": [
+      "Unstructured chat approvals and ad hoc spreadsheets",
+      "Clear ownership metadata, audit trails, and operational runbooks tied to services",
+      "More shared admin credentials across teams",
+      "A policy of resolving incidents without documentation"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A new workload must launch quickly with strong rag architecture fundamentals posture in the GenAI Basics domain. Which pattern fits best?",
+    "options": [
+      "Copy an old environment manually and hope standards are similar",
+      "Use approved baseline patterns with reusable automation and environment parameters",
+      "Skip governance for the first release to save time",
+      "Use long-lived credentials embedded in source code"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A review shows that rag architecture fundamentals decisions in the GenAI Basics domain are inconsistent between teams. What should happen next?",
+    "options": [
+      "Let each team continue independently to maximize flexibility",
+      "Define shared guardrails, reference architectures, and measurable operational standards",
+      "Remove central observability to reduce friction",
+      "Consolidate everything into one unmanaged environment"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A team needs better observability for rag architecture fundamentals in the GenAI Basics domain. Which improvement is most valuable?",
+    "options": [
+      "Only monitor infrastructure CPU metrics and ignore business signals",
+      "Track actionable service metrics, logs, and traces with clear alert ownership",
+      "Replace alerts with weekly manual reviews",
+      "Disable dashboards to avoid confusion during incidents"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A postmortem shows that weak rag architecture fundamentals practices in the GenAI Basics domain slowed recovery. Which long-term fix is best?",
+    "options": [
+      "Increase team size without changing the operating model",
+      "Codify repeatable runbooks, automate common actions, and test failure paths regularly",
+      "Accept longer recovery times as normal growth pain",
+      "Reduce incident visibility so fewer teams are involved"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "For the AIF-C01 GenAI Basics domain, a team needs to improve token and latency trade-offs while minimizing operational overhead. Which approach is BEST?",
+    "options": [
+      "Build custom tooling from scratch for every environment and team",
+      "Use managed AWS capabilities with automation, observability, and policy guardrails",
+      "Delay instrumentation until after production rollout",
+      "Standardize on manual console changes for faster iteration"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A production incident exposed weaknesses in token and latency trade-offs for the GenAI Basics domain. What should the team do first?",
+    "options": [
+      "Make broad changes across all workloads without validating the root cause",
+      "Use telemetry to isolate the problem, then apply targeted remediation with rollback safety",
+      "Disable alerting until stakeholders stop escalating the issue",
+      "Move all workloads to one shared account immediately"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A regulated workload depends on strong token and latency trade-offs controls in the GenAI Basics domain. Which design is most appropriate?",
+    "options": [
+      "Rely on tribal knowledge and periodic manual checks",
+      "Use least privilege, encryption, logging, and repeatable infrastructure changes",
+      "Share administrator access among all operators for faster support",
+      "Prioritize speed over auditability and defer governance until later"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
+  },
+  {
+    "q": "A platform team needs scalable token and latency trade-offs practices for the GenAI Basics domain across several workloads. What is the best approach?",
+    "options": [
+      "Create one-off process documents per team with no shared baseline",
+      "Adopt standardized templates, automated checks, and centralized visibility",
+      "Allow each workload to define conflicting controls independently",
+      "Disable shared monitoring to avoid noisy dashboards"
+    ],
+    "answer": 1,
+    "topic": "GenAI Basics"
   }
 ];
 
 const SERVICES = [
   {
     "name": "GenAI Basics",
-    "emoji": "\u2728",
+    "emoji": "✨",
     "desc": "Core concepts for prompts, context grounding, and LLM application patterns.",
     "bullets": [
       "Prompt structure and context design",
@@ -703,7 +1143,7 @@ const SERVICES = [
   },
   {
     "name": "Model Selection",
-    "emoji": "\ud83c\udfaf",
+    "emoji": "🎯",
     "desc": "Choosing the right model and inference strategy for use case constraints.",
     "bullets": [
       "Quality vs latency vs cost decisions",
@@ -715,7 +1155,7 @@ const SERVICES = [
   },
   {
     "name": "Responsible AI",
-    "emoji": "\ud83d\udee1\ufe0f",
+    "emoji": "🛡️",
     "desc": "Safety, privacy, fairness, and governance controls for AI systems.",
     "bullets": [
       "Risk assessment and guardrail design",
@@ -727,7 +1167,7 @@ const SERVICES = [
   },
   {
     "name": "AWS AI Services",
-    "emoji": "\ud83e\udde9",
+    "emoji": "🧩",
     "desc": "Selecting managed AWS AI services to implement production use cases quickly.",
     "bullets": [
       "Service capability mapping",

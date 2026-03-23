@@ -3,7 +3,7 @@ const CERT_META = {
   "code": "CloudOps-C01",
   "name": "CloudOps Engineer",
   "fullName": "AWS Certified SysOps Administrator - Associate",
-  "emoji": "\ud83d\udee0\ufe0f",
+  "emoji": "🛠️",
   "minutes": 130,
   "passingScore": 72,
   "examQuestions": 65,
@@ -19,10 +19,10 @@ const CERT_META = {
 };
 
 const TOPIC_RULES = [
-  [/monitor|alarm|log|metric|cloudwatch|incident|observability/i, 'Monitoring'],
-  [/automation|runbook|eventbridge|lambda|systems manager|orchestration/i, 'Automation'],
-  [/resilien|backup|dr|failover|multi-az|recovery/i, 'Resilience'],
-  [/operations|governance|change|patch|capacity|cost/i, 'Operations'],
+  [/monitor|alarm|log|metric|cloudwatch|incident|observability/i, "Monitoring"],
+  [/automation|runbook|eventbridge|lambda|systems manager|orchestration/i, "Automation"],
+  [/resilien|backup|dr|failover|multi-az|recovery/i, "Resilience"],
+  [/operations|governance|change|patch|capacity|cost/i, "Operations"]
 ];
 
 const QUESTIONS = [
@@ -685,13 +685,453 @@ const QUESTIONS = [
     ],
     "answer": 1,
     "topic": "Operations"
+  },
+  {
+    "q": "For the CloudOps-C01 Monitoring domain, a team needs to improve operational telemetry, alarms, and incident signal quality. while minimizing operational overhead. Which approach is BEST?",
+    "options": [
+      "Build custom tooling from scratch for every environment and team",
+      "Use managed AWS capabilities with automation, observability, and policy guardrails",
+      "Delay instrumentation until after production rollout",
+      "Standardize on manual console changes for faster iteration"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A production incident exposed weaknesses in operational telemetry, alarms, and incident signal quality. for the Monitoring domain. What should the team do first?",
+    "options": [
+      "Make broad changes across all workloads without validating the root cause",
+      "Use telemetry to isolate the problem, then apply targeted remediation with rollback safety",
+      "Disable alerting until stakeholders stop escalating the issue",
+      "Move all workloads to one shared account immediately"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A regulated workload depends on strong operational telemetry, alarms, and incident signal quality. controls in the Monitoring domain. Which design is most appropriate?",
+    "options": [
+      "Rely on tribal knowledge and periodic manual checks",
+      "Use least privilege, encryption, logging, and repeatable infrastructure changes",
+      "Share administrator access among all operators for faster support",
+      "Prioritize speed over auditability and defer governance until later"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A platform team needs scalable operational telemetry, alarms, and incident signal quality. practices for the Monitoring domain across several workloads. What is the best approach?",
+    "options": [
+      "Create one-off process documents per team with no shared baseline",
+      "Adopt standardized templates, automated checks, and centralized visibility",
+      "Allow each workload to define conflicting controls independently",
+      "Disable shared monitoring to avoid noisy dashboards"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "Costs are rising in the Monitoring domain because operational telemetry, alarms, and incident signal quality. is handled inefficiently. Which action is most effective first?",
+    "options": [
+      "Increase spend permanently to avoid future reviews",
+      "Right-size the design using workload telemetry, lifecycle controls, and managed-service trade-offs",
+      "Duplicate every environment for safety regardless of demand",
+      "Turn off metrics so cost anomalies are less visible"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A team wants safer change management around operational telemetry, alarms, and incident signal quality. in the Monitoring domain. Which capability helps most?",
+    "options": [
+      "Direct production edits without peer review or rollback plans",
+      "Versioned automation with approvals, tests, and controlled rollback paths",
+      "Manual hotfixes from developer laptops only",
+      "A shared root account for all deployment activities"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "The CloudOps-C01 blueprint for Monitoring needs better resilience around operational telemetry, alarms, and incident signal quality.. Which architecture decision is strongest?",
+    "options": [
+      "Keep a single failure domain and document recovery in a wiki",
+      "Design for redundancy, failure isolation, and tested recovery workflows",
+      "Disable automated health checks to avoid false alarms",
+      "Depend on manual intervention for every outage scenario"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A team cannot prove ownership or accountability for operational telemetry, alarms, and incident signal quality. in the Monitoring domain. What should be introduced?",
+    "options": [
+      "Unstructured chat approvals and ad hoc spreadsheets",
+      "Clear ownership metadata, audit trails, and operational runbooks tied to services",
+      "More shared admin credentials across teams",
+      "A policy of resolving incidents without documentation"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A new workload must launch quickly with strong operational telemetry, alarms, and incident signal quality. posture in the Monitoring domain. Which pattern fits best?",
+    "options": [
+      "Copy an old environment manually and hope standards are similar",
+      "Use approved baseline patterns with reusable automation and environment parameters",
+      "Skip governance for the first release to save time",
+      "Use long-lived credentials embedded in source code"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A review shows that operational telemetry, alarms, and incident signal quality. decisions in the Monitoring domain are inconsistent between teams. What should happen next?",
+    "options": [
+      "Let each team continue independently to maximize flexibility",
+      "Define shared guardrails, reference architectures, and measurable operational standards",
+      "Remove central observability to reduce friction",
+      "Consolidate everything into one unmanaged environment"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A team needs better observability for operational telemetry, alarms, and incident signal quality. in the Monitoring domain. Which improvement is most valuable?",
+    "options": [
+      "Only monitor infrastructure CPU metrics and ignore business signals",
+      "Track actionable service metrics, logs, and traces with clear alert ownership",
+      "Replace alerts with weekly manual reviews",
+      "Disable dashboards to avoid confusion during incidents"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A postmortem shows that weak operational telemetry, alarms, and incident signal quality. practices in the Monitoring domain slowed recovery. Which long-term fix is best?",
+    "options": [
+      "Increase team size without changing the operating model",
+      "Codify repeatable runbooks, automate common actions, and test failure paths regularly",
+      "Accept longer recovery times as normal growth pain",
+      "Reduce incident visibility so fewer teams are involved"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "For the CloudOps-C01 Monitoring domain, a team needs to improve slo and alert design while minimizing operational overhead. Which approach is BEST?",
+    "options": [
+      "Build custom tooling from scratch for every environment and team",
+      "Use managed AWS capabilities with automation, observability, and policy guardrails",
+      "Delay instrumentation until after production rollout",
+      "Standardize on manual console changes for faster iteration"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A production incident exposed weaknesses in slo and alert design for the Monitoring domain. What should the team do first?",
+    "options": [
+      "Make broad changes across all workloads without validating the root cause",
+      "Use telemetry to isolate the problem, then apply targeted remediation with rollback safety",
+      "Disable alerting until stakeholders stop escalating the issue",
+      "Move all workloads to one shared account immediately"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A regulated workload depends on strong slo and alert design controls in the Monitoring domain. Which design is most appropriate?",
+    "options": [
+      "Rely on tribal knowledge and periodic manual checks",
+      "Use least privilege, encryption, logging, and repeatable infrastructure changes",
+      "Share administrator access among all operators for faster support",
+      "Prioritize speed over auditability and defer governance until later"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A platform team needs scalable slo and alert design practices for the Monitoring domain across several workloads. What is the best approach?",
+    "options": [
+      "Create one-off process documents per team with no shared baseline",
+      "Adopt standardized templates, automated checks, and centralized visibility",
+      "Allow each workload to define conflicting controls independently",
+      "Disable shared monitoring to avoid noisy dashboards"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "Costs are rising in the Monitoring domain because slo and alert design is handled inefficiently. Which action is most effective first?",
+    "options": [
+      "Increase spend permanently to avoid future reviews",
+      "Right-size the design using workload telemetry, lifecycle controls, and managed-service trade-offs",
+      "Duplicate every environment for safety regardless of demand",
+      "Turn off metrics so cost anomalies are less visible"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A team wants safer change management around slo and alert design in the Monitoring domain. Which capability helps most?",
+    "options": [
+      "Direct production edits without peer review or rollback plans",
+      "Versioned automation with approvals, tests, and controlled rollback paths",
+      "Manual hotfixes from developer laptops only",
+      "A shared root account for all deployment activities"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "The CloudOps-C01 blueprint for Monitoring needs better resilience around slo and alert design. Which architecture decision is strongest?",
+    "options": [
+      "Keep a single failure domain and document recovery in a wiki",
+      "Design for redundancy, failure isolation, and tested recovery workflows",
+      "Disable automated health checks to avoid false alarms",
+      "Depend on manual intervention for every outage scenario"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A team cannot prove ownership or accountability for slo and alert design in the Monitoring domain. What should be introduced?",
+    "options": [
+      "Unstructured chat approvals and ad hoc spreadsheets",
+      "Clear ownership metadata, audit trails, and operational runbooks tied to services",
+      "More shared admin credentials across teams",
+      "A policy of resolving incidents without documentation"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A new workload must launch quickly with strong slo and alert design posture in the Monitoring domain. Which pattern fits best?",
+    "options": [
+      "Copy an old environment manually and hope standards are similar",
+      "Use approved baseline patterns with reusable automation and environment parameters",
+      "Skip governance for the first release to save time",
+      "Use long-lived credentials embedded in source code"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A review shows that slo and alert design decisions in the Monitoring domain are inconsistent between teams. What should happen next?",
+    "options": [
+      "Let each team continue independently to maximize flexibility",
+      "Define shared guardrails, reference architectures, and measurable operational standards",
+      "Remove central observability to reduce friction",
+      "Consolidate everything into one unmanaged environment"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A team needs better observability for slo and alert design in the Monitoring domain. Which improvement is most valuable?",
+    "options": [
+      "Only monitor infrastructure CPU metrics and ignore business signals",
+      "Track actionable service metrics, logs, and traces with clear alert ownership",
+      "Replace alerts with weekly manual reviews",
+      "Disable dashboards to avoid confusion during incidents"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A postmortem shows that weak slo and alert design practices in the Monitoring domain slowed recovery. Which long-term fix is best?",
+    "options": [
+      "Increase team size without changing the operating model",
+      "Codify repeatable runbooks, automate common actions, and test failure paths regularly",
+      "Accept longer recovery times as normal growth pain",
+      "Reduce incident visibility so fewer teams are involved"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "For the CloudOps-C01 Monitoring domain, a team needs to improve log/metric/tracing usage while minimizing operational overhead. Which approach is BEST?",
+    "options": [
+      "Build custom tooling from scratch for every environment and team",
+      "Use managed AWS capabilities with automation, observability, and policy guardrails",
+      "Delay instrumentation until after production rollout",
+      "Standardize on manual console changes for faster iteration"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A production incident exposed weaknesses in log/metric/tracing usage for the Monitoring domain. What should the team do first?",
+    "options": [
+      "Make broad changes across all workloads without validating the root cause",
+      "Use telemetry to isolate the problem, then apply targeted remediation with rollback safety",
+      "Disable alerting until stakeholders stop escalating the issue",
+      "Move all workloads to one shared account immediately"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A regulated workload depends on strong log/metric/tracing usage controls in the Monitoring domain. Which design is most appropriate?",
+    "options": [
+      "Rely on tribal knowledge and periodic manual checks",
+      "Use least privilege, encryption, logging, and repeatable infrastructure changes",
+      "Share administrator access among all operators for faster support",
+      "Prioritize speed over auditability and defer governance until later"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A platform team needs scalable log/metric/tracing usage practices for the Monitoring domain across several workloads. What is the best approach?",
+    "options": [
+      "Create one-off process documents per team with no shared baseline",
+      "Adopt standardized templates, automated checks, and centralized visibility",
+      "Allow each workload to define conflicting controls independently",
+      "Disable shared monitoring to avoid noisy dashboards"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "Costs are rising in the Monitoring domain because log/metric/tracing usage is handled inefficiently. Which action is most effective first?",
+    "options": [
+      "Increase spend permanently to avoid future reviews",
+      "Right-size the design using workload telemetry, lifecycle controls, and managed-service trade-offs",
+      "Duplicate every environment for safety regardless of demand",
+      "Turn off metrics so cost anomalies are less visible"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A team wants safer change management around log/metric/tracing usage in the Monitoring domain. Which capability helps most?",
+    "options": [
+      "Direct production edits without peer review or rollback plans",
+      "Versioned automation with approvals, tests, and controlled rollback paths",
+      "Manual hotfixes from developer laptops only",
+      "A shared root account for all deployment activities"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "The CloudOps-C01 blueprint for Monitoring needs better resilience around log/metric/tracing usage. Which architecture decision is strongest?",
+    "options": [
+      "Keep a single failure domain and document recovery in a wiki",
+      "Design for redundancy, failure isolation, and tested recovery workflows",
+      "Disable automated health checks to avoid false alarms",
+      "Depend on manual intervention for every outage scenario"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A team cannot prove ownership or accountability for log/metric/tracing usage in the Monitoring domain. What should be introduced?",
+    "options": [
+      "Unstructured chat approvals and ad hoc spreadsheets",
+      "Clear ownership metadata, audit trails, and operational runbooks tied to services",
+      "More shared admin credentials across teams",
+      "A policy of resolving incidents without documentation"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A new workload must launch quickly with strong log/metric/tracing usage posture in the Monitoring domain. Which pattern fits best?",
+    "options": [
+      "Copy an old environment manually and hope standards are similar",
+      "Use approved baseline patterns with reusable automation and environment parameters",
+      "Skip governance for the first release to save time",
+      "Use long-lived credentials embedded in source code"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A review shows that log/metric/tracing usage decisions in the Monitoring domain are inconsistent between teams. What should happen next?",
+    "options": [
+      "Let each team continue independently to maximize flexibility",
+      "Define shared guardrails, reference architectures, and measurable operational standards",
+      "Remove central observability to reduce friction",
+      "Consolidate everything into one unmanaged environment"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A team needs better observability for log/metric/tracing usage in the Monitoring domain. Which improvement is most valuable?",
+    "options": [
+      "Only monitor infrastructure CPU metrics and ignore business signals",
+      "Track actionable service metrics, logs, and traces with clear alert ownership",
+      "Replace alerts with weekly manual reviews",
+      "Disable dashboards to avoid confusion during incidents"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A postmortem shows that weak log/metric/tracing usage practices in the Monitoring domain slowed recovery. Which long-term fix is best?",
+    "options": [
+      "Increase team size without changing the operating model",
+      "Codify repeatable runbooks, automate common actions, and test failure paths regularly",
+      "Accept longer recovery times as normal growth pain",
+      "Reduce incident visibility so fewer teams are involved"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "For the CloudOps-C01 Monitoring domain, a team needs to improve on-call readiness while minimizing operational overhead. Which approach is BEST?",
+    "options": [
+      "Build custom tooling from scratch for every environment and team",
+      "Use managed AWS capabilities with automation, observability, and policy guardrails",
+      "Delay instrumentation until after production rollout",
+      "Standardize on manual console changes for faster iteration"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A production incident exposed weaknesses in on-call readiness for the Monitoring domain. What should the team do first?",
+    "options": [
+      "Make broad changes across all workloads without validating the root cause",
+      "Use telemetry to isolate the problem, then apply targeted remediation with rollback safety",
+      "Disable alerting until stakeholders stop escalating the issue",
+      "Move all workloads to one shared account immediately"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A regulated workload depends on strong on-call readiness controls in the Monitoring domain. Which design is most appropriate?",
+    "options": [
+      "Rely on tribal knowledge and periodic manual checks",
+      "Use least privilege, encryption, logging, and repeatable infrastructure changes",
+      "Share administrator access among all operators for faster support",
+      "Prioritize speed over auditability and defer governance until later"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
+  },
+  {
+    "q": "A platform team needs scalable on-call readiness practices for the Monitoring domain across several workloads. What is the best approach?",
+    "options": [
+      "Create one-off process documents per team with no shared baseline",
+      "Adopt standardized templates, automated checks, and centralized visibility",
+      "Allow each workload to define conflicting controls independently",
+      "Disable shared monitoring to avoid noisy dashboards"
+    ],
+    "answer": 1,
+    "topic": "Monitoring"
   }
 ];
 
 const SERVICES = [
   {
     "name": "Monitoring",
-    "emoji": "\ud83d\udcc8",
+    "emoji": "📈",
     "desc": "Operational telemetry, alarms, and incident signal quality.",
     "bullets": [
       "SLO and alert design",
@@ -703,7 +1143,7 @@ const SERVICES = [
   },
   {
     "name": "Automation",
-    "emoji": "\ud83e\udd16",
+    "emoji": "🤖",
     "desc": "Runbook automation and event-driven remediation at scale.",
     "bullets": [
       "Operational orchestration",
@@ -715,7 +1155,7 @@ const SERVICES = [
   },
   {
     "name": "Resilience",
-    "emoji": "\ud83e\uddef",
+    "emoji": "🧯",
     "desc": "High availability, backup strategy, and recovery confidence.",
     "bullets": [
       "Multi-AZ patterns",
@@ -727,7 +1167,7 @@ const SERVICES = [
   },
   {
     "name": "Operations",
-    "emoji": "\u2699\ufe0f",
+    "emoji": "⚙️",
     "desc": "Day-2 operations, change control, and platform governance.",
     "bullets": [
       "Patch and config hygiene",

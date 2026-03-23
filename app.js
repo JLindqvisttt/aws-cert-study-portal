@@ -1,5 +1,5 @@
 
-const APP_RELEASE = 'v0.4.0';
+const APP_RELEASE = '1.0.0';
 
 
 function tagQuestion(q) {
@@ -184,10 +184,17 @@ function startTopicQuiz(topic) {
   setTimeout(() => launchQuiz(getPool({topic, count:20}), 'study', false), 10);
 }
 
+function setScreenVisible(id, visible) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.style.display = visible ? '' : 'none';
+  el.classList.toggle('screen-hidden', !visible);
+}
+
 function resetQuizSetup() {
-  document.getElementById('quiz-setup-screen').style.display='';
-  document.getElementById('quiz-active-screen').style.display='none';
-  document.getElementById('quiz-result-screen').style.display='none';
+  setScreenVisible('quiz-setup-screen', true);
+  setScreenVisible('quiz-active-screen', false);
+  setScreenVisible('quiz-result-screen', false);
 }
 
 function startConfiguredQuiz() {
@@ -198,9 +205,9 @@ function startConfiguredQuiz() {
 }
 
 function launchQuiz(questions, mode, timed) {
-  document.getElementById('quiz-setup-screen').style.display='none';
-  document.getElementById('quiz-active-screen').style.display='';
-  document.getElementById('quiz-result-screen').style.display='none';
+  setScreenVisible('quiz-setup-screen', false);
+  setScreenVisible('quiz-active-screen', true);
+  setScreenVisible('quiz-result-screen', false);
   quizState = { questions, mode, timed, current:0, score:0, timerEnd: timed ? Date.now()+CERT_META.minutes*60*1000 : null, timerInterval:null };
   selectedMulti = new Set();
   if (timed) quizState.timerInterval = setInterval(updateTimer, 1000);
@@ -317,9 +324,9 @@ function nextQuestion() {
 
 function showResult() {
   if (quizState.timerInterval) clearInterval(quizState.timerInterval);
-  document.getElementById('quiz-active-screen').style.display='none';
+  setScreenVisible('quiz-active-screen', false);
   const rs = document.getElementById('quiz-result-screen');
-  rs.style.display='';
+  setScreenVisible('quiz-result-screen', true);
   const {score,questions} = quizState;
   const total=questions.length, pct=Math.round(score/total*100), pass=pct>=65;
   rs.innerHTML = '<div class="result-card">' +

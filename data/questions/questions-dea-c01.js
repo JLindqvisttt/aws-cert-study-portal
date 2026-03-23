@@ -3,7 +3,7 @@ const CERT_META = {
   "code": "DEA-C01",
   "name": "Data Engineer",
   "fullName": "AWS Certified Data Engineer - Associate",
-  "emoji": "\ud83e\udde0",
+  "emoji": "🧠",
   "minutes": 130,
   "passingScore": 72,
   "examQuestions": 65,
@@ -19,10 +19,10 @@ const CERT_META = {
 };
 
 const TOPIC_RULES = [
-  [/ingest|batch|cdc|dms|datasync|kinesis firehose/i, 'Ingestion'],
-  [/transform|etl|glue|spark|quality|schema/i, 'Transformation'],
-  [/storage|s3|lake|warehouse|redshift|partition/i, 'Storage'],
-  [/stream|kinesis|msk|kafka|event|window/i, 'Streaming'],
+  [/ingest|batch|cdc|dms|datasync|kinesis firehose/i, "Ingestion"],
+  [/transform|etl|glue|spark|quality|schema/i, "Transformation"],
+  [/storage|s3|lake|warehouse|redshift|partition/i, "Storage"],
+  [/stream|kinesis|msk|kafka|event|window/i, "Streaming"]
 ];
 
 const QUESTIONS = [
@@ -685,13 +685,453 @@ const QUESTIONS = [
     ],
     "answer": 1,
     "topic": "Streaming"
+  },
+  {
+    "q": "For the DEA-C01 Ingestion domain, a team needs to improve reliable and scalable intake of batch and change data. while minimizing operational overhead. Which approach is BEST?",
+    "options": [
+      "Build custom tooling from scratch for every environment and team",
+      "Use managed AWS capabilities with automation, observability, and policy guardrails",
+      "Delay instrumentation until after production rollout",
+      "Standardize on manual console changes for faster iteration"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A production incident exposed weaknesses in reliable and scalable intake of batch and change data. for the Ingestion domain. What should the team do first?",
+    "options": [
+      "Make broad changes across all workloads without validating the root cause",
+      "Use telemetry to isolate the problem, then apply targeted remediation with rollback safety",
+      "Disable alerting until stakeholders stop escalating the issue",
+      "Move all workloads to one shared account immediately"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A regulated workload depends on strong reliable and scalable intake of batch and change data. controls in the Ingestion domain. Which design is most appropriate?",
+    "options": [
+      "Rely on tribal knowledge and periodic manual checks",
+      "Use least privilege, encryption, logging, and repeatable infrastructure changes",
+      "Share administrator access among all operators for faster support",
+      "Prioritize speed over auditability and defer governance until later"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A platform team needs scalable reliable and scalable intake of batch and change data. practices for the Ingestion domain across several workloads. What is the best approach?",
+    "options": [
+      "Create one-off process documents per team with no shared baseline",
+      "Adopt standardized templates, automated checks, and centralized visibility",
+      "Allow each workload to define conflicting controls independently",
+      "Disable shared monitoring to avoid noisy dashboards"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "Costs are rising in the Ingestion domain because reliable and scalable intake of batch and change data. is handled inefficiently. Which action is most effective first?",
+    "options": [
+      "Increase spend permanently to avoid future reviews",
+      "Right-size the design using workload telemetry, lifecycle controls, and managed-service trade-offs",
+      "Duplicate every environment for safety regardless of demand",
+      "Turn off metrics so cost anomalies are less visible"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A team wants safer change management around reliable and scalable intake of batch and change data. in the Ingestion domain. Which capability helps most?",
+    "options": [
+      "Direct production edits without peer review or rollback plans",
+      "Versioned automation with approvals, tests, and controlled rollback paths",
+      "Manual hotfixes from developer laptops only",
+      "A shared root account for all deployment activities"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "The DEA-C01 blueprint for Ingestion needs better resilience around reliable and scalable intake of batch and change data.. Which architecture decision is strongest?",
+    "options": [
+      "Keep a single failure domain and document recovery in a wiki",
+      "Design for redundancy, failure isolation, and tested recovery workflows",
+      "Disable automated health checks to avoid false alarms",
+      "Depend on manual intervention for every outage scenario"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A team cannot prove ownership or accountability for reliable and scalable intake of batch and change data. in the Ingestion domain. What should be introduced?",
+    "options": [
+      "Unstructured chat approvals and ad hoc spreadsheets",
+      "Clear ownership metadata, audit trails, and operational runbooks tied to services",
+      "More shared admin credentials across teams",
+      "A policy of resolving incidents without documentation"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A new workload must launch quickly with strong reliable and scalable intake of batch and change data. posture in the Ingestion domain. Which pattern fits best?",
+    "options": [
+      "Copy an old environment manually and hope standards are similar",
+      "Use approved baseline patterns with reusable automation and environment parameters",
+      "Skip governance for the first release to save time",
+      "Use long-lived credentials embedded in source code"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A review shows that reliable and scalable intake of batch and change data. decisions in the Ingestion domain are inconsistent between teams. What should happen next?",
+    "options": [
+      "Let each team continue independently to maximize flexibility",
+      "Define shared guardrails, reference architectures, and measurable operational standards",
+      "Remove central observability to reduce friction",
+      "Consolidate everything into one unmanaged environment"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A team needs better observability for reliable and scalable intake of batch and change data. in the Ingestion domain. Which improvement is most valuable?",
+    "options": [
+      "Only monitor infrastructure CPU metrics and ignore business signals",
+      "Track actionable service metrics, logs, and traces with clear alert ownership",
+      "Replace alerts with weekly manual reviews",
+      "Disable dashboards to avoid confusion during incidents"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A postmortem shows that weak reliable and scalable intake of batch and change data. practices in the Ingestion domain slowed recovery. Which long-term fix is best?",
+    "options": [
+      "Increase team size without changing the operating model",
+      "Codify repeatable runbooks, automate common actions, and test failure paths regularly",
+      "Accept longer recovery times as normal growth pain",
+      "Reduce incident visibility so fewer teams are involved"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "For the DEA-C01 Ingestion domain, a team needs to improve batch and cdc ingestion patterns while minimizing operational overhead. Which approach is BEST?",
+    "options": [
+      "Build custom tooling from scratch for every environment and team",
+      "Use managed AWS capabilities with automation, observability, and policy guardrails",
+      "Delay instrumentation until after production rollout",
+      "Standardize on manual console changes for faster iteration"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A production incident exposed weaknesses in batch and cdc ingestion patterns for the Ingestion domain. What should the team do first?",
+    "options": [
+      "Make broad changes across all workloads without validating the root cause",
+      "Use telemetry to isolate the problem, then apply targeted remediation with rollback safety",
+      "Disable alerting until stakeholders stop escalating the issue",
+      "Move all workloads to one shared account immediately"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A regulated workload depends on strong batch and cdc ingestion patterns controls in the Ingestion domain. Which design is most appropriate?",
+    "options": [
+      "Rely on tribal knowledge and periodic manual checks",
+      "Use least privilege, encryption, logging, and repeatable infrastructure changes",
+      "Share administrator access among all operators for faster support",
+      "Prioritize speed over auditability and defer governance until later"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A platform team needs scalable batch and cdc ingestion patterns practices for the Ingestion domain across several workloads. What is the best approach?",
+    "options": [
+      "Create one-off process documents per team with no shared baseline",
+      "Adopt standardized templates, automated checks, and centralized visibility",
+      "Allow each workload to define conflicting controls independently",
+      "Disable shared monitoring to avoid noisy dashboards"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "Costs are rising in the Ingestion domain because batch and cdc ingestion patterns is handled inefficiently. Which action is most effective first?",
+    "options": [
+      "Increase spend permanently to avoid future reviews",
+      "Right-size the design using workload telemetry, lifecycle controls, and managed-service trade-offs",
+      "Duplicate every environment for safety regardless of demand",
+      "Turn off metrics so cost anomalies are less visible"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A team wants safer change management around batch and cdc ingestion patterns in the Ingestion domain. Which capability helps most?",
+    "options": [
+      "Direct production edits without peer review or rollback plans",
+      "Versioned automation with approvals, tests, and controlled rollback paths",
+      "Manual hotfixes from developer laptops only",
+      "A shared root account for all deployment activities"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "The DEA-C01 blueprint for Ingestion needs better resilience around batch and cdc ingestion patterns. Which architecture decision is strongest?",
+    "options": [
+      "Keep a single failure domain and document recovery in a wiki",
+      "Design for redundancy, failure isolation, and tested recovery workflows",
+      "Disable automated health checks to avoid false alarms",
+      "Depend on manual intervention for every outage scenario"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A team cannot prove ownership or accountability for batch and cdc ingestion patterns in the Ingestion domain. What should be introduced?",
+    "options": [
+      "Unstructured chat approvals and ad hoc spreadsheets",
+      "Clear ownership metadata, audit trails, and operational runbooks tied to services",
+      "More shared admin credentials across teams",
+      "A policy of resolving incidents without documentation"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A new workload must launch quickly with strong batch and cdc ingestion patterns posture in the Ingestion domain. Which pattern fits best?",
+    "options": [
+      "Copy an old environment manually and hope standards are similar",
+      "Use approved baseline patterns with reusable automation and environment parameters",
+      "Skip governance for the first release to save time",
+      "Use long-lived credentials embedded in source code"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A review shows that batch and cdc ingestion patterns decisions in the Ingestion domain are inconsistent between teams. What should happen next?",
+    "options": [
+      "Let each team continue independently to maximize flexibility",
+      "Define shared guardrails, reference architectures, and measurable operational standards",
+      "Remove central observability to reduce friction",
+      "Consolidate everything into one unmanaged environment"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A team needs better observability for batch and cdc ingestion patterns in the Ingestion domain. Which improvement is most valuable?",
+    "options": [
+      "Only monitor infrastructure CPU metrics and ignore business signals",
+      "Track actionable service metrics, logs, and traces with clear alert ownership",
+      "Replace alerts with weekly manual reviews",
+      "Disable dashboards to avoid confusion during incidents"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A postmortem shows that weak batch and cdc ingestion patterns practices in the Ingestion domain slowed recovery. Which long-term fix is best?",
+    "options": [
+      "Increase team size without changing the operating model",
+      "Codify repeatable runbooks, automate common actions, and test failure paths regularly",
+      "Accept longer recovery times as normal growth pain",
+      "Reduce incident visibility so fewer teams are involved"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "For the DEA-C01 Ingestion domain, a team needs to improve network and transfer strategy choices while minimizing operational overhead. Which approach is BEST?",
+    "options": [
+      "Build custom tooling from scratch for every environment and team",
+      "Use managed AWS capabilities with automation, observability, and policy guardrails",
+      "Delay instrumentation until after production rollout",
+      "Standardize on manual console changes for faster iteration"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A production incident exposed weaknesses in network and transfer strategy choices for the Ingestion domain. What should the team do first?",
+    "options": [
+      "Make broad changes across all workloads without validating the root cause",
+      "Use telemetry to isolate the problem, then apply targeted remediation with rollback safety",
+      "Disable alerting until stakeholders stop escalating the issue",
+      "Move all workloads to one shared account immediately"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A regulated workload depends on strong network and transfer strategy choices controls in the Ingestion domain. Which design is most appropriate?",
+    "options": [
+      "Rely on tribal knowledge and periodic manual checks",
+      "Use least privilege, encryption, logging, and repeatable infrastructure changes",
+      "Share administrator access among all operators for faster support",
+      "Prioritize speed over auditability and defer governance until later"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A platform team needs scalable network and transfer strategy choices practices for the Ingestion domain across several workloads. What is the best approach?",
+    "options": [
+      "Create one-off process documents per team with no shared baseline",
+      "Adopt standardized templates, automated checks, and centralized visibility",
+      "Allow each workload to define conflicting controls independently",
+      "Disable shared monitoring to avoid noisy dashboards"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "Costs are rising in the Ingestion domain because network and transfer strategy choices is handled inefficiently. Which action is most effective first?",
+    "options": [
+      "Increase spend permanently to avoid future reviews",
+      "Right-size the design using workload telemetry, lifecycle controls, and managed-service trade-offs",
+      "Duplicate every environment for safety regardless of demand",
+      "Turn off metrics so cost anomalies are less visible"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A team wants safer change management around network and transfer strategy choices in the Ingestion domain. Which capability helps most?",
+    "options": [
+      "Direct production edits without peer review or rollback plans",
+      "Versioned automation with approvals, tests, and controlled rollback paths",
+      "Manual hotfixes from developer laptops only",
+      "A shared root account for all deployment activities"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "The DEA-C01 blueprint for Ingestion needs better resilience around network and transfer strategy choices. Which architecture decision is strongest?",
+    "options": [
+      "Keep a single failure domain and document recovery in a wiki",
+      "Design for redundancy, failure isolation, and tested recovery workflows",
+      "Disable automated health checks to avoid false alarms",
+      "Depend on manual intervention for every outage scenario"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A team cannot prove ownership or accountability for network and transfer strategy choices in the Ingestion domain. What should be introduced?",
+    "options": [
+      "Unstructured chat approvals and ad hoc spreadsheets",
+      "Clear ownership metadata, audit trails, and operational runbooks tied to services",
+      "More shared admin credentials across teams",
+      "A policy of resolving incidents without documentation"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A new workload must launch quickly with strong network and transfer strategy choices posture in the Ingestion domain. Which pattern fits best?",
+    "options": [
+      "Copy an old environment manually and hope standards are similar",
+      "Use approved baseline patterns with reusable automation and environment parameters",
+      "Skip governance for the first release to save time",
+      "Use long-lived credentials embedded in source code"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A review shows that network and transfer strategy choices decisions in the Ingestion domain are inconsistent between teams. What should happen next?",
+    "options": [
+      "Let each team continue independently to maximize flexibility",
+      "Define shared guardrails, reference architectures, and measurable operational standards",
+      "Remove central observability to reduce friction",
+      "Consolidate everything into one unmanaged environment"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A team needs better observability for network and transfer strategy choices in the Ingestion domain. Which improvement is most valuable?",
+    "options": [
+      "Only monitor infrastructure CPU metrics and ignore business signals",
+      "Track actionable service metrics, logs, and traces with clear alert ownership",
+      "Replace alerts with weekly manual reviews",
+      "Disable dashboards to avoid confusion during incidents"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A postmortem shows that weak network and transfer strategy choices practices in the Ingestion domain slowed recovery. Which long-term fix is best?",
+    "options": [
+      "Increase team size without changing the operating model",
+      "Codify repeatable runbooks, automate common actions, and test failure paths regularly",
+      "Accept longer recovery times as normal growth pain",
+      "Reduce incident visibility so fewer teams are involved"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "For the DEA-C01 Ingestion domain, a team needs to improve reliability and idempotency design while minimizing operational overhead. Which approach is BEST?",
+    "options": [
+      "Build custom tooling from scratch for every environment and team",
+      "Use managed AWS capabilities with automation, observability, and policy guardrails",
+      "Delay instrumentation until after production rollout",
+      "Standardize on manual console changes for faster iteration"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A production incident exposed weaknesses in reliability and idempotency design for the Ingestion domain. What should the team do first?",
+    "options": [
+      "Make broad changes across all workloads without validating the root cause",
+      "Use telemetry to isolate the problem, then apply targeted remediation with rollback safety",
+      "Disable alerting until stakeholders stop escalating the issue",
+      "Move all workloads to one shared account immediately"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A regulated workload depends on strong reliability and idempotency design controls in the Ingestion domain. Which design is most appropriate?",
+    "options": [
+      "Rely on tribal knowledge and periodic manual checks",
+      "Use least privilege, encryption, logging, and repeatable infrastructure changes",
+      "Share administrator access among all operators for faster support",
+      "Prioritize speed over auditability and defer governance until later"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
+  },
+  {
+    "q": "A platform team needs scalable reliability and idempotency design practices for the Ingestion domain across several workloads. What is the best approach?",
+    "options": [
+      "Create one-off process documents per team with no shared baseline",
+      "Adopt standardized templates, automated checks, and centralized visibility",
+      "Allow each workload to define conflicting controls independently",
+      "Disable shared monitoring to avoid noisy dashboards"
+    ],
+    "answer": 1,
+    "topic": "Ingestion"
   }
 ];
 
 const SERVICES = [
   {
     "name": "Ingestion",
-    "emoji": "\ud83d\udce5",
+    "emoji": "📥",
     "desc": "Reliable and scalable intake of batch and change data.",
     "bullets": [
       "Batch and CDC ingestion patterns",
@@ -703,7 +1143,7 @@ const SERVICES = [
   },
   {
     "name": "Transformation",
-    "emoji": "\ud83d\udee0\ufe0f",
+    "emoji": "🛠️",
     "desc": "Data cleansing, enrichment, and modeling for analytics workloads.",
     "bullets": [
       "ETL/ELT workload planning",
@@ -715,7 +1155,7 @@ const SERVICES = [
   },
   {
     "name": "Storage",
-    "emoji": "\ud83d\uddc4\ufe0f",
+    "emoji": "🗄️",
     "desc": "Lake and warehouse storage design for performance and cost optimization.",
     "bullets": [
       "Lake layout and partition strategy",
@@ -727,7 +1167,7 @@ const SERVICES = [
   },
   {
     "name": "Streaming",
-    "emoji": "\ud83c\udf0a",
+    "emoji": "🌊",
     "desc": "Real-time event pipelines and low-latency processing architectures.",
     "bullets": [
       "Ordering and checkpoint semantics",

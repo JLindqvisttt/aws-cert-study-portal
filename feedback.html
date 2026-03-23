@@ -15,66 +15,68 @@
   <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark mode" aria-label="Toggle light and dark mode">🌙</button>
 </nav>
 
-<div class="fb-page">
-  <div class="fb-header">
-    <span class="fb-icon">&#x1F4AC;</span>
-    <h1>Share Feedback</h1>
-    <p>Found a bug, have a feature idea, or want to suggest a question?<br>Slack/API feedback integration is temporarily inactive and will be enabled soon.</p>
-  </div>
+<main class="feedback-main">
+  <div class="fb-page">
+    <div class="fb-header">
+      <span class="fb-icon">&#x1F4AC;</span>
+      <h1>Share Feedback</h1>
+      <p>Found a bug, have a feature idea, or want to suggest a question?<br>Slack/API feedback integration is temporarily inactive and will be enabled soon.</p>
+    </div>
 
-  <div class="fb-card">
-    <form class="fb-form" id="feedback-form" novalidate>
-      <div class="fb-row">
-        <div class="fb-field">
-          <label for="name">Your Name</label>
-          <input id="name" name="name" maxlength="80" placeholder="Jonathan" required>
+    <div class="fb-card">
+      <form class="fb-form" id="feedback-form" novalidate>
+        <div class="fb-row">
+          <div class="fb-field">
+            <label for="name">Your Name</label>
+            <input id="name" name="name" maxlength="80" placeholder="Jonathan" required>
+          </div>
+          <div class="fb-field">
+            <label for="email">Email <span style="font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
+            <input id="email" name="email" type="email" maxlength="120" placeholder="you@example.com">
+          </div>
+        </div>
+        <div class="fb-divider"></div>
+        <div class="fb-row">
+          <div class="fb-field">
+            <label for="type">Category</label>
+            <select id="type" name="type">
+              <option value="feature">Feature request</option>
+              <option value="bug">Bug report</option>
+              <option value="question">Question correction</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="fb-field">
+            <label for="cert">Certification <span style="font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
+            <select id="cert" name="cert">
+              <option value="">General / Portal</option>
+              <option>DVA-C02</option>
+              <option>SAA-C03</option>
+              <option>SCS-C02</option>
+              <option>CLF-C02</option>
+              <option>AIF-C01</option>
+              <option>CloudOps-C01</option>
+              <option>DEA-C01</option>
+              <option>MLA-C01</option>
+              <option>SAP-C02</option>
+              <option>DOP-C02</option>
+              <option>ANS-C01</option>
+              <option>MLS-C01</option>
+            </select>
+          </div>
         </div>
         <div class="fb-field">
-          <label for="email">Email <span style="font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
-          <input id="email" name="email" type="email" maxlength="120" placeholder="you@example.com">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" maxlength="3000" placeholder="Describe the issue, feature, or question correction in detail..." required></textarea>
         </div>
-      </div>
-      <div class="fb-divider"></div>
-      <div class="fb-row">
-        <div class="fb-field">
-          <label for="type">Category</label>
-          <select id="type" name="type">
-            <option value="feature">Feature request</option>
-            <option value="bug">Bug report</option>
-            <option value="question">Question correction</option>
-            <option value="other">Other</option>
-          </select>
+        <div class="fb-actions">
+          <button class="fb-submit" type="submit" id="submit-btn">Send Feedback &#x2192;</button>
+          <div class="fb-status" id="fb-status"></div>
         </div>
-        <div class="fb-field">
-          <label for="cert">Certification <span style="font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
-          <select id="cert" name="cert">
-            <option value="">General / Portal</option>
-            <option>DVA-C02</option>
-            <option>SAA-C03</option>
-            <option>SCS-C02</option>
-            <option>CLF-C02</option>
-            <option>AIF-C01</option>
-            <option>CloudOps-C01</option>
-            <option>DEA-C01</option>
-            <option>MLA-C01</option>
-            <option>SAP-C02</option>
-            <option>DOP-C02</option>
-            <option>ANS-C01</option>
-            <option>MLS-C01</option>
-          </select>
-        </div>
-      </div>
-      <div class="fb-field">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" maxlength="3000" placeholder="Describe the issue, feature, or question correction in detail..." required></textarea>
-      </div>
-      <div class="fb-actions">
-        <button class="fb-submit" type="submit" id="submit-btn">Send Feedback &#x2192;</button>
-        <div class="fb-status" id="fb-status"></div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
-</div>
+</main>
 
 <div class="page-footer-wrap">
   <footer class="portal-footer"><span class="footer-credit">Created by Jonathan Lindqvist</span><span class="footer-sep">&middot;</span><span>Built for learning &mdash; not affiliated with Amazon Web Services</span></footer>

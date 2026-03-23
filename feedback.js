@@ -1,4 +1,4 @@
-const APP_RELEASE = 'v0.4.0';
+const APP_RELEASE = '1.0.0';
 window.FEEDBACK_API_URL = '';
 window.FEEDBACK_API_TOKEN = '';
 

@@ -3,7 +3,7 @@ const CERT_META = {
   "code": "SAP-C02",
   "name": "Solutions Architect",
   "fullName": "AWS Certified Solutions Architect - Professional",
-  "emoji": "\ud83c\udfd7\ufe0f",
+  "emoji": "🏗️",
   "minutes": 180,
   "passingScore": 75,
   "examQuestions": 75,
@@ -19,10 +19,10 @@ const CERT_META = {
 };
 
 const TOPIC_RULES = [
-  [/enterprise|landing zone|multi-account|shared services|transit gateway/i, 'Enterprise Design'],
-  [/migrat|cutover|rehost|replatform|refactor|datasync|dms/i, 'Migration'],
-  [/governance|scp|config|audit|compliance|control tower|organization/i, 'Governance'],
-  [/cost|rightsiz|savings|budget|optimization|finops/i, 'Cost Optimization'],
+  [/enterprise|landing zone|multi-account|shared services|transit gateway/i, "Enterprise Design"],
+  [/migrat|cutover|rehost|replatform|refactor|datasync|dms/i, "Migration"],
+  [/governance|scp|config|audit|compliance|control tower|organization/i, "Governance"],
+  [/cost|rightsiz|savings|budget|optimization|finops/i, "Cost Optimization"]
 ];
 
 const QUESTIONS = [
@@ -685,13 +685,453 @@ const QUESTIONS = [
     ],
     "answer": 1,
     "topic": "Cost Optimization"
+  },
+  {
+    "q": "For the SAP-C02 Enterprise Design domain, a team needs to improve multi-account architecture, network topology, and shared platform services. while minimizing operational overhead. Which approach is BEST?",
+    "options": [
+      "Build custom tooling from scratch for every environment and team",
+      "Use managed AWS capabilities with automation, observability, and policy guardrails",
+      "Delay instrumentation until after production rollout",
+      "Standardize on manual console changes for faster iteration"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A production incident exposed weaknesses in multi-account architecture, network topology, and shared platform services. for the Enterprise Design domain. What should the team do first?",
+    "options": [
+      "Make broad changes across all workloads without validating the root cause",
+      "Use telemetry to isolate the problem, then apply targeted remediation with rollback safety",
+      "Disable alerting until stakeholders stop escalating the issue",
+      "Move all workloads to one shared account immediately"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A regulated workload depends on strong multi-account architecture, network topology, and shared platform services. controls in the Enterprise Design domain. Which design is most appropriate?",
+    "options": [
+      "Rely on tribal knowledge and periodic manual checks",
+      "Use least privilege, encryption, logging, and repeatable infrastructure changes",
+      "Share administrator access among all operators for faster support",
+      "Prioritize speed over auditability and defer governance until later"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A platform team needs scalable multi-account architecture, network topology, and shared platform services. practices for the Enterprise Design domain across several workloads. What is the best approach?",
+    "options": [
+      "Create one-off process documents per team with no shared baseline",
+      "Adopt standardized templates, automated checks, and centralized visibility",
+      "Allow each workload to define conflicting controls independently",
+      "Disable shared monitoring to avoid noisy dashboards"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "Costs are rising in the Enterprise Design domain because multi-account architecture, network topology, and shared platform services. is handled inefficiently. Which action is most effective first?",
+    "options": [
+      "Increase spend permanently to avoid future reviews",
+      "Right-size the design using workload telemetry, lifecycle controls, and managed-service trade-offs",
+      "Duplicate every environment for safety regardless of demand",
+      "Turn off metrics so cost anomalies are less visible"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A team wants safer change management around multi-account architecture, network topology, and shared platform services. in the Enterprise Design domain. Which capability helps most?",
+    "options": [
+      "Direct production edits without peer review or rollback plans",
+      "Versioned automation with approvals, tests, and controlled rollback paths",
+      "Manual hotfixes from developer laptops only",
+      "A shared root account for all deployment activities"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "The SAP-C02 blueprint for Enterprise Design needs better resilience around multi-account architecture, network topology, and shared platform services.. Which architecture decision is strongest?",
+    "options": [
+      "Keep a single failure domain and document recovery in a wiki",
+      "Design for redundancy, failure isolation, and tested recovery workflows",
+      "Disable automated health checks to avoid false alarms",
+      "Depend on manual intervention for every outage scenario"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A team cannot prove ownership or accountability for multi-account architecture, network topology, and shared platform services. in the Enterprise Design domain. What should be introduced?",
+    "options": [
+      "Unstructured chat approvals and ad hoc spreadsheets",
+      "Clear ownership metadata, audit trails, and operational runbooks tied to services",
+      "More shared admin credentials across teams",
+      "A policy of resolving incidents without documentation"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A new workload must launch quickly with strong multi-account architecture, network topology, and shared platform services. posture in the Enterprise Design domain. Which pattern fits best?",
+    "options": [
+      "Copy an old environment manually and hope standards are similar",
+      "Use approved baseline patterns with reusable automation and environment parameters",
+      "Skip governance for the first release to save time",
+      "Use long-lived credentials embedded in source code"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A review shows that multi-account architecture, network topology, and shared platform services. decisions in the Enterprise Design domain are inconsistent between teams. What should happen next?",
+    "options": [
+      "Let each team continue independently to maximize flexibility",
+      "Define shared guardrails, reference architectures, and measurable operational standards",
+      "Remove central observability to reduce friction",
+      "Consolidate everything into one unmanaged environment"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A team needs better observability for multi-account architecture, network topology, and shared platform services. in the Enterprise Design domain. Which improvement is most valuable?",
+    "options": [
+      "Only monitor infrastructure CPU metrics and ignore business signals",
+      "Track actionable service metrics, logs, and traces with clear alert ownership",
+      "Replace alerts with weekly manual reviews",
+      "Disable dashboards to avoid confusion during incidents"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A postmortem shows that weak multi-account architecture, network topology, and shared platform services. practices in the Enterprise Design domain slowed recovery. Which long-term fix is best?",
+    "options": [
+      "Increase team size without changing the operating model",
+      "Codify repeatable runbooks, automate common actions, and test failure paths regularly",
+      "Accept longer recovery times as normal growth pain",
+      "Reduce incident visibility so fewer teams are involved"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "For the SAP-C02 Enterprise Design domain, a team needs to improve landing zone and organizational unit strategy while minimizing operational overhead. Which approach is BEST?",
+    "options": [
+      "Build custom tooling from scratch for every environment and team",
+      "Use managed AWS capabilities with automation, observability, and policy guardrails",
+      "Delay instrumentation until after production rollout",
+      "Standardize on manual console changes for faster iteration"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A production incident exposed weaknesses in landing zone and organizational unit strategy for the Enterprise Design domain. What should the team do first?",
+    "options": [
+      "Make broad changes across all workloads without validating the root cause",
+      "Use telemetry to isolate the problem, then apply targeted remediation with rollback safety",
+      "Disable alerting until stakeholders stop escalating the issue",
+      "Move all workloads to one shared account immediately"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A regulated workload depends on strong landing zone and organizational unit strategy controls in the Enterprise Design domain. Which design is most appropriate?",
+    "options": [
+      "Rely on tribal knowledge and periodic manual checks",
+      "Use least privilege, encryption, logging, and repeatable infrastructure changes",
+      "Share administrator access among all operators for faster support",
+      "Prioritize speed over auditability and defer governance until later"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A platform team needs scalable landing zone and organizational unit strategy practices for the Enterprise Design domain across several workloads. What is the best approach?",
+    "options": [
+      "Create one-off process documents per team with no shared baseline",
+      "Adopt standardized templates, automated checks, and centralized visibility",
+      "Allow each workload to define conflicting controls independently",
+      "Disable shared monitoring to avoid noisy dashboards"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "Costs are rising in the Enterprise Design domain because landing zone and organizational unit strategy is handled inefficiently. Which action is most effective first?",
+    "options": [
+      "Increase spend permanently to avoid future reviews",
+      "Right-size the design using workload telemetry, lifecycle controls, and managed-service trade-offs",
+      "Duplicate every environment for safety regardless of demand",
+      "Turn off metrics so cost anomalies are less visible"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A team wants safer change management around landing zone and organizational unit strategy in the Enterprise Design domain. Which capability helps most?",
+    "options": [
+      "Direct production edits without peer review or rollback plans",
+      "Versioned automation with approvals, tests, and controlled rollback paths",
+      "Manual hotfixes from developer laptops only",
+      "A shared root account for all deployment activities"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "The SAP-C02 blueprint for Enterprise Design needs better resilience around landing zone and organizational unit strategy. Which architecture decision is strongest?",
+    "options": [
+      "Keep a single failure domain and document recovery in a wiki",
+      "Design for redundancy, failure isolation, and tested recovery workflows",
+      "Disable automated health checks to avoid false alarms",
+      "Depend on manual intervention for every outage scenario"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A team cannot prove ownership or accountability for landing zone and organizational unit strategy in the Enterprise Design domain. What should be introduced?",
+    "options": [
+      "Unstructured chat approvals and ad hoc spreadsheets",
+      "Clear ownership metadata, audit trails, and operational runbooks tied to services",
+      "More shared admin credentials across teams",
+      "A policy of resolving incidents without documentation"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A new workload must launch quickly with strong landing zone and organizational unit strategy posture in the Enterprise Design domain. Which pattern fits best?",
+    "options": [
+      "Copy an old environment manually and hope standards are similar",
+      "Use approved baseline patterns with reusable automation and environment parameters",
+      "Skip governance for the first release to save time",
+      "Use long-lived credentials embedded in source code"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A review shows that landing zone and organizational unit strategy decisions in the Enterprise Design domain are inconsistent between teams. What should happen next?",
+    "options": [
+      "Let each team continue independently to maximize flexibility",
+      "Define shared guardrails, reference architectures, and measurable operational standards",
+      "Remove central observability to reduce friction",
+      "Consolidate everything into one unmanaged environment"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A team needs better observability for landing zone and organizational unit strategy in the Enterprise Design domain. Which improvement is most valuable?",
+    "options": [
+      "Only monitor infrastructure CPU metrics and ignore business signals",
+      "Track actionable service metrics, logs, and traces with clear alert ownership",
+      "Replace alerts with weekly manual reviews",
+      "Disable dashboards to avoid confusion during incidents"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A postmortem shows that weak landing zone and organizational unit strategy practices in the Enterprise Design domain slowed recovery. Which long-term fix is best?",
+    "options": [
+      "Increase team size without changing the operating model",
+      "Codify repeatable runbooks, automate common actions, and test failure paths regularly",
+      "Accept longer recovery times as normal growth pain",
+      "Reduce incident visibility so fewer teams are involved"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "For the SAP-C02 Enterprise Design domain, a team needs to improve scalable networking and shared service patterns while minimizing operational overhead. Which approach is BEST?",
+    "options": [
+      "Build custom tooling from scratch for every environment and team",
+      "Use managed AWS capabilities with automation, observability, and policy guardrails",
+      "Delay instrumentation until after production rollout",
+      "Standardize on manual console changes for faster iteration"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A production incident exposed weaknesses in scalable networking and shared service patterns for the Enterprise Design domain. What should the team do first?",
+    "options": [
+      "Make broad changes across all workloads without validating the root cause",
+      "Use telemetry to isolate the problem, then apply targeted remediation with rollback safety",
+      "Disable alerting until stakeholders stop escalating the issue",
+      "Move all workloads to one shared account immediately"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A regulated workload depends on strong scalable networking and shared service patterns controls in the Enterprise Design domain. Which design is most appropriate?",
+    "options": [
+      "Rely on tribal knowledge and periodic manual checks",
+      "Use least privilege, encryption, logging, and repeatable infrastructure changes",
+      "Share administrator access among all operators for faster support",
+      "Prioritize speed over auditability and defer governance until later"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A platform team needs scalable scalable networking and shared service patterns practices for the Enterprise Design domain across several workloads. What is the best approach?",
+    "options": [
+      "Create one-off process documents per team with no shared baseline",
+      "Adopt standardized templates, automated checks, and centralized visibility",
+      "Allow each workload to define conflicting controls independently",
+      "Disable shared monitoring to avoid noisy dashboards"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "Costs are rising in the Enterprise Design domain because scalable networking and shared service patterns is handled inefficiently. Which action is most effective first?",
+    "options": [
+      "Increase spend permanently to avoid future reviews",
+      "Right-size the design using workload telemetry, lifecycle controls, and managed-service trade-offs",
+      "Duplicate every environment for safety regardless of demand",
+      "Turn off metrics so cost anomalies are less visible"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A team wants safer change management around scalable networking and shared service patterns in the Enterprise Design domain. Which capability helps most?",
+    "options": [
+      "Direct production edits without peer review or rollback plans",
+      "Versioned automation with approvals, tests, and controlled rollback paths",
+      "Manual hotfixes from developer laptops only",
+      "A shared root account for all deployment activities"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "The SAP-C02 blueprint for Enterprise Design needs better resilience around scalable networking and shared service patterns. Which architecture decision is strongest?",
+    "options": [
+      "Keep a single failure domain and document recovery in a wiki",
+      "Design for redundancy, failure isolation, and tested recovery workflows",
+      "Disable automated health checks to avoid false alarms",
+      "Depend on manual intervention for every outage scenario"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A team cannot prove ownership or accountability for scalable networking and shared service patterns in the Enterprise Design domain. What should be introduced?",
+    "options": [
+      "Unstructured chat approvals and ad hoc spreadsheets",
+      "Clear ownership metadata, audit trails, and operational runbooks tied to services",
+      "More shared admin credentials across teams",
+      "A policy of resolving incidents without documentation"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A new workload must launch quickly with strong scalable networking and shared service patterns posture in the Enterprise Design domain. Which pattern fits best?",
+    "options": [
+      "Copy an old environment manually and hope standards are similar",
+      "Use approved baseline patterns with reusable automation and environment parameters",
+      "Skip governance for the first release to save time",
+      "Use long-lived credentials embedded in source code"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A review shows that scalable networking and shared service patterns decisions in the Enterprise Design domain are inconsistent between teams. What should happen next?",
+    "options": [
+      "Let each team continue independently to maximize flexibility",
+      "Define shared guardrails, reference architectures, and measurable operational standards",
+      "Remove central observability to reduce friction",
+      "Consolidate everything into one unmanaged environment"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A team needs better observability for scalable networking and shared service patterns in the Enterprise Design domain. Which improvement is most valuable?",
+    "options": [
+      "Only monitor infrastructure CPU metrics and ignore business signals",
+      "Track actionable service metrics, logs, and traces with clear alert ownership",
+      "Replace alerts with weekly manual reviews",
+      "Disable dashboards to avoid confusion during incidents"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A postmortem shows that weak scalable networking and shared service patterns practices in the Enterprise Design domain slowed recovery. Which long-term fix is best?",
+    "options": [
+      "Increase team size without changing the operating model",
+      "Codify repeatable runbooks, automate common actions, and test failure paths regularly",
+      "Accept longer recovery times as normal growth pain",
+      "Reduce incident visibility so fewer teams are involved"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "For the SAP-C02 Enterprise Design domain, a team needs to improve resilience trade-offs across regions and accounts while minimizing operational overhead. Which approach is BEST?",
+    "options": [
+      "Build custom tooling from scratch for every environment and team",
+      "Use managed AWS capabilities with automation, observability, and policy guardrails",
+      "Delay instrumentation until after production rollout",
+      "Standardize on manual console changes for faster iteration"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A production incident exposed weaknesses in resilience trade-offs across regions and accounts for the Enterprise Design domain. What should the team do first?",
+    "options": [
+      "Make broad changes across all workloads without validating the root cause",
+      "Use telemetry to isolate the problem, then apply targeted remediation with rollback safety",
+      "Disable alerting until stakeholders stop escalating the issue",
+      "Move all workloads to one shared account immediately"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A regulated workload depends on strong resilience trade-offs across regions and accounts controls in the Enterprise Design domain. Which design is most appropriate?",
+    "options": [
+      "Rely on tribal knowledge and periodic manual checks",
+      "Use least privilege, encryption, logging, and repeatable infrastructure changes",
+      "Share administrator access among all operators for faster support",
+      "Prioritize speed over auditability and defer governance until later"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
+  },
+  {
+    "q": "A platform team needs scalable resilience trade-offs across regions and accounts practices for the Enterprise Design domain across several workloads. What is the best approach?",
+    "options": [
+      "Create one-off process documents per team with no shared baseline",
+      "Adopt standardized templates, automated checks, and centralized visibility",
+      "Allow each workload to define conflicting controls independently",
+      "Disable shared monitoring to avoid noisy dashboards"
+    ],
+    "answer": 1,
+    "topic": "Enterprise Design"
   }
 ];
 
 const SERVICES = [
   {
     "name": "Enterprise Design",
-    "emoji": "\ud83c\udfe2",
+    "emoji": "🏢",
     "desc": "Multi-account architecture, network topology, and shared platform services.",
     "bullets": [
       "Landing zone and organizational unit strategy",
@@ -703,7 +1143,7 @@ const SERVICES = [
   },
   {
     "name": "Migration",
-    "emoji": "\ud83d\ude9a",
+    "emoji": "🚚",
     "desc": "Large-scale migration patterns, cutover orchestration, and modernization pathways.",
     "bullets": [
       "Data migration sequencing and dependency mapping",
@@ -715,7 +1155,7 @@ const SERVICES = [
   },
   {
     "name": "Governance",
-    "emoji": "\ud83d\udee1\ufe0f",
+    "emoji": "🛡️",
     "desc": "Policy guardrails, compliance evidence, and preventive controls at scale.",
     "bullets": [
       "Preventive vs detective controls",
@@ -727,7 +1167,7 @@ const SERVICES = [
   },
   {
     "name": "Cost Optimization",
-    "emoji": "\ud83d\udcb0",
+    "emoji": "💰",
     "desc": "FinOps-aligned architecture decisions and continuous cost controls.",
     "bullets": [
       "Commitment strategies and workload profiling",

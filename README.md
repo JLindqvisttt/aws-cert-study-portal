@@ -3,26 +3,29 @@
 Static, offline-capable AWS certification study portal with per-cert question banks, quiz modes, progress tracking, and flashcards.
 
 ## Current Release
-- Release: `v0.4.0`
+- Release: `1.0.0`
 - Release tag is rendered in the footer on portal, cert pages, feedback, and coming-soon pages.
 - See `CHANGELOG.md` for release history.
+
+## Live Site
+- GitHub Pages: `https://jlindqvisttt.github.io/aws-cert-study-portal/`
 
 ## Certification Coverage
 
 ### Implemented in Portal (13)
 - CLF-C02 (Foundational) - 140 questions
-- AIF-C01 (Foundational) - 60 questions
+- AIF-C01 (Foundational) - 100 questions
 - DVA-C02 (Associate) - 476 questions
-- SAA-C03 (Associate) - 35 questions
-- DEA-C01 (Associate) - 60 questions
-- CloudOps-C01 (Associate) - 60 questions
-- MLA-C01 (Associate) - 60 questions
-- GenAI-Dev-Pro (Professional) - 12 questions
-- SAP-C02 (Professional) - 60 questions
-- DOP-C02 (Professional) - 60 questions
-- ANS-C01 (Specialty) - 12 questions
-- MLS-C01 (Specialty) - 12 questions
-- SCS-C02 (Specialty) - 35 questions
+- SAA-C03 (Associate) - 100 questions
+- DEA-C01 (Associate) - 100 questions
+- CloudOps-C01 (Associate) - 100 questions
+- MLA-C01 (Associate) - 100 questions
+- GenAI-Dev-Pro (Professional) - 100 questions
+- SAP-C02 (Professional) - 100 questions
+- DOP-C02 (Professional) - 100 questions
+- ANS-C01 (Specialty) - 100 questions
+- MLS-C01 (Specialty) - 100 questions
+- SCS-C02 (Specialty) - 100 questions
 
 ### Catalog by Level
 - Foundational: CLF-C02, AIF-C01
@@ -48,13 +51,13 @@ Static, offline-capable AWS certification study portal with per-cert question ba
 1. `python3 -m http.server 8000`
 2. Open `http://127.0.0.1:8000/`
 
-## Deploy to GitHub Pages
+## Validate Question Banks
+1. `node scripts/validate_question_banks.mjs`
+2. The script checks each bank for required fields, answer index validity, duplicate question text, and topic consistency.
 
-This repository includes a GitHub Actions workflow for Pages deployment.
-
-1. Push to `main`.
-2. In GitHub: Settings -> Pages -> Build and deployment -> Source: `GitHub Actions`.
-3. The workflow in `.github/workflows/deploy-pages.yml` will publish the site.
+## Expand Minimum Question Counts
+1. `node scripts/ensure_minimum_question_counts.mjs`
+2. The script preserves existing banks and tops up implemented certifications to at least 100 questions.
 
 ## Project Structure
 - `index.html` - certification portal
@@ -66,18 +69,13 @@ This repository includes a GitHub Actions workflow for Pages deployment.
 - `feedback.html` / `feedback.js` - feedback UI and submission logic
 - `coming-soon.html` / `coming-soon.js` - placeholder pages
 - `aws/feedback-lambda/` - optional AWS SAM backend for Slack/API feedback
-- `scripts/` - generators and content expansion scripts
-- `docs/QUESTION_SOURCES.md` - question source references
+- `scripts/ensure_minimum_question_counts.mjs` - tops up implemented banks to minimum question count
+- `scripts/validate_question_banks.mjs` - validates bank schema, answer indexes, duplicates, and topic consistency
+- `QUESTION_SOURCES.md` - question source references
 
 ## Remaining Work
-- Expand lower-count banks:
-	- GenAI-Dev-Pro (12)
-	- ANS-C01 (12)
-	- MLS-C01 (12)
-	- SAA-C03 (35)
-	- SCS-C02 (35)
 - Continue quality pass on newly expanded banks (scenario realism and distractor quality).
-- Add lightweight smoke test script for question bank schema validation.
+- Normalize topic metadata for the remaining validator warnings in DVA, SAA, and SCS.
 - Decide final production integration path for feedback (Slack webhook vs API destination).
 
 ## Notes

@@ -3,7 +3,7 @@ const CERT_META = {
   "code": "DOP-C02",
   "name": "DevOps Engineer",
   "fullName": "AWS Certified DevOps Engineer - Professional",
-  "emoji": "\u2699\ufe0f",
+  "emoji": "⚙️",
   "minutes": 180,
   "passingScore": 75,
   "examQuestions": 75,
@@ -19,10 +19,10 @@ const CERT_META = {
 };
 
 const TOPIC_RULES = [
-  [/ci\/cd|pipeline|codebuild|codedeploy|codepipeline|artifact|release/i, 'CI/CD'],
-  [/observability|monitoring|cloudwatch|log|trace|x-ray|alarm|slo/i, 'Observability'],
-  [/reliability|rollback|canary|blue\/green|autoscaling|failover/i, 'Reliability'],
-  [/security|automation|secrets|iam|policy|compliance|guardrail/i, 'Security Automation'],
+  [/ci\/cd|pipeline|codebuild|codedeploy|codepipeline|artifact|release/i, "CI/CD"],
+  [/observability|monitoring|cloudwatch|log|trace|x-ray|alarm|slo/i, "Observability"],
+  [/reliability|rollback|canary|blue\/green|autoscaling|failover/i, "Reliability"],
+  [/security|automation|secrets|iam|policy|compliance|guardrail/i, "Security Automation"]
 ];
 
 const QUESTIONS = [
@@ -685,13 +685,453 @@ const QUESTIONS = [
     ],
     "answer": 1,
     "topic": "Security Automation"
+  },
+  {
+    "q": "For the DOP-C02 CI/CD domain, a team needs to improve automated software delivery with quality gates and progressive deployment strategies. while minimizing operational overhead. Which approach is BEST?",
+    "options": [
+      "Build custom tooling from scratch for every environment and team",
+      "Use managed AWS capabilities with automation, observability, and policy guardrails",
+      "Delay instrumentation until after production rollout",
+      "Standardize on manual console changes for faster iteration"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A production incident exposed weaknesses in automated software delivery with quality gates and progressive deployment strategies. for the CI/CD domain. What should the team do first?",
+    "options": [
+      "Make broad changes across all workloads without validating the root cause",
+      "Use telemetry to isolate the problem, then apply targeted remediation with rollback safety",
+      "Disable alerting until stakeholders stop escalating the issue",
+      "Move all workloads to one shared account immediately"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A regulated workload depends on strong automated software delivery with quality gates and progressive deployment strategies. controls in the CI/CD domain. Which design is most appropriate?",
+    "options": [
+      "Rely on tribal knowledge and periodic manual checks",
+      "Use least privilege, encryption, logging, and repeatable infrastructure changes",
+      "Share administrator access among all operators for faster support",
+      "Prioritize speed over auditability and defer governance until later"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A platform team needs scalable automated software delivery with quality gates and progressive deployment strategies. practices for the CI/CD domain across several workloads. What is the best approach?",
+    "options": [
+      "Create one-off process documents per team with no shared baseline",
+      "Adopt standardized templates, automated checks, and centralized visibility",
+      "Allow each workload to define conflicting controls independently",
+      "Disable shared monitoring to avoid noisy dashboards"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "Costs are rising in the CI/CD domain because automated software delivery with quality gates and progressive deployment strategies. is handled inefficiently. Which action is most effective first?",
+    "options": [
+      "Increase spend permanently to avoid future reviews",
+      "Right-size the design using workload telemetry, lifecycle controls, and managed-service trade-offs",
+      "Duplicate every environment for safety regardless of demand",
+      "Turn off metrics so cost anomalies are less visible"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A team wants safer change management around automated software delivery with quality gates and progressive deployment strategies. in the CI/CD domain. Which capability helps most?",
+    "options": [
+      "Direct production edits without peer review or rollback plans",
+      "Versioned automation with approvals, tests, and controlled rollback paths",
+      "Manual hotfixes from developer laptops only",
+      "A shared root account for all deployment activities"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "The DOP-C02 blueprint for CI/CD needs better resilience around automated software delivery with quality gates and progressive deployment strategies.. Which architecture decision is strongest?",
+    "options": [
+      "Keep a single failure domain and document recovery in a wiki",
+      "Design for redundancy, failure isolation, and tested recovery workflows",
+      "Disable automated health checks to avoid false alarms",
+      "Depend on manual intervention for every outage scenario"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A team cannot prove ownership or accountability for automated software delivery with quality gates and progressive deployment strategies. in the CI/CD domain. What should be introduced?",
+    "options": [
+      "Unstructured chat approvals and ad hoc spreadsheets",
+      "Clear ownership metadata, audit trails, and operational runbooks tied to services",
+      "More shared admin credentials across teams",
+      "A policy of resolving incidents without documentation"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A new workload must launch quickly with strong automated software delivery with quality gates and progressive deployment strategies. posture in the CI/CD domain. Which pattern fits best?",
+    "options": [
+      "Copy an old environment manually and hope standards are similar",
+      "Use approved baseline patterns with reusable automation and environment parameters",
+      "Skip governance for the first release to save time",
+      "Use long-lived credentials embedded in source code"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A review shows that automated software delivery with quality gates and progressive deployment strategies. decisions in the CI/CD domain are inconsistent between teams. What should happen next?",
+    "options": [
+      "Let each team continue independently to maximize flexibility",
+      "Define shared guardrails, reference architectures, and measurable operational standards",
+      "Remove central observability to reduce friction",
+      "Consolidate everything into one unmanaged environment"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A team needs better observability for automated software delivery with quality gates and progressive deployment strategies. in the CI/CD domain. Which improvement is most valuable?",
+    "options": [
+      "Only monitor infrastructure CPU metrics and ignore business signals",
+      "Track actionable service metrics, logs, and traces with clear alert ownership",
+      "Replace alerts with weekly manual reviews",
+      "Disable dashboards to avoid confusion during incidents"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A postmortem shows that weak automated software delivery with quality gates and progressive deployment strategies. practices in the CI/CD domain slowed recovery. Which long-term fix is best?",
+    "options": [
+      "Increase team size without changing the operating model",
+      "Codify repeatable runbooks, automate common actions, and test failure paths regularly",
+      "Accept longer recovery times as normal growth pain",
+      "Reduce incident visibility so fewer teams are involved"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "For the DOP-C02 CI/CD domain, a team needs to improve pipeline architecture and release safety patterns while minimizing operational overhead. Which approach is BEST?",
+    "options": [
+      "Build custom tooling from scratch for every environment and team",
+      "Use managed AWS capabilities with automation, observability, and policy guardrails",
+      "Delay instrumentation until after production rollout",
+      "Standardize on manual console changes for faster iteration"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A production incident exposed weaknesses in pipeline architecture and release safety patterns for the CI/CD domain. What should the team do first?",
+    "options": [
+      "Make broad changes across all workloads without validating the root cause",
+      "Use telemetry to isolate the problem, then apply targeted remediation with rollback safety",
+      "Disable alerting until stakeholders stop escalating the issue",
+      "Move all workloads to one shared account immediately"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A regulated workload depends on strong pipeline architecture and release safety patterns controls in the CI/CD domain. Which design is most appropriate?",
+    "options": [
+      "Rely on tribal knowledge and periodic manual checks",
+      "Use least privilege, encryption, logging, and repeatable infrastructure changes",
+      "Share administrator access among all operators for faster support",
+      "Prioritize speed over auditability and defer governance until later"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A platform team needs scalable pipeline architecture and release safety patterns practices for the CI/CD domain across several workloads. What is the best approach?",
+    "options": [
+      "Create one-off process documents per team with no shared baseline",
+      "Adopt standardized templates, automated checks, and centralized visibility",
+      "Allow each workload to define conflicting controls independently",
+      "Disable shared monitoring to avoid noisy dashboards"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "Costs are rising in the CI/CD domain because pipeline architecture and release safety patterns is handled inefficiently. Which action is most effective first?",
+    "options": [
+      "Increase spend permanently to avoid future reviews",
+      "Right-size the design using workload telemetry, lifecycle controls, and managed-service trade-offs",
+      "Duplicate every environment for safety regardless of demand",
+      "Turn off metrics so cost anomalies are less visible"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A team wants safer change management around pipeline architecture and release safety patterns in the CI/CD domain. Which capability helps most?",
+    "options": [
+      "Direct production edits without peer review or rollback plans",
+      "Versioned automation with approvals, tests, and controlled rollback paths",
+      "Manual hotfixes from developer laptops only",
+      "A shared root account for all deployment activities"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "The DOP-C02 blueprint for CI/CD needs better resilience around pipeline architecture and release safety patterns. Which architecture decision is strongest?",
+    "options": [
+      "Keep a single failure domain and document recovery in a wiki",
+      "Design for redundancy, failure isolation, and tested recovery workflows",
+      "Disable automated health checks to avoid false alarms",
+      "Depend on manual intervention for every outage scenario"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A team cannot prove ownership or accountability for pipeline architecture and release safety patterns in the CI/CD domain. What should be introduced?",
+    "options": [
+      "Unstructured chat approvals and ad hoc spreadsheets",
+      "Clear ownership metadata, audit trails, and operational runbooks tied to services",
+      "More shared admin credentials across teams",
+      "A policy of resolving incidents without documentation"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A new workload must launch quickly with strong pipeline architecture and release safety patterns posture in the CI/CD domain. Which pattern fits best?",
+    "options": [
+      "Copy an old environment manually and hope standards are similar",
+      "Use approved baseline patterns with reusable automation and environment parameters",
+      "Skip governance for the first release to save time",
+      "Use long-lived credentials embedded in source code"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A review shows that pipeline architecture and release safety patterns decisions in the CI/CD domain are inconsistent between teams. What should happen next?",
+    "options": [
+      "Let each team continue independently to maximize flexibility",
+      "Define shared guardrails, reference architectures, and measurable operational standards",
+      "Remove central observability to reduce friction",
+      "Consolidate everything into one unmanaged environment"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A team needs better observability for pipeline architecture and release safety patterns in the CI/CD domain. Which improvement is most valuable?",
+    "options": [
+      "Only monitor infrastructure CPU metrics and ignore business signals",
+      "Track actionable service metrics, logs, and traces with clear alert ownership",
+      "Replace alerts with weekly manual reviews",
+      "Disable dashboards to avoid confusion during incidents"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A postmortem shows that weak pipeline architecture and release safety patterns practices in the CI/CD domain slowed recovery. Which long-term fix is best?",
+    "options": [
+      "Increase team size without changing the operating model",
+      "Codify repeatable runbooks, automate common actions, and test failure paths regularly",
+      "Accept longer recovery times as normal growth pain",
+      "Reduce incident visibility so fewer teams are involved"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "For the DOP-C02 CI/CD domain, a team needs to improve artifact security, provenance, and promotion strategy while minimizing operational overhead. Which approach is BEST?",
+    "options": [
+      "Build custom tooling from scratch for every environment and team",
+      "Use managed AWS capabilities with automation, observability, and policy guardrails",
+      "Delay instrumentation until after production rollout",
+      "Standardize on manual console changes for faster iteration"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A production incident exposed weaknesses in artifact security, provenance, and promotion strategy for the CI/CD domain. What should the team do first?",
+    "options": [
+      "Make broad changes across all workloads without validating the root cause",
+      "Use telemetry to isolate the problem, then apply targeted remediation with rollback safety",
+      "Disable alerting until stakeholders stop escalating the issue",
+      "Move all workloads to one shared account immediately"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A regulated workload depends on strong artifact security, provenance, and promotion strategy controls in the CI/CD domain. Which design is most appropriate?",
+    "options": [
+      "Rely on tribal knowledge and periodic manual checks",
+      "Use least privilege, encryption, logging, and repeatable infrastructure changes",
+      "Share administrator access among all operators for faster support",
+      "Prioritize speed over auditability and defer governance until later"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A platform team needs scalable artifact security, provenance, and promotion strategy practices for the CI/CD domain across several workloads. What is the best approach?",
+    "options": [
+      "Create one-off process documents per team with no shared baseline",
+      "Adopt standardized templates, automated checks, and centralized visibility",
+      "Allow each workload to define conflicting controls independently",
+      "Disable shared monitoring to avoid noisy dashboards"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "Costs are rising in the CI/CD domain because artifact security, provenance, and promotion strategy is handled inefficiently. Which action is most effective first?",
+    "options": [
+      "Increase spend permanently to avoid future reviews",
+      "Right-size the design using workload telemetry, lifecycle controls, and managed-service trade-offs",
+      "Duplicate every environment for safety regardless of demand",
+      "Turn off metrics so cost anomalies are less visible"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A team wants safer change management around artifact security, provenance, and promotion strategy in the CI/CD domain. Which capability helps most?",
+    "options": [
+      "Direct production edits without peer review or rollback plans",
+      "Versioned automation with approvals, tests, and controlled rollback paths",
+      "Manual hotfixes from developer laptops only",
+      "A shared root account for all deployment activities"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "The DOP-C02 blueprint for CI/CD needs better resilience around artifact security, provenance, and promotion strategy. Which architecture decision is strongest?",
+    "options": [
+      "Keep a single failure domain and document recovery in a wiki",
+      "Design for redundancy, failure isolation, and tested recovery workflows",
+      "Disable automated health checks to avoid false alarms",
+      "Depend on manual intervention for every outage scenario"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A team cannot prove ownership or accountability for artifact security, provenance, and promotion strategy in the CI/CD domain. What should be introduced?",
+    "options": [
+      "Unstructured chat approvals and ad hoc spreadsheets",
+      "Clear ownership metadata, audit trails, and operational runbooks tied to services",
+      "More shared admin credentials across teams",
+      "A policy of resolving incidents without documentation"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A new workload must launch quickly with strong artifact security, provenance, and promotion strategy posture in the CI/CD domain. Which pattern fits best?",
+    "options": [
+      "Copy an old environment manually and hope standards are similar",
+      "Use approved baseline patterns with reusable automation and environment parameters",
+      "Skip governance for the first release to save time",
+      "Use long-lived credentials embedded in source code"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A review shows that artifact security, provenance, and promotion strategy decisions in the CI/CD domain are inconsistent between teams. What should happen next?",
+    "options": [
+      "Let each team continue independently to maximize flexibility",
+      "Define shared guardrails, reference architectures, and measurable operational standards",
+      "Remove central observability to reduce friction",
+      "Consolidate everything into one unmanaged environment"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A team needs better observability for artifact security, provenance, and promotion strategy in the CI/CD domain. Which improvement is most valuable?",
+    "options": [
+      "Only monitor infrastructure CPU metrics and ignore business signals",
+      "Track actionable service metrics, logs, and traces with clear alert ownership",
+      "Replace alerts with weekly manual reviews",
+      "Disable dashboards to avoid confusion during incidents"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A postmortem shows that weak artifact security, provenance, and promotion strategy practices in the CI/CD domain slowed recovery. Which long-term fix is best?",
+    "options": [
+      "Increase team size without changing the operating model",
+      "Codify repeatable runbooks, automate common actions, and test failure paths regularly",
+      "Accept longer recovery times as normal growth pain",
+      "Reduce incident visibility so fewer teams are involved"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "For the DOP-C02 CI/CD domain, a team needs to improve automated tests and deployment approvals while minimizing operational overhead. Which approach is BEST?",
+    "options": [
+      "Build custom tooling from scratch for every environment and team",
+      "Use managed AWS capabilities with automation, observability, and policy guardrails",
+      "Delay instrumentation until after production rollout",
+      "Standardize on manual console changes for faster iteration"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A production incident exposed weaknesses in automated tests and deployment approvals for the CI/CD domain. What should the team do first?",
+    "options": [
+      "Make broad changes across all workloads without validating the root cause",
+      "Use telemetry to isolate the problem, then apply targeted remediation with rollback safety",
+      "Disable alerting until stakeholders stop escalating the issue",
+      "Move all workloads to one shared account immediately"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A regulated workload depends on strong automated tests and deployment approvals controls in the CI/CD domain. Which design is most appropriate?",
+    "options": [
+      "Rely on tribal knowledge and periodic manual checks",
+      "Use least privilege, encryption, logging, and repeatable infrastructure changes",
+      "Share administrator access among all operators for faster support",
+      "Prioritize speed over auditability and defer governance until later"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
+  },
+  {
+    "q": "A platform team needs scalable automated tests and deployment approvals practices for the CI/CD domain across several workloads. What is the best approach?",
+    "options": [
+      "Create one-off process documents per team with no shared baseline",
+      "Adopt standardized templates, automated checks, and centralized visibility",
+      "Allow each workload to define conflicting controls independently",
+      "Disable shared monitoring to avoid noisy dashboards"
+    ],
+    "answer": 1,
+    "topic": "CI/CD"
   }
 ];
 
 const SERVICES = [
   {
     "name": "CI/CD",
-    "emoji": "\ud83d\udd04",
+    "emoji": "🔄",
     "desc": "Automated software delivery with quality gates and progressive deployment strategies.",
     "bullets": [
       "Pipeline architecture and release safety patterns",
@@ -703,7 +1143,7 @@ const SERVICES = [
   },
   {
     "name": "Observability",
-    "emoji": "\ud83d\udcca",
+    "emoji": "📊",
     "desc": "Metrics, logs, traces, and actionable operations telemetry at scale.",
     "bullets": [
       "Golden signals and SLO instrumentation",
@@ -715,7 +1155,7 @@ const SERVICES = [
   },
   {
     "name": "Reliability",
-    "emoji": "\u2705",
+    "emoji": "✅",
     "desc": "Resilient operations, automated recovery, and safe rollback patterns.",
     "bullets": [
       "Progressive delivery and automatic rollback",
@@ -727,7 +1167,7 @@ const SERVICES = [
   },
   {
     "name": "Security Automation",
-    "emoji": "\ud83e\uddf1",
+    "emoji": "🧱",
     "desc": "Security controls embedded in delivery workflows and runtime operations.",
     "bullets": [
       "Identity controls in deployment automation",
