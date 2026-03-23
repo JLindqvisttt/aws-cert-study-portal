@@ -48,7 +48,9 @@ nav{background:var(--card);border-bottom:1px solid var(--border);position:sticky
 .cert-page .action-card:hover{border-color:var(--cert-color,var(--accent));border-top-color:var(--cert-color,var(--accent))}
 .cert-page .pill.selected{background:var(--cert-color,var(--accent));border-color:var(--cert-color,var(--accent))}
 .cert-page .nav-tab:hover{color:var(--cert-color,var(--accent))}
-.cert-page .nav-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.cert-page .nav-top{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center}
+.cert-page .nav-top .nav-title-cert{text-align:center}
+.cert-page .nav-top a[title="Share feedback"]{justify-self:end;width:auto}
 .cert-page .nav-top .theme-toggle{justify-self:end}
 .cert-page .service-name{color:var(--cert-color,var(--accent))}
 .cert-page .section-title .hl{color:var(--cert-color,var(--accent))}
