@@ -61,7 +61,8 @@ This repository includes a GitHub Actions workflow for Pages deployment.
 - `style.css` - shared styling
 - `app.js` - shared quiz engine for cert pages
 - `portal.js` - cert catalog and portal rendering
-- `questions-*.js` - per-cert question banks
+- `certs/` - certification pages
+- `data/questions/` - per-cert question banks and explanations
 - `feedback.html` / `feedback.js` - feedback UI and submission logic
 - `coming-soon.html` / `coming-soon.js` - placeholder pages
 - `aws/feedback-lambda/` - optional AWS SAM backend for Slack/API feedback
