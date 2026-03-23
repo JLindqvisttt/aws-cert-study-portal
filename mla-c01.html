@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AWS SAA-C03 Study Platform</title>
+<title>AWS MLA-C01 Study Platform</title>
 <link rel="stylesheet" href="style.css?v=20260323b">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <style>:root{--cert-color:#06b6d4}</style>
@@ -14,7 +14,7 @@
 <nav>
   <div class="nav-top">
     <a class="nav-back" href="index.html" title="All certifications">&#x2190; Portal</a>
-    <span class="nav-title-cert">SAA-C03 <span class="sub">Solutions Architect</span></span>
+    <span class="nav-title-cert">MLA-C01 <span class="sub">ML Engineer Associate</span></span>
     <a class="btn btn-sm" href="feedback.html" title="Share feedback" style="text-decoration:none;display:inline-flex;align-items:center;gap:5px">&#x1F4AC; Feedback</a>
     <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark mode">🌙</button>
   </div>
@@ -29,18 +29,17 @@
 <section class="cert-hero-banner">
   <div class="cert-hero-inner">
     <div class="cert-pg-badge-wrap">
-      <img class="cert-pg-badge" src="assets/badges/saa-c03.png" alt="SAA-C03 badge" width="80" height="60" loading="lazy">
+      <img class="cert-pg-badge" src="assets/badges/mla-c01.png" alt="MLA-C01 badge" width="80" height="60" loading="lazy">
     </div>
     <div class="cert-pg-info">
       <div class="cert-pg-level">Associate</div>
-      <div class="cert-pg-code">SAA-C03</div>
-      <div class="cert-pg-name">AWS Certified Solutions Architect</div>
+      <div class="cert-pg-code">MLA-C01</div>
+      <div class="cert-pg-name">AWS Certified Machine Learning Engineer - Associate</div>
     </div>
   </div>
 </section>
 
 <main>
-  <!-- HOME -->
   <div id="tab-home" class="tab-panel active">
     <div class="stats-grid">
       <div class="stat-card"><div class="stat-val" id="stat-total">0</div><div class="stat-lbl">Total Questions</div></div>
@@ -73,7 +72,7 @@
       <div class="action-card" onclick="goTab('study')">
         <div class="action-emoji">&#x1F4DA;</div>
         <div class="action-title">Study by Topic</div>
-        <div class="action-desc">Review AWS services, then practice topic-specific questions</div>
+        <div class="action-desc">Review domain topics, then practice topic-specific questions</div>
       </div>
       <div class="action-card" onclick="startWeakAreas()">
         <div class="action-emoji">&#x26A0;&#xFE0F;</div>
@@ -84,13 +83,11 @@
     </div>
   </div>
 
-  <!-- STUDY -->
   <div id="tab-study" class="tab-panel">
     <h2 class="section-title">AWS Services <span class="hl">Study Guide</span></h2>
     <div class="service-grid" id="service-grid"></div>
   </div>
 
-  <!-- QUIZ -->
   <div id="tab-quiz" class="tab-panel">
     <div id="quiz-setup-screen" class="quiz-setup">
       <h2>Configure Your Quiz</h2>
@@ -130,7 +127,6 @@
     <div id="quiz-result-screen" style="display:none"></div>
   </div>
 
-  <!-- FLASHCARDS -->
   <div id="tab-flash" class="tab-panel">
     <div class="flash-controls">
       <h2 class="section-title" style="margin-bottom:0">Flashcards</h2>
@@ -161,7 +157,6 @@
 
 <footer class="portal-footer"><span class="footer-credit">Created by Jonathan Lindqvist</span><span class="footer-sep">&middot;</span><span>Built for learning &mdash; not affiliated with Amazon Web Services</span></footer>
 
-<!-- Info Modal -->
 <div class="modal-overlay hidden" id="info-modal">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal()">&#x2715;</button>
@@ -171,8 +166,8 @@
   </div>
 </div>
 
-<script src="questions-saa-c03.js"></script>
-  <script src="question-explanations.js?v=20260323b"></script>
+<script src="questions-mla-c01.js"></script>
+<script src="question-explanations.js?v=20260323b"></script>
 <script src="app.js?v=20260323a"></script>
 </body>
 </html>

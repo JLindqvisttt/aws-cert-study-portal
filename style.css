@@ -123,6 +123,15 @@ main{flex:1;padding:24px 20px;max-width:920px;margin:0 auto;width:100%}
 .feedback{padding:11px 16px;border-radius:12px;margin-top:10px;font-size:0.82rem;font-weight:600}
 .feedback.correct{background:rgba(56,161,105,0.1);border:1px solid rgba(56,161,105,0.35);color:var(--correct)}
 .feedback.wrong{background:rgba(229,62,62,0.1);border:1px solid rgba(229,62,62,0.35);color:var(--wrong)}
+.answer-insight{margin-top:10px;padding:14px 16px;border-radius:14px;border:1px solid color-mix(in srgb,var(--cert-color,var(--accent)) 24%,var(--border));background:linear-gradient(180deg,color-mix(in srgb,var(--card2) 88%,var(--cert-color,var(--accent)) 12%) 0%,color-mix(in srgb,var(--card) 92%,transparent) 100%);box-shadow:0 10px 24px rgba(0,0,0,0.12)}
+.answer-insight-title{font-size:0.82rem;font-weight:800;letter-spacing:0.02em;color:var(--text);margin-bottom:8px}
+.answer-insight-body{font-size:0.81rem;line-height:1.6;color:var(--text2);margin-bottom:12px}
+.answer-insight-meta{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;padding:7px 0;border-top:1px solid color-mix(in srgb,var(--border) 78%,transparent);font-size:0.78rem;line-height:1.5}
+.answer-insight-meta:first-of-type{border-top:none;padding-top:0}
+.answer-insight-label{font-weight:700;color:var(--text);flex:0 0 96px}
+.answer-insight-meta span:last-child{color:var(--text2);text-align:right;flex:1}
+.answer-insight-list{margin:12px 0 0;padding-left:18px;color:var(--text2);font-size:0.78rem;line-height:1.55}
+.answer-insight-list li+li{margin-top:5px}
 .info-btn{background:none;border:1px solid var(--border);color:var(--text2);width:22px;height:22px;border-radius:999px;cursor:pointer;font-size:0.7rem;display:inline-flex;align-items:center;justify-content:center;transition:var(--transition);vertical-align:middle;margin-left:6px;flex-shrink:0}
 .info-btn:hover{border-color:var(--accent);color:var(--accent)}
 .next-btn-wrap{text-align:right;margin-top:12px}
@@ -322,6 +331,11 @@ h2.section-title .hl{color:var(--accent)}
   .question-text{font-size:0.9rem;line-height:1.65;margin-bottom:16px}
   .answer-btn{padding:12px 14px;font-size:0.82rem;line-height:1.45}
   .feedback{font-size:0.8rem;line-height:1.45}
+  .answer-insight{padding:13px 14px}
+  .answer-insight-meta{flex-direction:column;gap:2px}
+  .answer-insight-label{flex-basis:auto}
+  .answer-insight-meta span:last-child{text-align:left}
+  .answer-insight-body,.answer-insight-list{font-size:0.79rem}
   .flash-controls{gap:8px;margin-bottom:16px}
   .flash-q,.flash-a{font-size:0.86rem;line-height:1.6}
   .fb-row{grid-template-columns:1fr}

@@ -1,4 +1,6 @@
 
+const APP_RELEASE = 'v0.4.0';
+
 
 function tagQuestion(q) {
   if (q.topic) return q.topic; // manual override
@@ -106,6 +108,40 @@ function buildStudyCards() {
 
 function escHtml(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function getQuestionExplanation(q) {
+  const certExplanations = window.QUESTION_EXPLANATIONS && window.QUESTION_EXPLANATIONS[CERT_META.id];
+  if (certExplanations && typeof q._idx === 'number' && certExplanations[q._idx]) return certExplanations[q._idx];
+  if (q.explanation) return q.explanation;
+  return '';
+}
+
+function getTopicDetails(topic) {
+  return SERVICES.find(x => x.name === topic) || null;
+}
+
+function formatAnswerLabel(idx, text) {
+  return String.fromCharCode(65 + idx) + '. ' + text;
+}
+
+function formatSelectedAnswers(q, selected) {
+  if (!selected || !selected.length) return '';
+  return selected.map(idx => formatAnswerLabel(idx, q.options[idx])).join(' | ');
+}
+
+function buildAnswerInsight(q, correct, selected) {
+  const topic = q.topic || 'General';
+  const topicDetails = getTopicDetails(topic);
+  const questionExplanation = getQuestionExplanation(q);
+  const summary = questionExplanation || (topicDetails
+    ? topicDetails.desc
+    : 'Match the requirement in the question to the AWS service or pattern that solves it with the least operational overhead and according to best practices.');
+
+  return '<div class="answer-insight">' +
+    '<div class="answer-insight-title">Explanation</div>' +
+    '<div class="answer-insight-body">' + escHtml(summary) + '</div>' +
+    '</div>';
 }
 
 // Quiz logic
@@ -244,8 +280,8 @@ function submitSingle(idx) {
     });
     const fb = document.getElementById('feedback-area');
     fb.innerHTML = correct
-      ? '<div class="feedback correct">✓ Correct!</div>'
-      : '<div class="feedback wrong">✗ Incorrect. Correct: '+String.fromCharCode(65+q.answer)+'.</div>';
+      ? '<div class="feedback correct">✓ Correct!</div>' + buildAnswerInsight(q, true, [idx])
+      : '<div class="feedback wrong">✗ Incorrect. Correct: '+String.fromCharCode(65+q.answer)+'.</div>' + buildAnswerInsight(q, false, [idx]);
     document.getElementById('next-wrap').style.display='';
   } else { nextQuestion(); }
 }
@@ -266,8 +302,8 @@ function submitMulti(selected) {
     const letters = q.answer.map(i=>String.fromCharCode(65+i)).join(', ');
     const fb = document.getElementById('feedback-area');
     fb.innerHTML = correct
-      ? '<div class="feedback correct">✓ Correct!</div>'
-      : '<div class="feedback wrong">✗ Incorrect. Correct: '+letters+'.</div>';
+      ? '<div class="feedback correct">✓ Correct!</div>' + buildAnswerInsight(q, true, selected)
+      : '<div class="feedback wrong">✗ Incorrect. Correct: '+letters+'.</div>' + buildAnswerInsight(q, false, selected);
     document.getElementById('next-wrap').style.display='';
   } else { nextQuestion(); }
 }
@@ -408,6 +444,19 @@ function toggleTheme() {
   localStorage.setItem('theme', newTheme);
 }
 
+function injectReleaseTag() {
+  const footer = document.querySelector('.portal-footer');
+  if (!footer || footer.querySelector('.app-release-tag')) return;
+  const sep = document.createElement('span');
+  sep.className = 'footer-sep app-release-tag';
+  sep.innerHTML = '&middot;';
+  const rel = document.createElement('span');
+  rel.className = 'app-release-tag';
+  rel.textContent = 'Release ' + APP_RELEASE;
+  footer.appendChild(sep);
+  footer.appendChild(rel);
+}
+
 // Init
 const _t = localStorage.getItem('theme') || 'dark';
 document.getElementById('theme-toggle').textContent = _t === 'light' ? '☀️' : '🌙';
@@ -428,3 +477,4 @@ const _esd = document.getElementById('exam-sim-desc');
 if (_esd && typeof CERT_META !== 'undefined') {
   _esd.innerHTML = CERT_META.examQuestions + ' questions &middot; ' + CERT_META.minutes + ' minute timer &middot; Feedback at end';
 }
+injectReleaseTag();

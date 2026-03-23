@@ -2,7 +2,7 @@
 
 Comprehensive guide to GitHub repositories and external resources containing AWS certification exam questions and study materials for all AWS certifications.
 
-**Last Updated**: March 20, 2026
+**Last Updated**: March 23, 2026
 **Total Repos Found**: 40+
 **Certifications Covered**: All 13 AWS certifications
 
@@ -229,19 +229,73 @@ questions-{CERT}.js format:
 
 | Certification | Current | Source Available | Priority |
 |---|---|---|---|
-| CLF-C02 (Cloud Practitioner) | Coming Soon | ✓ CLI, markdown | Medium |
-| AIF-C01 (AI Practitioner) | Coming Soon | Limited | Low |
+| CLF-C02 (Cloud Practitioner) | 12 ✓ | ✓ CLI, markdown | Medium |
+| AIF-C01 (AI Practitioner) | 12 ✓ | Limited | Low |
 | DVA-C02 (Developer) | 476 ✓ | ✓ CSV, markdown | High |
 | SAA-C03 (Solutions Architect) | 35 ✓ | ✓ CSV, 500+, markdown | High |
-| DEA-C01 (Data Engineer) | Coming Soon | Limited | Low |
-| CloudOps-C01 (SysOps) | Coming Soon | Limited | Low |
-| MLA-C01 (ML Engineer) | Coming Soon | Limited | Low |
-| GenAI-Dev-Pro | Coming Soon | Limited | Low |
-| SAP-C02 (Solutions Architect Pro) | Coming Soon | ✓ markdown | Medium |
-| DOP-C02 (DevOps) | Coming Soon | Limited | Medium |
-| ANS-C01 (Advanced Networking) | Coming Soon | Limited | Low |
-| MLS-C01 (Machine Learning) | Coming Soon | ✓ markdown | Low |
+| DEA-C01 (Data Engineer) | 12 ✓ | Limited | Low |
+| CloudOps-C01 (SysOps) | 12 ✓ | Limited | Low |
+| MLA-C01 (ML Engineer) | 12 ✓ | Limited | Low |
+| GenAI-Dev-Pro | 12 ✓ | Limited | Low |
+| SAP-C02 (Solutions Architect Pro) | 12 ✓ | ✓ markdown | Medium |
+| DOP-C02 (DevOps) | 12 ✓ | Limited | Medium |
+| ANS-C01 (Advanced Networking) | 12 ✓ | Limited | Low |
+| MLS-C01 (Machine Learning) | 12 ✓ | ✓ markdown | Low |
 | SCS-C02 (Security) | 35 ✓ | ✓ CSV, markdown | High |
+
+## Additional Certifications - Live Seed Banks
+
+The portal currently has active question banks for `DVA-C02`, `SAA-C03`, and `SCS-C02`.
+The certifications below are the remaining targets to complete full 13/13 coverage.
+
+| Exam Code | Portal ID | Level | Current State | Recommended Source Set | Question Target (Phase 1) | Priority |
+|---|---|---|---|---|---|---|
+| CLF-C02 | `clf-c02` | Foundational | Live (seed bank) | Ditectrev + CloudExamDumps (CSV) | 150-250 | Medium |
+| AIF-C01 | `aif-c01` | Foundational | Live (seed bank) | vicsz notes + CloudCityPress + curated scenarios | 120-200 | Low |
+| DEA-C01 | `dea-c01` | Associate | Live (seed bank) | Morobang + ihatesea69 + manual validation | 120-180 | Medium |
+| CloudOps-C01 | `cloudops-c01` | Associate | Live (seed bank) | acantril + ACloudGuru resources + ops scenarios | 150-250 | Medium |
+| MLA-C01 | `mla-c01` | Associate | Live (seed bank) | artreimus + marcus912 + practical MLOps cases | 120-180 | Low |
+| GenAI-Dev-Pro | `genai-developer-pro` | Professional | Live (seed bank) | GravesXX + SomikoronAI + custom scenario generation | 80-140 | Low |
+| SAP-C02 | `sap-c02` | Professional | Live (seed bank) | Ernyoke + SwaroopGiri + official guide mapping | 180-300 | High |
+| DOP-C02 | `dop-c02` | Professional | Live (seed bank) | vicsz + LinkedInLearning + CI/CD operations scenarios | 150-250 | High |
+| ANS-C01 | `ans-c01` | Specialty | Live (seed bank) | Ditectrev + community networking notes | 120-200 | Medium |
+| MLS-C01 | `mls-c01` | Specialty | Live (seed bank) | Ditectrev + kiran-saikia + topic balancing | 120-200 | Low |
+
+### Implementation Mapping (File + Routing)
+
+For each certification, add one question bank file and connect it to the exam page once built.
+
+| Exam Code | Planned Question File | Current Route |
+|---|---|---|
+| CLF-C02 | `questions-clf-c02.js` | `coming-soon.html?cert=clf-c02` |
+| AIF-C01 | `questions-aif-c01.js` | `coming-soon.html?cert=aif-c01` |
+| DEA-C01 | `questions-dea-c01.js` | `coming-soon.html?cert=dea-c01` |
+| CloudOps-C01 | `questions-cloudops-c01.js` | `coming-soon.html?cert=cloudops-c01` |
+| MLA-C01 | `questions-mla-c01.js` | `coming-soon.html?cert=mla-c01` |
+| GenAI-Dev-Pro | `questions-genai-dev-pro.js` | `coming-soon.html?cert=genai-developer-pro` |
+| SAP-C02 | `questions-sap-c02.js` | `coming-soon.html?cert=sap-c02` |
+| DOP-C02 | `questions-dop-c02.js` | `coming-soon.html?cert=dop-c02` |
+| ANS-C01 | `questions-ans-c01.js` | `coming-soon.html?cert=ans-c01` |
+| MLS-C01 | `questions-mls-c01.js` | `coming-soon.html?cert=mls-c01` |
+
+### Standard Domain Coverage Targets (Per New Bank)
+
+Use these minimum domain slices to avoid overfitting to one topic area:
+
+- Foundational (`CLF-C02`, `AIF-C01`): security, pricing, shared responsibility, service fundamentals
+- Associate (`DEA-C01`, `CloudOps-C01`, `MLA-C01`): implementation patterns, operations, troubleshooting, best practices
+- Professional (`SAP-C02`, `DOP-C02`, `GenAI-Dev-Pro`): scenario-heavy architecture/operations trade-offs and migration decisions
+- Specialty (`ANS-C01`, `MLS-C01`): deep technical scenarios, service limits, optimization and failure handling
+
+### Intake Checklist for Each Remaining Certification
+
+1. Collect at least 2 independent sources for the exam code.
+2. Parse to raw JSON and normalize to portal format (`q`, `options`, `answer`, `topic`).
+3. Remove duplicates against all existing question banks.
+4. Validate answer index and wording quality (no ambiguous options).
+5. Tag each question with a useful `topic` for study cards.
+6. Add a minimum of 25 scenario-based questions before first release.
+7. Run local smoke test in quiz, exam sim, and flashcard modes.
 
 ## How to Use These Sources
 
@@ -282,5 +336,5 @@ questions-{CERT}.js format:
 
 ---
 
-*Last Updated: March 20, 2026*
-*Portal Version: 1.1*
+*Last Updated: March 23, 2026*
+*Portal Version: 1.2*

@@ -1,3 +1,4 @@
+const APP_RELEASE = 'v0.4.0';
 window.FEEDBACK_API_URL = '';
 window.FEEDBACK_API_TOKEN = '';
 
@@ -17,10 +18,28 @@ function showStatus(kind, msg){
   el.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
+function injectReleaseTag(){
+  var footer=document.querySelector('.portal-footer');
+  if(!footer||footer.querySelector('.app-release-tag')) return;
+  var sep=document.createElement('span'); sep.className='footer-sep app-release-tag'; sep.innerHTML='&middot;';
+  var rel=document.createElement('span'); rel.className='app-release-tag'; rel.textContent='Release '+APP_RELEASE;
+  footer.appendChild(sep); footer.appendChild(rel);
+}
+
+function setFeedbackInactiveState(){
+  if(window.FEEDBACK_API_URL) return;
+  var btn=document.getElementById('submit-btn');
+  if(btn){
+    btn.disabled=true;
+    btn.title='Feedback integration coming soon';
+  }
+  showStatus('err','Feedback integration is temporarily inactive. Slack/API setup is coming soon.');
+}
+
 document.getElementById('feedback-form').addEventListener('submit', async function(e){
   e.preventDefault();
   if(!window.FEEDBACK_API_URL){
-    showStatus('err','Feedback API is not configured yet. Set window.FEEDBACK_API_URL in feedback.js.');
+    showStatus('err','Feedback integration is temporarily inactive. Slack/API setup is coming soon.');
     return;
   }
   var btn=document.getElementById('submit-btn');
@@ -47,3 +66,6 @@ document.getElementById('feedback-form').addEventListener('submit', async functi
     btn.disabled=false; btn.textContent='Send Feedback \u2192';
   }
 });
+
+injectReleaseTag();
+setFeedbackInactiveState();
