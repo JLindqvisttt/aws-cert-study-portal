@@ -7,13 +7,10 @@
 <link rel="stylesheet" href="style.css">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <style>
-body{background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 7%,var(--bg)) 0%,var(--bg) 80vh)}
-.portal-hero{text-align:center;padding:52px 24px 16px;position:relative;overflow:hidden}
+body{background:var(--bg)}
+.portal-hero{text-align:center;padding:52px 24px 36px;position:relative;background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 14%,var(--bg)) 0%,var(--bg) 100%)}
 .portal-hero .portal-actions{position:absolute;top:16px;right:20px;display:flex;align-items:center;gap:8px;z-index:10}
-.portal-hero::before{content:'';position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(240,150,42,0.08) 0%,transparent 65%);animation:heroFloat 14s ease-in-out infinite;top:-320px;left:-180px;pointer-events:none;z-index:0}
-.portal-hero::after{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(240,150,42,0.05) 0%,transparent 65%);animation:heroFloat 14s ease-in-out infinite 7s reverse;bottom:-220px;right:-80px;pointer-events:none;z-index:0}
-.portal-hero > *{position:relative;z-index:1}
-@keyframes heroFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(120px,80px) scale(1.15)}66%{transform:translate(60px,-60px) scale(0.9)}}
+
 .portal-hero h1{font-size:2rem;font-weight:800;margin:0 0 10px;letter-spacing:-0.8px}
 .portal-hero h1 span{color:var(--accent)}
 .portal-hero p{color:var(--text2);font-size:1rem;margin:0}
