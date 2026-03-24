@@ -24,6 +24,7 @@ const ALL_TOPICS = [...new Set(QUESTIONS.map(q => q.topic))].sort();
 const STORAGE_KEY = 'aws-quiz-progress-' + CERT_META.id;
 const QUIZ_SESSION_KEY = 'aws-quiz-session-' + CERT_META.id;
 const BOOKMARKS_KEY = 'aws-bookmarks-' + CERT_META.id;
+const ANSWER_LOG_KEY = 'aws-answer-log-' + CERT_META.id;
 function loadProgress() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); } catch { return {}; } }
 function saveProgress(p) { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); }
 function isMastered(e) { return e && e.correct >= 1; }
@@ -55,6 +56,34 @@ function toggleBookmark(idx) {
   saveBookmarks([...bookmarks]);
 }
 
+function loadAnswerLog() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(ANSWER_LOG_KEY) || '[]');
+    if (!Array.isArray(raw)) return [];
+    return raw.filter(item =>
+      item &&
+      Number.isInteger(item.idx) &&
+      item.idx >= 0 &&
+      item.idx < QUESTIONS.length &&
+      typeof item.correct === 'boolean' &&
+      typeof item.ts === 'number'
+    );
+  } catch {
+    return [];
+  }
+}
+
+function saveAnswerLog(entries) {
+  const capped = entries.slice(-4000);
+  localStorage.setItem(ANSWER_LOG_KEY, JSON.stringify(capped));
+}
+
+function appendAnswerLog(entry) {
+  const log = loadAnswerLog();
+  log.push(entry);
+  saveAnswerLog(log);
+}
+
 function loadQuizSession() {
   try {
     const raw = JSON.parse(localStorage.getItem(QUIZ_SESSION_KEY) || 'null');
@@ -77,6 +106,7 @@ function loadQuizSession() {
       current,
       score,
       timerEnd,
+      responses: Array.isArray(raw.responses) ? raw.responses : [],
     };
   } catch {
     return null;
@@ -92,6 +122,7 @@ function saveQuizSession() {
     current: quizState.current,
     score: quizState.score,
     timerEnd: quizState.timed ? quizState.timerEnd : null,
+    responses: Array.isArray(quizState.responses) ? quizState.responses : [],
     updatedAt: Date.now(),
   };
   localStorage.setItem(QUIZ_SESSION_KEY, JSON.stringify(payload));
@@ -162,6 +193,157 @@ function ensureHomeInsights() {
     readiness.id = 'topic-readiness-card';
     actions.insertAdjacentElement('afterend', readiness);
   }
+}
+
+function ensureHistoryTab() {
+  const tabs = document.querySelector('.nav-tabs');
+  const main = document.querySelector('main');
+  if (!tabs || !main) return;
+
+  if (!tabs.querySelector('[data-tab="history"]')) {
+    const btn = document.createElement('button');
+    btn.className = 'nav-tab';
+    btn.dataset.tab = 'history';
+    btn.textContent = '📈 History';
+    tabs.appendChild(btn);
+    btn.addEventListener('click', () => goTab('history'));
+  }
+
+  if (!document.getElementById('tab-history')) {
+    const panel = document.createElement('div');
+    panel.id = 'tab-history';
+    panel.className = 'tab-panel';
+    panel.innerHTML =
+      '<div class="history-page">' +
+        '<div class="card">' +
+          '<h2 class="section-title section-title-tight">Statistics &amp; History</h2>' +
+          '<div class="text-muted mt-12">Your progress over time for this certification.</div>' +
+        '</div>' +
+        '<div id="history-content" class="history-content"></div>' +
+      '</div>';
+    main.appendChild(panel);
+  }
+}
+
+function dayKey(ts) {
+  return new Date(ts).toISOString().slice(0, 10);
+}
+
+function buildLastDays(days) {
+  const keys = [];
+  for (let i = days - 1; i >= 0; i--) {
+    const d = new Date();
+    d.setHours(0, 0, 0, 0);
+    d.setDate(d.getDate() - i);
+    keys.push(dayKey(d.getTime()));
+  }
+  return keys;
+}
+
+function renderHistoryView() {
+  const content = document.getElementById('history-content');
+  if (!content) return;
+
+  const log = loadAnswerLog();
+  if (!log.length) {
+    content.innerHTML =
+      '<div class="card history-empty">No history yet. Complete a quiz to see trend and topic analytics.</div>';
+    return;
+  }
+
+  const attempts = log.length;
+  const correct = log.reduce((sum, e) => sum + (e.correct ? 1 : 0), 0);
+  const accuracy = Math.round((correct / attempts) * 100);
+  const activeDays = new Set(log.map(e => dayKey(e.ts))).size;
+
+  const trendDays = buildLastDays(14);
+  const byDay = {};
+  log.forEach(e => {
+    const k = dayKey(e.ts);
+    if (!byDay[k]) byDay[k] = { total: 0, correct: 0 };
+    byDay[k].total++;
+    if (e.correct) byDay[k].correct++;
+  });
+
+  const trendRows = trendDays.map(k => {
+    const d = byDay[k] || { total: 0, correct: 0 };
+    const pct = d.total ? Math.round((d.correct / d.total) * 100) : 0;
+    return '<div class="trend-row">' +
+      '<div class="trend-day">' + escHtml(k.slice(5)) + '</div>' +
+      '<div class="trend-bar"><span style="width:' + pct + '%"></span></div>' +
+      '<div class="trend-meta">' + pct + '% · ' + d.total + ' q</div>' +
+    '</div>';
+  }).join('');
+
+  const topicTotals = {};
+  QUESTIONS.forEach(q => {
+    const topic = q.topic || 'General';
+    if (!topicTotals[topic]) topicTotals[topic] = { total: 0, seen: new Set(), attempts: 0, correct: 0 };
+    topicTotals[topic].total++;
+  });
+
+  log.forEach(e => {
+    const q = QUESTIONS[e.idx];
+    const topic = (q && q.topic) || 'General';
+    if (!topicTotals[topic]) topicTotals[topic] = { total: 0, seen: new Set(), attempts: 0, correct: 0 };
+    topicTotals[topic].seen.add(e.idx);
+    topicTotals[topic].attempts++;
+    if (e.correct) topicTotals[topic].correct++;
+  });
+
+  const topicRows = Object.entries(topicTotals)
+    .map(([topic, v]) => {
+      const topicAcc = v.attempts ? Math.round((v.correct / v.attempts) * 100) : 0;
+      const coverage = Math.round((v.seen.size / Math.max(1, v.total)) * 100);
+      return { topic, topicAcc, coverage, attempts: v.attempts, total: v.total };
+    })
+    .sort((a, b) => b.attempts - a.attempts || a.topic.localeCompare(b.topic));
+
+  const performanceRows = topicRows
+    .filter(r => r.attempts > 0)
+    .slice(0, 14)
+    .map(r =>
+      '<tr>' +
+        '<td>' + escHtml(r.topic) + '</td>' +
+        '<td>' + r.topicAcc + '%</td>' +
+        '<td>' + r.attempts + '</td>' +
+      '</tr>'
+    ).join('');
+
+  const coverageRows = topicRows
+    .map(r =>
+      '<div class="coverage-row">' +
+        '<div class="coverage-topic">' + escHtml(r.topic) + '</div>' +
+        '<div class="coverage-bar"><span style="width:' + r.coverage + '%"></span></div>' +
+        '<div class="coverage-meta">' + r.coverage + '%</div>' +
+      '</div>'
+    ).join('');
+
+  content.innerHTML =
+    '<div class="history-summary-grid">' +
+      '<div class="card history-stat"><div class="history-stat-val">' + attempts + '</div><div class="history-stat-lbl">Attempts</div></div>' +
+      '<div class="card history-stat"><div class="history-stat-val">' + accuracy + '%</div><div class="history-stat-lbl">Accuracy</div></div>' +
+      '<div class="card history-stat"><div class="history-stat-val">' + activeDays + '</div><div class="history-stat-lbl">Active Days</div></div>' +
+    '</div>' +
+    '<div class="card">' +
+      '<div class="history-card-title">Accuracy Trend (last 14 days)</div>' +
+      '<div class="trend-list">' + trendRows + '</div>' +
+    '</div>' +
+    '<div class="history-two-col">' +
+      '<div class="card">' +
+        '<div class="history-card-title">Right/Wrong Per Topic</div>' +
+        '<div class="history-table-wrap">' +
+          '<table class="history-table">' +
+            '<thead><tr><th>Topic</th><th>Accuracy</th><th>Attempts</th></tr></thead>' +
+            '<tbody>' + (performanceRows || '<tr><td colspan="3">No attempts yet.</td></tr>') + '</tbody>' +
+          '</table>' +
+        '</div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<div class="history-card-title">Service Coverage</div>' +
+        '<div class="coverage-list">' + coverageRows + '</div>' +
+      '</div>' +
+    '</div>';
 }
 
 function ensureHeroStatsRow() {
@@ -330,12 +512,18 @@ function renderHomeInsights(snapshot) {
     '</details>';
 }
 
-function recordAnswer(idx, correct) {
+function recordAnswer(idx, correct, topic) {
   const p = loadProgress();
   if (!p[idx]) p[idx] = {correct:0,incorrect:0,lastSeen:0};
   if (correct) p[idx].correct++; else p[idx].incorrect++;
   p[idx].lastSeen = Date.now();
   saveProgress(p);
+  appendAnswerLog({
+    idx,
+    topic: topic || QUESTIONS[idx].topic || 'General',
+    correct,
+    ts: Date.now(),
+  });
   updateHomeStats();
 }
 
@@ -359,6 +547,8 @@ function updateHomeStats() {
   }
 
   renderHomeInsights(snapshot);
+  const historyPanel = document.getElementById('tab-history');
+  if (historyPanel && historyPanel.classList.contains('active')) renderHistoryView();
 }
 
 // Nav
@@ -370,6 +560,7 @@ function goTab(tab) {
   if (tab==='home') updateHomeStats();
   if (tab==='flash') initFlashcards();
   if (tab==='quiz') resetQuizSetup();
+  if (tab==='history') renderHistoryView();
 }
 document.querySelectorAll('.nav-tab').forEach(t => t.addEventListener('click', () => goTab(t.dataset.tab)));
 
@@ -590,6 +781,7 @@ function launchQuiz(questions, mode, timed, initialState) {
     timed,
     current: initialState ? initialState.current : 0,
     score: initialState ? initialState.score : 0,
+    responses: initialState && Array.isArray(initialState.responses) ? initialState.responses : [],
     timerEnd: timed ? (initialState && initialState.timerEnd ? initialState.timerEnd : Date.now() + CERT_META.minutes * 60 * 1000) : null,
     timerInterval: null,
   };
@@ -696,8 +888,9 @@ function submitSingle(idx) {
   const {questions,current,mode} = quizState;
   const q = questions[current];
   const correct = idx === q.answer;
-  recordAnswer(q._idx, correct);
+  recordAnswer(q._idx, correct, q.topic || 'General');
   if (correct) quizState.score++;
+  quizState.responses[current] = { selected: [idx], correct, answeredAt: Date.now() };
   saveQuizSession();
   if (mode === 'study') {
     document.querySelectorAll('.answer-btn').forEach(b => {
@@ -718,8 +911,9 @@ function submitMulti(selected) {
   const {questions,current,mode} = quizState;
   const q = questions[current];
   const correct = selected.length===q.answer.length && selected.every(i=>q.answer.includes(i));
-  recordAnswer(q._idx, correct);
+  recordAnswer(q._idx, correct, q.topic || 'General');
   if (correct) quizState.score++;
+  quizState.responses[current] = { selected: [...selected].sort((a, b) => a - b), correct, answeredAt: Date.now() };
   saveQuizSession();
   if (mode === 'study') {
     document.querySelectorAll('.answer-btn').forEach(b => {
@@ -754,15 +948,43 @@ function showResult() {
   const rs = document.getElementById('quiz-result-screen');
   setScreenVisible('quiz-result-screen', true);
   const {score,questions} = quizState;
+  const responses = Array.isArray(quizState.responses) ? quizState.responses : [];
   const total=questions.length, pct=Math.round(score/total*100), pass=pct>=65;
-  rs.innerHTML = '<div class="result-card">' +
-    '<div class="result-score">'+pct+'%</div>' +
-    '<div class="result-label '+(pass?'result-pass':'result-fail')+'">'+(pass?'🎉 PASSED!':'❌ Not quite — keep practicing')+'</div>' +
-    '<div class="result-sub">'+score+' of '+total+' correct &middot; Passing score: 65%</div>' +
-    '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">' +
-    '<button class="btn btn-primary" onclick="resetQuizSetup()">New Quiz</button>' +
-    '<button class="btn" onclick="goTab(\'home\')">Home</button>' +
-    '</div></div>';
+  rs.innerHTML =
+    '<div class="quiz-review-page">' +
+      '<div class="result-card">' +
+        '<div class="result-score">'+pct+'%</div>' +
+        '<div class="result-label '+(pass?'result-pass':'result-fail')+'">'+(pass?'🎉 PASSED!':'❌ Not quite — keep practicing')+'</div>' +
+        '<div class="result-sub">'+score+' of '+total+' correct &middot; Passing score: 65%</div>' +
+        '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">' +
+          '<button class="btn btn-primary" onclick="resetQuizSetup()">New Quiz</button>' +
+          '<button class="btn" onclick="goTab(\'home\')">Home</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="card quiz-review-card">' +
+        '<div class="history-card-title">Quiz Review</div>' +
+        '<div class="text-muted">Scroll through all questions, your answers, and explanations.</div>' +
+        '<div class="quiz-review-list">' + questions.map((q, i) => {
+          const response = responses[i] || null;
+          const selected = response && Array.isArray(response.selected) ? response.selected : [];
+          const correctAnswers = (Array.isArray(q.answer) ? q.answer : [q.answer]).map(ans => formatAnswerLabel(ans, q.options[ans])).join(' | ');
+          const yourAnswers = selected.length ? formatSelectedAnswers(q, selected) : 'No answer';
+          const explanation = getQuestionExplanation(q) || (getTopicDetails(q.topic || 'General')?.desc || 'No explanation available for this question yet.');
+          const statusClass = !response ? 'review-unanswered' : (response.correct ? 'review-correct' : 'review-wrong');
+          const statusText = !response ? 'Unanswered' : (response.correct ? 'Correct' : 'Incorrect');
+          return '<div class="review-item">' +
+            '<div class="review-head">' +
+              '<span class="review-num">Q' + (i + 1) + '</span>' +
+              '<span class="review-status ' + statusClass + '">' + statusText + '</span>' +
+            '</div>' +
+            '<div class="review-question">' + escHtml(q.q) + '</div>' +
+            '<div class="review-meta"><strong>Your answer:</strong> ' + escHtml(yourAnswers) + '</div>' +
+            '<div class="review-meta"><strong>Correct answer:</strong> ' + escHtml(correctAnswers) + '</div>' +
+            '<div class="review-expl">' + escHtml(explanation) + '</div>' +
+          '</div>';
+        }).join('') + '</div>' +
+      '</div>' +
+    '</div>';
   updateHomeStats();
 }
 
@@ -927,6 +1149,7 @@ document.title = 'AWS ' + CERT_META.code + ' Study Platform';
 // Set stat total
 const _statTotal = document.getElementById('stat-total');
 if (_statTotal) _statTotal.textContent = QUESTIONS.length;
+ensureHistoryTab();
 ensureHeroStatsRow();
 buildStudyCards();
 populateTopics();
