@@ -214,6 +214,8 @@ h2.section-title .hl{color:var(--accent)}
 .btn-primary:hover{background:var(--accent2);border-color:var(--accent2)}
 .btn-sm{padding:8px 13px;font-size:0.75rem;min-height:36px}
 .quiz-start-btn{width:100%;padding:14px;font-size:1rem}
+.resume-quiz-controls{display:none;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:10px}
+.btn-bookmarked{border-color:var(--accent)!important;background:rgba(240,150,42,0.16)!important;color:var(--accent)!important}
 .weak-topic-tag{background:rgba(229,62,62,0.1);color:var(--wrong);border:1px solid rgba(229,62,62,0.25);padding:2px 9px;border-radius:999px;font-size:0.72rem;font-weight:700;white-space:nowrap}
 .weak-topic-none{color:var(--text2);font-size:0.75rem}
 

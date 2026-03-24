@@ -22,10 +22,84 @@ const ALL_TOPICS = [...new Set(QUESTIONS.map(q => q.topic))].sort();
 
 // Progress
 const STORAGE_KEY = 'aws-quiz-progress-' + CERT_META.id;
+const QUIZ_SESSION_KEY = 'aws-quiz-session-' + CERT_META.id;
+const BOOKMARKS_KEY = 'aws-bookmarks-' + CERT_META.id;
 function loadProgress() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); } catch { return {}; } }
 function saveProgress(p) { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); }
 function isMastered(e) { return e && e.correct >= 1; }
 function isWeak(e) { return e && e.incorrect > 0 && !isMastered(e); }
+
+function loadBookmarks() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(BOOKMARKS_KEY) || '[]');
+    if (!Array.isArray(raw)) return [];
+    return raw.filter(i => Number.isInteger(i) && i >= 0 && i < QUESTIONS.length);
+  } catch {
+    return [];
+  }
+}
+
+function saveBookmarks(bookmarks) {
+  const unique = [...new Set(bookmarks)].sort((a, b) => a - b);
+  localStorage.setItem(BOOKMARKS_KEY, JSON.stringify(unique));
+}
+
+function isBookmarked(idx) {
+  return loadBookmarks().includes(idx);
+}
+
+function toggleBookmark(idx) {
+  const bookmarks = new Set(loadBookmarks());
+  if (bookmarks.has(idx)) bookmarks.delete(idx);
+  else bookmarks.add(idx);
+  saveBookmarks([...bookmarks]);
+}
+
+function loadQuizSession() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(QUIZ_SESSION_KEY) || 'null');
+    if (!raw || !Array.isArray(raw.questionIndexes) || raw.questionIndexes.length === 0) return null;
+
+    const questions = raw.questionIndexes
+      .filter(i => Number.isInteger(i) && i >= 0 && i < QUESTIONS.length)
+      .map(i => ({ ...QUESTIONS[i], _idx: i }));
+    if (!questions.length) return null;
+
+    const current = Math.min(Math.max(parseInt(raw.current || 0, 10), 0), questions.length - 1);
+    const score = Math.max(0, parseInt(raw.score || 0, 10));
+    const timed = !!raw.timed;
+    const timerEnd = timed ? Number(raw.timerEnd || 0) : null;
+
+    return {
+      questions,
+      mode: raw.mode === 'exam' ? 'exam' : 'study',
+      timed,
+      current,
+      score,
+      timerEnd,
+    };
+  } catch {
+    return null;
+  }
+}
+
+function saveQuizSession() {
+  if (!quizState || !quizState.questions || !quizState.questions.length) return;
+  const payload = {
+    questionIndexes: quizState.questions.map(q => q._idx),
+    mode: quizState.mode,
+    timed: !!quizState.timed,
+    current: quizState.current,
+    score: quizState.score,
+    timerEnd: quizState.timed ? quizState.timerEnd : null,
+    updatedAt: Date.now(),
+  };
+  localStorage.setItem(QUIZ_SESSION_KEY, JSON.stringify(payload));
+}
+
+function clearQuizSession() {
+  localStorage.removeItem(QUIZ_SESSION_KEY);
+}
 
 function buildProgressSnapshot() {
   const p = loadProgress();
@@ -86,8 +160,21 @@ function ensureHomeInsights() {
 }
 
 function getRecommendedAction(snapshot) {
+  const savedSession = loadQuizSession();
+  const bookmarkCount = loadBookmarks().length;
   const worstTopic = Object.entries(snapshot.weakMap).sort((a, b) => b[1] - a[1])[0];
   const unseenTopic = snapshot.topicStats.find(stat => stat.seen === 0);
+
+  if (savedSession) {
+    return {
+      eyebrow: 'Recommended Next Step',
+      title: 'Resume your last quiz',
+      desc: 'Continue where you left off without losing progress.',
+      meta: 'Question ' + (savedSession.current + 1) + ' of ' + savedSession.questions.length,
+      cta: 'Resume quiz',
+      action: 'resumeSavedQuiz()'
+    };
+  }
 
   if (snapshot.mastered === 0) {
     return {
@@ -107,6 +194,16 @@ function getRecommendedAction(snapshot) {
       meta: worstTopic[1] + ' question' + (worstTopic[1] === 1 ? '' : 's') + ' still need review',
       cta: 'Practice weak areas',
       action: 'startWeakAreas()'
+    };
+  }
+  if (bookmarkCount > 0) {
+    return {
+      eyebrow: 'Recommended Next Step',
+      title: 'Review your bookmarked questions',
+      desc: 'You have saved questions to revisit. This is a fast way to sharpen uncertain areas.',
+      meta: bookmarkCount + ' bookmarked question' + (bookmarkCount === 1 ? '' : 's'),
+      cta: 'Practice bookmarks',
+      action: 'startBookmarkedQuiz()'
     };
   }
   if (snapshot.masteryPct >= 70) {
@@ -249,6 +346,7 @@ function goTab(tab) {
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-'+tab).classList.add('active');
   document.querySelector('[data-tab='+tab+']').classList.add('active');
+  if (tab==='home') updateHomeStats();
   if (tab==='flash') initFlashcards();
   if (tab==='quiz') resetQuizSetup();
 }
@@ -332,9 +430,11 @@ function shuffle(arr) {
 
 function getPool(opts) {
   const p = loadProgress();
+  const bookmarks = new Set(loadBookmarks());
   let pool = QUESTIONS.map((q,i) => ({...q,_idx:i}));
   if (opts.topic && opts.topic !== 'all') pool = pool.filter(q => q.topic === opts.topic);
   if (opts.filter === 'weak') pool = pool.filter(q => isWeak(p[q._idx]));
+  if (opts.filter === 'bookmarked') pool = pool.filter(q => bookmarks.has(q._idx));
   pool = shuffle(pool);
   if (opts.count !== 'all') pool = pool.slice(0, parseInt(opts.count));
   return pool;
@@ -355,9 +455,34 @@ function startWeakAreas() {
   goTab('quiz');
   setTimeout(() => launchQuiz(pool, 'study', false), 10);
 }
+
+function startBookmarkedQuiz() {
+  const bookmarks = new Set(loadBookmarks());
+  const pool = shuffle(QUESTIONS.map((q, i) => ({ ...q, _idx: i })).filter(q => bookmarks.has(q._idx)));
+  if (!pool.length) { alert('No bookmarked questions yet.'); return; }
+  goTab('quiz');
+  setTimeout(() => launchQuiz(pool, 'study', false), 10);
+}
+
 function startTopicQuiz(topic) {
   goTab('quiz');
   setTimeout(() => launchQuiz(getPool({topic, count:20}), 'study', false), 10);
+}
+
+function resumeSavedQuiz() {
+  const saved = loadQuizSession();
+  if (!saved) {
+    alert('No saved quiz session found.');
+    return;
+  }
+  goTab('quiz');
+  setTimeout(() => launchQuiz(saved.questions, saved.mode, saved.timed, saved), 10);
+}
+
+function discardSavedQuiz() {
+  clearQuizSession();
+  resetQuizSetup();
+  updateHomeStats();
 }
 
 function setScreenVisible(id, visible) {
@@ -371,6 +496,49 @@ function resetQuizSetup() {
   setScreenVisible('quiz-setup-screen', true);
   setScreenVisible('quiz-active-screen', false);
   setScreenVisible('quiz-result-screen', false);
+  ensureQuizSetupEnhancements();
+  renderResumeControls();
+}
+
+function ensureQuizSetupEnhancements() {
+  const filterGroup = document.querySelector('.pill[data-group="filter"]')?.parentElement;
+  if (filterGroup && !filterGroup.querySelector('.pill[data-val="bookmarked"]')) {
+    const pill = document.createElement('div');
+    pill.className = 'pill';
+    pill.dataset.group = 'filter';
+    pill.dataset.val = 'bookmarked';
+    pill.textContent = '★ Bookmarked Only';
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.pill[data-group="filter"]').forEach(x => x.classList.remove('selected'));
+      pill.classList.add('selected');
+    });
+    filterGroup.appendChild(pill);
+  }
+
+  const setup = document.getElementById('quiz-setup-screen');
+  if (setup && !document.getElementById('resume-quiz-controls')) {
+    const controls = document.createElement('div');
+    controls.id = 'resume-quiz-controls';
+    controls.className = 'resume-quiz-controls';
+    controls.innerHTML =
+      '<button class="btn btn-sm" id="resume-quiz-btn" onclick="resumeSavedQuiz()">Resume Last Quiz</button>' +
+      '<button class="btn btn-sm" id="discard-quiz-btn" onclick="discardSavedQuiz()">Discard Saved Quiz</button>';
+    const startBtn = setup.querySelector('.quiz-start-btn');
+    if (startBtn) startBtn.insertAdjacentElement('afterend', controls);
+  }
+}
+
+function renderResumeControls() {
+  const wrap = document.getElementById('resume-quiz-controls');
+  if (!wrap) return;
+  const saved = loadQuizSession();
+  if (!saved) {
+    wrap.style.display = 'none';
+    return;
+  }
+  wrap.style.display = 'flex';
+  const resumeBtn = document.getElementById('resume-quiz-btn');
+  if (resumeBtn) resumeBtn.textContent = 'Resume Quiz (' + (saved.current + 1) + '/' + saved.questions.length + ')';
 }
 
 function startConfiguredQuiz() {
@@ -380,13 +548,22 @@ function startConfiguredQuiz() {
   launchQuiz(qs, mode, mode==='exam');
 }
 
-function launchQuiz(questions, mode, timed) {
+function launchQuiz(questions, mode, timed, initialState) {
   setScreenVisible('quiz-setup-screen', false);
   setScreenVisible('quiz-active-screen', true);
   setScreenVisible('quiz-result-screen', false);
-  quizState = { questions, mode, timed, current:0, score:0, timerEnd: timed ? Date.now()+CERT_META.minutes*60*1000 : null, timerInterval:null };
+  quizState = {
+    questions,
+    mode,
+    timed,
+    current: initialState ? initialState.current : 0,
+    score: initialState ? initialState.score : 0,
+    timerEnd: timed ? (initialState && initialState.timerEnd ? initialState.timerEnd : Date.now() + CERT_META.minutes * 60 * 1000) : null,
+    timerInterval: null,
+  };
   selectedMulti = new Set();
   if (timed) quizState.timerInterval = setInterval(updateTimer, 1000);
+  saveQuizSession();
   renderQuestion();
 }
 
@@ -422,7 +599,7 @@ function renderQuestion() {
     '<div class="question-card">' +
     '<div class="question-num">Topic: <span class="badge-pill">'+escHtml(q.topic||'General')+'</span>'+multiHint+'</div>' +
     '<div class="question-text">'+escHtml(q.q)+' <button class="info-btn" onclick="showInfo(\'' + escJs(q.topic||'General') + '\')" title="Service info">ℹ</button></div>' +
-    '<div class="question-actions"><button class="btn btn-sm" onclick="reportCurrentQuestion()">Report question</button></div>' +
+    '<div class="question-actions"><button class="btn btn-sm '+(isBookmarked(q._idx)?'btn-bookmarked':'')+'" id="bookmark-question-btn" onclick="toggleCurrentBookmark()">'+bookmarkButtonLabel(q._idx)+'</button><button class="btn btn-sm" onclick="reportCurrentQuestion()">Report question</button></div>' +
     '<div class="answers" id="answers-wrap">'+optHtml+'</div>' +
     '<div id="feedback-area"></div>' +
     '<div class="next-btn-wrap" id="next-wrap" style="display:none"><button class="btn btn-primary" onclick="nextQuestion()">'+(current<total-1?'Next Question →':'See Results')+'</button></div>' +
@@ -480,6 +657,40 @@ function reportCurrentFlashcard() {
   openQuestionReport(buildQuestionReportDraft(q, null));
 }
 
+function bookmarkButtonLabel(idx) {
+  return isBookmarked(idx) ? '★ Bookmarked' : '☆ Bookmark';
+}
+
+function toggleCurrentBookmark() {
+  if (!quizState || !quizState.questions || !quizState.questions.length) return;
+  const q = quizState.questions[quizState.current];
+  toggleBookmark(q._idx);
+  const btn = document.getElementById('bookmark-question-btn');
+  if (btn) {
+    btn.textContent = bookmarkButtonLabel(q._idx);
+    btn.classList.toggle('btn-bookmarked', isBookmarked(q._idx));
+  }
+  renderResumeControls();
+  updateHomeStats();
+}
+
+function toggleCurrentFlashBookmark() {
+  if (!flashState.questions.length) return;
+  const q = flashState.questions[flashState.current];
+  toggleBookmark(q._idx);
+  updateFlashBookmarkButton();
+  renderResumeControls();
+  updateHomeStats();
+}
+
+function updateFlashBookmarkButton() {
+  const btn = document.getElementById('flash-bookmark-btn');
+  if (!btn || !flashState.questions.length) return;
+  const idx = flashState.questions[flashState.current]._idx;
+  btn.textContent = bookmarkButtonLabel(idx);
+  btn.classList.toggle('btn-bookmarked', isBookmarked(idx));
+}
+
 function handleAnswer(idx) {
   const {questions,current,mode} = quizState;
   const q = questions[current];
@@ -502,6 +713,7 @@ function submitSingle(idx) {
   const correct = idx === q.answer;
   recordAnswer(q._idx, correct);
   if (correct) quizState.score++;
+  saveQuizSession();
   if (mode === 'study') {
     document.querySelectorAll('.answer-btn').forEach(b => {
       b.disabled=true;
@@ -523,6 +735,7 @@ function submitMulti(selected) {
   const correct = selected.length===q.answer.length && selected.every(i=>q.answer.includes(i));
   recordAnswer(q._idx, correct);
   if (correct) quizState.score++;
+  saveQuizSession();
   if (mode === 'study') {
     document.querySelectorAll('.answer-btn').forEach(b => {
       b.disabled=true;
@@ -543,11 +756,15 @@ function nextQuestion() {
   quizState.current++;
   selectedMulti = new Set();
   if (quizState.current >= quizState.questions.length) showResult();
-  else renderQuestion();
+  else {
+    saveQuizSession();
+    renderQuestion();
+  }
 }
 
 function showResult() {
   if (quizState.timerInterval) clearInterval(quizState.timerInterval);
+  clearQuizSession();
   setScreenVisible('quiz-active-screen', false);
   const rs = document.getElementById('quiz-result-screen');
   setScreenVisible('quiz-result-screen', true);
@@ -627,6 +844,7 @@ function ensureFlashActions() {
   const wrap = document.createElement('div');
   wrap.className = 'flash-extra-actions';
   wrap.innerHTML =
+    '<button class="btn btn-sm" id="flash-bookmark-btn" onclick="toggleCurrentFlashBookmark()">☆ Bookmark</button>' +
     '<button class="btn btn-sm" onclick="reportCurrentFlashcard()">Report card</button>' +
     '<span class="flash-shortcut-hint">Use ← / → to navigate, space to flip</span>';
   nav.insertAdjacentElement('afterend', wrap);
@@ -647,6 +865,7 @@ function renderFlashCard() {
   document.getElementById('flash-back-text').textContent = ansText;
   document.getElementById('flash-counter').textContent = (current+1)+' / '+questions.length;
   document.getElementById('flash-card').classList.remove('flipped');
+  updateFlashBookmarkButton();
 }
 
 function flipCard() { document.getElementById('flash-card').classList.toggle('flipped'); }
@@ -713,6 +932,8 @@ const _statTotal = document.getElementById('stat-total');
 if (_statTotal) _statTotal.textContent = QUESTIONS.length;
 buildStudyCards();
 populateTopics();
+ensureQuizSetupEnhancements();
+renderResumeControls();
 updateHomeStats();
 initFlashcards();
 // Update exam sim description dynamically
