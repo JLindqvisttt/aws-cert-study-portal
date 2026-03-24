@@ -146,9 +146,14 @@ function ensureHomeInsights() {
 
   if (!document.getElementById('smart-action-card')) {
     const smart = document.createElement('div');
-    smart.className = 'card smart-action-card';
+    smart.className = 'action-card smart-action-card';
     smart.id = 'smart-action-card';
-    home.insertBefore(smart, actions);
+    actions.insertBefore(smart, actions.firstElementChild);
+  } else {
+    const smart = document.getElementById('smart-action-card');
+    if (smart && smart.parentElement !== actions) {
+      actions.insertBefore(smart, actions.firstElementChild);
+    }
   }
 
   if (!document.getElementById('topic-readiness-card')) {
@@ -157,6 +162,22 @@ function ensureHomeInsights() {
     readiness.id = 'topic-readiness-card';
     actions.insertAdjacentElement('afterend', readiness);
   }
+}
+
+function ensureHeroStatsRow() {
+  const home = document.getElementById('tab-home');
+  const stats = home && home.querySelector('.stats-grid');
+  const heroInner = document.querySelector('.cert-hero-inner');
+  if (!home || !stats || !heroInner) return;
+
+  let wrap = document.getElementById('hero-stats-wrap');
+  if (!wrap) {
+    wrap = document.createElement('div');
+    wrap.id = 'hero-stats-wrap';
+    wrap.className = 'hero-stats-wrap';
+    heroInner.appendChild(wrap);
+  }
+  if (stats.parentElement !== wrap) wrap.appendChild(stats);
 }
 
 function getRecommendedAction(snapshot) {
@@ -522,7 +543,8 @@ function ensureQuizSetupEnhancements() {
     controls.className = 'resume-quiz-controls';
     controls.innerHTML =
       '<button class="btn btn-sm" id="resume-quiz-btn" onclick="resumeSavedQuiz()">Resume Last Quiz</button>' +
-      '<button class="btn btn-sm" id="discard-quiz-btn" onclick="discardSavedQuiz()">Discard Saved Quiz</button>';
+      '<button class="btn btn-sm" id="discard-quiz-btn" onclick="discardSavedQuiz()">Discard Saved Quiz</button>' +
+      '<button class="btn btn-sm" id="bookmarked-quiz-btn" onclick="startBookmarkedQuiz()">Practice Bookmarks</button>';
     const startBtn = setup.querySelector('.quiz-start-btn');
     if (startBtn) startBtn.insertAdjacentElement('afterend', controls);
   }
@@ -532,13 +554,23 @@ function renderResumeControls() {
   const wrap = document.getElementById('resume-quiz-controls');
   if (!wrap) return;
   const saved = loadQuizSession();
-  if (!saved) {
-    wrap.style.display = 'none';
-    return;
-  }
-  wrap.style.display = 'flex';
+  const bookmarkCount = loadBookmarks().length;
+  const shouldShow = !!saved || bookmarkCount > 0;
+  wrap.style.display = shouldShow ? 'flex' : 'none';
+
   const resumeBtn = document.getElementById('resume-quiz-btn');
-  if (resumeBtn) resumeBtn.textContent = 'Resume Quiz (' + (saved.current + 1) + '/' + saved.questions.length + ')';
+  const discardBtn = document.getElementById('discard-quiz-btn');
+  const bookmarkedBtn = document.getElementById('bookmarked-quiz-btn');
+
+  if (resumeBtn) {
+    resumeBtn.style.display = saved ? '' : 'none';
+    if (saved) resumeBtn.textContent = 'Resume Quiz (' + (saved.current + 1) + '/' + saved.questions.length + ')';
+  }
+  if (discardBtn) discardBtn.style.display = saved ? '' : 'none';
+  if (bookmarkedBtn) {
+    bookmarkedBtn.style.display = bookmarkCount > 0 ? '' : 'none';
+    if (bookmarkCount > 0) bookmarkedBtn.textContent = 'Practice Bookmarks (' + bookmarkCount + ')';
+  }
 }
 
 function startConfiguredQuiz() {
@@ -599,7 +631,7 @@ function renderQuestion() {
     '<div class="question-card">' +
     '<div class="question-num">Topic: <span class="badge-pill">'+escHtml(q.topic||'General')+'</span>'+multiHint+'</div>' +
     '<div class="question-text">'+escHtml(q.q)+' <button class="info-btn" onclick="showInfo(\'' + escJs(q.topic||'General') + '\')" title="Service info">ℹ</button></div>' +
-    '<div class="question-actions"><button class="btn btn-sm '+(isBookmarked(q._idx)?'btn-bookmarked':'')+'" id="bookmark-question-btn" onclick="toggleCurrentBookmark()">'+bookmarkButtonLabel(q._idx)+'</button><button class="btn btn-sm" onclick="reportCurrentQuestion()">Report question</button></div>' +
+    '<div class="question-actions"><button class="btn btn-sm '+(isBookmarked(q._idx)?'btn-bookmarked':'')+'" id="bookmark-question-btn" onclick="toggleCurrentBookmark()">'+bookmarkButtonLabel(q._idx)+'</button></div>' +
     '<div class="answers" id="answers-wrap">'+optHtml+'</div>' +
     '<div id="feedback-area"></div>' +
     '<div class="next-btn-wrap" id="next-wrap" style="display:none"><button class="btn btn-primary" onclick="nextQuestion()">'+(current<total-1?'Next Question →':'See Results')+'</button></div>' +
@@ -609,53 +641,6 @@ function renderQuestion() {
 }
 
 function escJs(s) { return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'"); }
-
-function buildQuestionReportDraft(q, selected) {
-  const correctAnswers = (Array.isArray(q.answer) ? q.answer : [q.answer]).map(i => formatAnswerLabel(i, q.options[i])).join(' | ');
-  const selectedAnswers = selected && selected.length ? formatSelectedAnswers(q, selected) : 'None provided';
-  return {
-    type: 'question',
-    cert: CERT_META.code,
-    message: [
-      'Please review this question for accuracy.',
-      '',
-      'Certification: ' + CERT_META.code,
-      'Topic: ' + (q.topic || 'General'),
-      '',
-      'Question:',
-      q.q,
-      '',
-      'Options:',
-      q.options.map((opt, i) => String.fromCharCode(65 + i) + '. ' + opt).join('\n'),
-      '',
-      'Marked correct answer:',
-      correctAnswers,
-      '',
-      'My selected answer(s):',
-      selectedAnswers,
-      '',
-      'Reason this should be reviewed:'
-    ].join('\n')
-  };
-}
-
-function openQuestionReport(draft) {
-  localStorage.setItem('aws-feedback-draft', JSON.stringify(draft));
-  window.open('../feedback.html?draft=1', '_blank', 'noopener');
-}
-
-function reportCurrentQuestion() {
-  if (!quizState || !quizState.questions || !quizState.questions.length) return;
-  const q = quizState.questions[quizState.current];
-  const selected = selectedMulti.size ? Array.from(selectedMulti).sort((a, b) => a - b) : null;
-  openQuestionReport(buildQuestionReportDraft(q, selected));
-}
-
-function reportCurrentFlashcard() {
-  if (!flashState.questions.length) return;
-  const q = flashState.questions[flashState.current];
-  openQuestionReport(buildQuestionReportDraft(q, null));
-}
 
 function bookmarkButtonLabel(idx) {
   return isBookmarked(idx) ? '★ Bookmarked' : '☆ Bookmark';
@@ -840,14 +825,26 @@ function initFlashcards() {
 
 function ensureFlashActions() {
   const nav = document.querySelector('.flash-nav');
-  if (!nav || document.querySelector('.flash-extra-actions')) return;
-  const wrap = document.createElement('div');
-  wrap.className = 'flash-extra-actions';
-  wrap.innerHTML =
-    '<button class="btn btn-sm" id="flash-bookmark-btn" onclick="toggleCurrentFlashBookmark()">☆ Bookmark</button>' +
-    '<button class="btn btn-sm" onclick="reportCurrentFlashcard()">Report card</button>' +
-    '<span class="flash-shortcut-hint">Use ← / → to navigate, space to flip</span>';
-  nav.insertAdjacentElement('afterend', wrap);
+  if (!nav) return;
+
+  const oldWrap = document.querySelector('.flash-extra-actions');
+  if (oldWrap) oldWrap.remove();
+
+  if (!document.getElementById('flash-bookmark-btn')) {
+    const btn = document.createElement('button');
+    btn.className = 'btn btn-sm flash-bookmark-btn';
+    btn.id = 'flash-bookmark-btn';
+    btn.textContent = '☆ Bookmark';
+    btn.onclick = toggleCurrentFlashBookmark;
+    nav.appendChild(btn);
+  }
+
+  if (!document.querySelector('.flash-shortcut-hint')) {
+    const hint = document.createElement('div');
+    hint.className = 'flash-shortcut-hint';
+    hint.textContent = 'Use ← / → to navigate, space to flip';
+    nav.insertAdjacentElement('afterend', hint);
+  }
 }
 
 function renderFlashCard() {
@@ -930,6 +927,7 @@ document.title = 'AWS ' + CERT_META.code + ' Study Platform';
 // Set stat total
 const _statTotal = document.getElementById('stat-total');
 if (_statTotal) _statTotal.textContent = QUESTIONS.length;
+ensureHeroStatsRow();
 buildStudyCards();
 populateTopics();
 ensureQuizSetupEnhancements();
