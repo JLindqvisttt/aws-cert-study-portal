@@ -7,9 +7,9 @@ function toggleTheme(){
   var next=(html.getAttribute('data-theme')==='dark')?'light':'dark';
   html.setAttribute('data-theme',next);
   localStorage.setItem('theme',next);
-  document.getElementById('theme-toggle').textContent=next==='dark'?'🌙':'☀️';
+  document.getElementById('theme-toggle').textContent=next==='dark'?'◐':'◑';
 }
-(function(){var t=localStorage.getItem('theme')||'dark';document.getElementById('theme-toggle').textContent=t==='dark'?'🌙':'☀️';})();
+(function(){var t=localStorage.getItem('theme')||'dark';document.getElementById('theme-toggle').textContent=t==='dark'?'◐':'◑';})();
 
 function showStatus(kind, msg){
   var el=document.getElementById('fb-status');

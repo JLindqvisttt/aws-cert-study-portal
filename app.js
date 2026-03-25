@@ -204,7 +204,7 @@ function ensureHistoryTab() {
     const btn = document.createElement('button');
     btn.className = 'nav-tab';
     btn.dataset.tab = 'history';
-    btn.textContent = '📈 History';
+    btn.textContent = 'History';
     tabs.appendChild(btn);
     btn.addEventListener('click', () => goTab('history'));
   }
@@ -901,8 +901,8 @@ function submitSingle(idx) {
     });
     const fb = document.getElementById('feedback-area');
     fb.innerHTML = correct
-      ? '<div class="feedback correct">✓ Correct!</div>' + buildAnswerInsight(q, true, [idx])
-      : '<div class="feedback wrong">✗ Incorrect. Correct: '+String.fromCharCode(65+q.answer)+'.</div>' + buildAnswerInsight(q, false, [idx]);
+      ? '<div class="feedback correct">Correct.</div>' + buildAnswerInsight(q, true, [idx])
+      : '<div class="feedback wrong">Incorrect. Correct: '+String.fromCharCode(65+q.answer)+'.</div>' + buildAnswerInsight(q, false, [idx]);
     document.getElementById('next-wrap').style.display='';
   } else { nextQuestion(); }
 }
@@ -925,8 +925,8 @@ function submitMulti(selected) {
     const letters = q.answer.map(i=>String.fromCharCode(65+i)).join(', ');
     const fb = document.getElementById('feedback-area');
     fb.innerHTML = correct
-      ? '<div class="feedback correct">✓ Correct!</div>' + buildAnswerInsight(q, true, selected)
-      : '<div class="feedback wrong">✗ Incorrect. Correct: '+letters+'.</div>' + buildAnswerInsight(q, false, selected);
+      ? '<div class="feedback correct">Correct.</div>' + buildAnswerInsight(q, true, selected)
+      : '<div class="feedback wrong">Incorrect. Correct: '+letters+'.</div>' + buildAnswerInsight(q, false, selected);
     document.getElementById('next-wrap').style.display='';
   } else { nextQuestion(); }
 }
@@ -954,7 +954,7 @@ function showResult() {
     '<div class="quiz-review-page">' +
       '<div class="result-card">' +
         '<div class="result-score">'+pct+'%</div>' +
-        '<div class="result-label '+(pass?'result-pass':'result-fail')+'">'+(pass?'🎉 PASSED!':'❌ Not quite — keep practicing')+'</div>' +
+        '<div class="result-label '+(pass?'result-pass':'result-fail')+'">'+(pass?'Passed':'Not quite — keep practicing')+'</div>' +
         '<div class="result-sub">'+score+' of '+total+' correct &middot; Passing score: 65%</div>' +
         '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">' +
           '<button class="btn btn-primary" onclick="resetQuizSetup()">New Quiz</button>' +
@@ -1024,7 +1024,7 @@ function showInfo(topic) {
   const url = AWS_DOCS[topic] || 'https://docs.aws.amazon.com/index.html';
   const link = document.getElementById('modal-link');
   link.href = url;
-  link.textContent = '📖 '+(topic||'AWS')+' Documentation →';
+  link.textContent = (topic||'AWS')+' Documentation →';
   document.getElementById('info-modal').classList.remove('hidden');
 }
 function closeModal() { document.getElementById('info-modal').classList.add('hidden'); }
@@ -1123,7 +1123,7 @@ function toggleTheme() {
   const html = document.documentElement;
   const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
   html.setAttribute('data-theme', newTheme);
-  document.getElementById('theme-toggle').textContent = newTheme === 'light' ? '☀️' : '🌙';
+  document.getElementById('theme-toggle').textContent = newTheme === 'light' ? '◑' : '◐';
   localStorage.setItem('theme', newTheme);
 }
 
@@ -1142,7 +1142,7 @@ function injectReleaseTag() {
 
 // Init
 const _t = localStorage.getItem('theme') || 'dark';
-document.getElementById('theme-toggle').textContent = _t === 'light' ? '☀️' : '🌙';
+document.getElementById('theme-toggle').textContent = _t === 'light' ? '◑' : '◐';
 // Set cert identity in nav
 const _logo = document.querySelector('.nav-logo');
 if (_logo) _logo.innerHTML = '&#x2601; ' + CERT_META.code + ' <span>' + CERT_META.name + '</span>';

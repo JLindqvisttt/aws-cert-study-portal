@@ -67,8 +67,8 @@ function buildCards(){
   grid.innerHTML = html;
 }
 
-function togglePortalTheme(){var html=document.documentElement;var current=html.getAttribute('data-theme');var next=current==='dark'?'light':'dark';html.setAttribute('data-theme',next);localStorage.setItem('theme',next);document.getElementById('theme-toggle').textContent=next==='dark'?'🌙':'☀️';}
-(function(){var t=localStorage.getItem('theme')||'dark';document.getElementById('theme-toggle').textContent=t==='dark'?'🌙':'☀️';})();
+function togglePortalTheme(){var html=document.documentElement;var current=html.getAttribute('data-theme');var next=current==='dark'?'light':'dark';html.setAttribute('data-theme',next);localStorage.setItem('theme',next);document.getElementById('theme-toggle').textContent=next==='dark'?'◐':'◑';}
+(function(){var t=localStorage.getItem('theme')||'dark';document.getElementById('theme-toggle').textContent=t==='dark'?'◐':'◑';})();
 
 function injectReleaseTag(){
   var footer=document.querySelector('.portal-footer');
